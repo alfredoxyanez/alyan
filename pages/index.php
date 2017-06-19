@@ -1,8 +1,4 @@
-<?php
-require 'dp.php';
-session_start();
 
- ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,12 +50,88 @@ if($_SERVER["REQUEST_METHOD"]=='POST'){
 
 <body>
   <div class="container">
-    <div class="form">
-      <ul class="tab-group">
-        <li class="tab"><a href="#">Sign Up!</a></li>
-        <li class="tab active"><a href="#">Log In</a></li>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="login-panel panel panel-default">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a href="#1" data-toggle="tab">Log In</a>
+            </li>
+            <li>
+              <a href="#2" data-toggle="tab">Sign Up</a>
+            </li>
+
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="1">
+              <div class="panel-body">
+                <form role="form" action="index.php" method="post">
+                    <fieldset>
+                        <div class="form-group">
+                            <input class="form-control req" placeholder="E-mail" name="email" type="email" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control req" placeholder="Password" name="password" type="password" value="">
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                            </label>
+                        </div>
+                        <a href="index.php" class="btn btn-lg btn-success btn-block">Login</a>
+
+                    </fieldset>
+                </form>
+              </div>
+
+
+            </div>
+
+            <div class="tab-pane" id="2">
+              <div class="panel-body">
+                  <form role="form"  action="signup.php" method="post">
+                      <fieldset>
+                          <div class="form-group">
+                              <input class="form-control" placeholder="Name" name="name" type="text" autofocus>
+                          </div>
+                          <div class="form-group">
+                              <input class="form-control" placeholder="Last Name" name="lastname" type="text" >
+                          </div>
+                          <div class="form-group">
+                              <input class="form-control" placeholder="E-mail" name="email" type="email" >
+                          </div>
+                          <div class="form-group">
+                              <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                          </div>
+                          <div class="form-group">
+                              <input class="form-control" placeholder="Confirm Password" name="c_password" type="password" value="">
+                          </div>
+                          <div class="form-group">
+                              <input class="form-control" placeholder="Code (if Aplicable)" name="code" type="text" >
+                          </div>
+
+                          <a href="signupstatus.html" class="btn btn-lg btn-primary btn-block">Create Account</a>
+
+                          </div>
+                      </fieldset>
+                  </form>
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+        </div>
+
+
 
       </div>
+
+    </div>
+
 
     </div>
 
@@ -90,10 +162,10 @@ if($_SERVER["REQUEST_METHOD"]=='POST'){
 
 
 
-                                <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
+
+                                <a href="index.php" class="btn btn-lg btn-success btn-block">Login</a>
                                 <p class=text-center> OR </p>
-                                <a href="signup.html" class="btn btn-lg btn-primary btn-block">Sign Up!</a>
+                                <a href="signup.php" class="btn btn-lg btn-primary btn-block">Sign Up!</a>
                             </fieldset>
                         </form>
                     </div>
