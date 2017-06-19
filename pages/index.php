@@ -1,3 +1,9 @@
+<?php
+require 'dp.php';
+session_start();
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,9 +38,34 @@
 
 </head>
 
-<body>
+<?php
+if($_SERVER["REQUEST_METHOD"]=='POST'){
+  if(isset($POST['login'])){
+    require 'login.php';
+  }
 
-    <div class="container">
+
+
+
+}
+
+
+ ?>
+
+<body>
+  <div class="container">
+    <div class="form">
+      <ul class="tab-group">
+        <li class="tab"><a href="#">Sign Up!</a></li>
+        <li class="tab active"><a href="#">Log In</a></li>
+
+      </div>
+
+    </div>
+
+  </div>
+
+    <!-- <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
@@ -42,13 +73,13 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" action="index.php" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control req" placeholder="E-mail" name="email" type="email" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input class="form-control req" placeholder="Password" name="password" type="password" value="">
                                 </div>
 
                                 <div class="checkbox">
@@ -62,14 +93,14 @@
                                 <!-- Change this to a button or input when using this as a form -->
                                 <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
                                 <p class=text-center> OR </p>
-                                <a href="singup.html" class="btn btn-lg btn-primary btn-block">Sign Up!</a>
+                                <a href="signup.html" class="btn btn-lg btn-primary btn-block">Sign Up!</a>
                             </fieldset>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>

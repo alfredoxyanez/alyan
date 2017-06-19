@@ -1,3 +1,9 @@
+<?php
+require 'dp.php';
+session_start();
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,6 +37,21 @@
     <![endif]-->
 
 </head>
+<?php
+if($_SERVER["REQUEST_METHOD"]=='POST'){
+
+
+
+
+}
+
+
+
+
+
+
+
+ ?>
 
 <body>
 
@@ -42,7 +63,7 @@
                         <h3 class="panel-title">Please Sign Up</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form"  action="signup.php" method="post">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Name" name="name" type="text" autofocus>
@@ -63,7 +84,7 @@
                                     <input class="form-control" placeholder="Code (if Aplicable)" name="code" type="text" >
                                 </div>
 
-                                <a href="singupstatus.html" class="btn btn-lg btn-primary btn-block">Create Account</a>
+                                <a href="signupstatus.html" class="btn btn-lg btn-primary btn-block">Create Account</a>
 
                                 </div>
                             </fieldset>
