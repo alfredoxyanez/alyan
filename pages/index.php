@@ -55,7 +55,7 @@ if($_SERVER["REQUEST_METHOD"]=='POST'){
         <div class="login-panel panel panel-default">
           <ul class="nav nav-tabs">
             <li class="active">
-              <a href="#1" data-toggle="tab">Fuck Off</a>
+              <a href="#1" data-toggle="tab">Log In</a>
             </li>
             <li>
               <a href="#2" data-toggle="tab">Sign Up</a>
