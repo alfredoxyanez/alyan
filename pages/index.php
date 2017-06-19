@@ -55,7 +55,7 @@ if($_SERVER["REQUEST_METHOD"]=='POST'){
         <div class="login-panel panel panel-default">
           <ul class="nav nav-tabs">
             <li class="active">
-              <a href="#1" data-toggle="tab">Log In</a>
+              <a href="#1" data-toggle="tab">Fuck Off</a>
             </li>
             <li>
               <a href="#2" data-toggle="tab">Sign Up</a>
@@ -137,42 +137,6 @@ if($_SERVER["REQUEST_METHOD"]=='POST'){
 
   </div>
 
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
-                    </div>
-                    <div class="panel-body">
-                        <form role="form" action="index.php" method="post">
-                            <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control req" placeholder="E-mail" name="email" type="email" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control req" placeholder="Password" name="password" type="password" value="">
-                                </div>
-
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                    </label>
-                                </div>
-
-
-
-
-                                <a href="index.php" class="btn btn-lg btn-success btn-block">Login</a>
-                                <p class=text-center> OR </p>
-                                <a href="signup.php" class="btn btn-lg btn-primary btn-block">Sign Up!</a>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
