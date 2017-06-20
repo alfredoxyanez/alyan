@@ -14,9 +14,16 @@ $_SESSION['last_name'] = $_POST['lastname'];
 $message = "1";
 echo "<script type='text/javascript'>alert('$message');</script>";
 
-$first_name = mysqli_real_escape_string($mysqli,$_POST['name']);
-echo "<script type='text/javascript'>alert('$firstname');</script>";
+if ($mysqli) {
+  $message='conected'
+} else {
+  $message='not conected'
+}
+die();
 
+
+echo "<script type='text/javascript'>alert('$message');</script>";
+$first_name = mysqli_real_escape_string($mysqli,$_POST['name']);
 $last_name = $mysqli->escape_string($_POST['lastname']);
 $email = $mysqli->escape_string($_POST['email']);
 $password = $mysqli->escape_string( password_hash($_POST['password'], PASSWORD_BCRYPT) );
