@@ -94,7 +94,7 @@ if($_SERVER["REQUEST_METHOD"]=='POST'){
 
             <div class="tab-pane" id="2">
               <div class="panel-body">
-                  <form role="form"  action="index.php" method="post">
+                  <form role="form"  action="register.php" method="post">
                       <fieldset>
                           <div class="form-group">
                               <input class="form-control" placeholder="Name" name="name" type="text" autofocus>
