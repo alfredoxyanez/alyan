@@ -17,9 +17,9 @@ $hash = $mysqli->escape_string( md5( rand(0,1000) ) );
 $num = 1;
 
 
-$subject = "This is subject";
+$subject = "This is subject11";
 
-$message = "<b>This is HTML message.</b>";
+$message = "<b>This is HTML message11.</b>";
 $message .= "<h1>This is headline.</h1>";
 
 mail ($email,$subject,$message);
@@ -41,7 +41,7 @@ else { // Email doesn't already exist in a database, proceed...
     echo "secondSSSS";
     // active is 0 by DEFAULT (no need to include it here)
     $sql = "INSERT INTO users (name, lastname, email, password, hash, admin) "
-            . "VALUES ('$first_name','$last_name','$email','$password', '$hash','$num')";
+            . "VALUES ('$first_name','$last_name','$email','$password', '$hash')";
 
     // Add user to the database
     if ( $mysqli->query($sql) ){

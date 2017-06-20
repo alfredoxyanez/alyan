@@ -1,8 +1,8 @@
 <?php
-$host= "alyanpr.cmydnnixocdw.us-west-2.rds.amazonaws.com:3306";
-$user= "alyanadmin";
+$host= "alyandb.cmydnnixocdw.us-west-2.rds.amazonaws.com:3306";
+$user= "root";
 $pass= "password";
-$db= "innodb";
+$db= "alyan";
 
-$mysqli= new mysqli('alyanpr.cmydnnixocdw.us-west-2.rds.amazonaws.com:3306','alyanadmin','password', "innodb")or die($mysqli->error);
+$mysqli= new mysqli('alyandb.cmydnnixocdw.us-west-2.rds.amazonaws.com:3306','root','password', "alyan")or die($mysqli->error);
  ?>
