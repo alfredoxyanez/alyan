@@ -1,5 +1,5 @@
 <?php
-//require 'db.php';
+require 'db.php';
 //echo $_POST['email'];
 //echo $_POST['name'];
 //echo $_POST['lastname'];
