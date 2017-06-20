@@ -1,8 +1,6 @@
 <?php
 require 'db.php';
 session_start();
-
-
  ?>
 
 <!DOCTYPE html>

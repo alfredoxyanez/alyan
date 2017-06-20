@@ -1,4 +1,9 @@
 <?php
+require 'db.php';
+//echo $_POST['email'];
+//echo $_POST['name'];
+//echo $_POST['lastname'];
+//echo "string";
 
 $_SESSION['email'] = $_POST['email'];
 $_SESSION['first_name'] = $_POST['name'];
@@ -9,6 +14,7 @@ $last_name = $mysqli->escape_string($_POST['lastname']);
 $email = $mysqli->escape_string($_POST['email']);
 $password = $mysqli->escape_string( password_hash($_POST['password'], PASSWORD_BCRYPT) );
 $hash = $mysqli->escape_string( md5( rand(0,1000) ) );
+$num = 1;
 
 
 // Check if user with that email already exists
@@ -23,10 +29,10 @@ if ( $result->num_rows > 0 ) {
 
 }
 else { // Email doesn't already exist in a database, proceed...
-
+    echo "secondSSSS";
     // active is 0 by DEFAULT (no need to include it here)
-    $sql = "INSERT INTO innodb.users (name, lastname, email, password, hash, admin) "
-            . "VALUES ('$first_name','$last_name','$email','$password', '$hash','1')";
+    $sql = "INSERT INTO users (name, lastname, email, password, hash, admin) "
+            . "VALUES ('$first_name','$last_name','$email','$password', '$hash','$num')";
 
     // Add user to the database
     if ( $mysqli->query($sql) ){
@@ -52,13 +58,16 @@ else { // Email doesn't already exist in a database, proceed...
 
         mail( $to, $subject, $message_body );
 
-        header("location: profile.php");
+        //header("location: profile.php");
+
+        echo "second3";
 
     }
 
     else {
         $_SESSION['message'] = 'Registration failed!';
-        header("location: error.php");
+        echo "error";
+        //header("location: error.php");
     }
 
 }
