@@ -1,10 +1,18 @@
 <?php
-// the message
-$msg = "First line of text\nSecond line of text";
+    $to = "fredyyanez39@yahoo.com";
+    $subject = "This is subject";
 
-// use wordwrap() if lines are longer than 70 characters
-$msg = wordwrap($msg,70);
+    $message = "<b>This is HTML message.</b>";
+    $message .= "<h1>This is headline.</h1>";
 
-// send email
-mail("fredyyanez39@yahoo.com","My subject",$msg);
-?>
+    $header = "From:alyantech@gmail.com \r\n";
+    $header .= "Content-type: text/html\r\n";
+
+    $retval = mail ($to,$subject,$message,$header);
+
+    if( $retval == true ) {
+       echo "Message sent successfully...";
+    }else {
+       echo "Message could not be sent...";
+    }
+ ?>
