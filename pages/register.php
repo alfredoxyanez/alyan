@@ -1,21 +1,11 @@
 <?php
 require 'db.php';
-//echo $_POST['email'];
+//echo $_POST['email'];s
 //echo $_POST['name'];
 //echo $_POST['lastname'];
 //echo "string";
 
-if (mysqli_connect_errno()) {
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
-}
 
-/* check if server is alive */
-if (mysqli_ping(mysqli)) {
-    printf ("Our connection is ok!\n");
-} else {
-    printf ("Error: %s\n", mysqli_error($mysqli));
-}
 
 $_SESSION['email'] = $_POST['email'];
 $_SESSION['first_name'] = $_POST['name'];
@@ -24,7 +14,8 @@ $_SESSION['last_name'] = $_POST['lastname'];
 $message = "1";
 echo "<script type='text/javascript'>alert('$message');</script>";
 
-$first_name = $mysqli->escape_string($_POST['name']);
+$first_name = mysqli_real_escape_string($mysqli,$_POST['name']);
+echo "<script type='text/javascript'>alert('$firstname');</script>";
 $last_name = $mysqli->escape_string($_POST['lastname']);
 $email = $mysqli->escape_string($_POST['email']);
 $password = $mysqli->escape_string( password_hash($_POST['password'], PASSWORD_BCRYPT) );
