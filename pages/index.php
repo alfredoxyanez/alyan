@@ -1,4 +1,9 @@
+<?php
+require 'db.php'
+session_start();
 
+
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,14 +44,13 @@ if($_SERVER["REQUEST_METHOD"]=='POST'){
   if(isset($POST['login'])){
     require 'login.php';
   }
-
-
-
+  elseif (isset($POST['resgister'])) {
+    require 'register.php'
+  }
 
 }
-
-
  ?>
+
 
 <body>
   <div class="container">
@@ -79,7 +83,7 @@ if($_SERVER["REQUEST_METHOD"]=='POST'){
                                 <input name="remember" type="checkbox" value="Remember Me">Remember Me
                             </label>
                         </div>
-                        <a href="index.php" class="btn btn-lg btn-success btn-block">Login</a>
+                        <button name="login" class="btn btn-lg btn-success btn-block">Login</button>
 
                     </fieldset>
                 </form>
@@ -111,7 +115,7 @@ if($_SERVER["REQUEST_METHOD"]=='POST'){
                               <input class="form-control" placeholder="Code (if Aplicable)" name="code" type="text" >
                           </div>
 
-                          <a href="testemail.php" class="btn btn-lg btn-primary btn-block">Create Account</a>
+                          <button name="register" class="btn btn-lg btn-primary btn-block">Create Account</button>
 
                           </div>
                       </fieldset>
