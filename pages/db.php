@@ -1,5 +1,5 @@
 <?php
-$host= "alyandb.cmydnnixocdw.us-west-2.rds.amazonaws.com:3306";
+$host= "alyandb.cmydnnixocdw.us-west-2.rds.amazonaws.com";
 $user= "root";
 $pass= "password";
 $db= "alyan";
