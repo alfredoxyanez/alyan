@@ -111,7 +111,7 @@ if($_SERVER["REQUEST_METHOD"]=='POST'){
                               <input class="form-control" placeholder="Code (if Aplicable)" name="code" type="text" >
                           </div>
 
-                          <a href="signupstatus.html" class="btn btn-lg btn-primary btn-block">Create Account</a>
+                          <a href="testemail.php" class="btn btn-lg btn-primary btn-block">Create Account</a>
 
                           </div>
                       </fieldset>
