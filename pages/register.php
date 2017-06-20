@@ -24,7 +24,6 @@ $message .= "<h1>This is headline.</h1>";
 
 mail ($email,$subject,$message);
 
-mail()
 
 
 // Check if user with that email already exists
