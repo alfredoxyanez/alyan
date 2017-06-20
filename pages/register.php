@@ -1,9 +1,21 @@
 <?php
-require 'db.php';
+//require 'db.php';
 //echo $_POST['email'];
 //echo $_POST['name'];
 //echo $_POST['lastname'];
 //echo "string";
+
+if (mysqli_connect_errno()) {
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+}
+
+/* check if server is alive */
+if (mysqli_ping(mysqli)) {
+    printf ("Our connection is ok!\n");
+} else {
+    printf ("Error: %s\n", mysqli_error($mysqli));
+}
 
 $_SESSION['email'] = $_POST['email'];
 $_SESSION['first_name'] = $_POST['name'];
