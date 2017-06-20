@@ -8,7 +8,7 @@
     $header = "From:alyantech@gmail.com \r\n";
     $header .= "Content-type: text/html\r\n";
 
-    $retval = mail ($to,$subject,$message,$header, "alyantech@gmail.com");
+    $retval = mail ($to,$subject,$message,$header);
 
     if( $retval == true ) {
        echo "Message sent successfully...";
