@@ -5,8 +5,8 @@
     $message = "<b>This is HTML message.</b>";
     $message .= "<h1>This is headline.</h1>";
 
-    $header = "From:alyantech@gmail.com \r\n";
-    $header .= "Content-type: text/html\r\n";
+    // $header = "From:alyantech@gmail.com \r\n";
+    // $header .= "Content-type: text/html\r\n";
 
     $retval = mail ($to,$subject,$message,$header);
 
