@@ -19,6 +19,9 @@ $password = $mysqli->escape_string( password_hash($_POST['password'], PASSWORD_B
 $hash = $mysqli->escape_string( md5( rand(0,1000) ) );
 $num = 1;
 
+$message = $email;
+echo "<script type='text/javascript'>alert('$message');</script>";
+
 $message = "2";
 echo "<script type='text/javascript'>alert('$message');</script>";
 $subject = "This is subject11";
@@ -34,7 +37,8 @@ $message = "3";
 echo "<script type='text/javascript'>alert('$message');</script>";
 // Check if user with that email already exists
 $result = $mysqli->query("SELECT * FROM users WHERE email='$email'") or die($mysqli->error);
-
+$message = "3.1";
+echo "<script type='text/javascript'>alert('$message');</script>";
 // We know user email exists if the rows returned are more than 0
 if ( $result->num_rows > 0 ) {
     $message = "4";
