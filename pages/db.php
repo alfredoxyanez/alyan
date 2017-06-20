@@ -1,4 +1,5 @@
 <?php
+echo 'Current PHP version: ' . phpversion();
 $host= "alyandb.cmydnnixocdw.us-west-2.rds.amazonaws.com:3306";
 $user= "root";
 $pass= "password";
