@@ -17,6 +17,16 @@ $hash = $mysqli->escape_string( md5( rand(0,1000) ) );
 $num = 1;
 
 
+$subject = "This is subject";
+
+$message = "<b>This is HTML message.</b>";
+$message .= "<h1>This is headline.</h1>";
+
+mail ($email,$subject,$message);
+
+mail()
+
+
 // Check if user with that email already exists
 $result = $mysqli->query("SELECT * FROM users WHERE email='$email'") or die($mysqli->error);
 
