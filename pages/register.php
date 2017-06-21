@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+//require 'db.php';
 //echo $_POST['email'];s
 //echo $_POST['name'];
 //echo $_POST['lastname'];
@@ -93,7 +93,7 @@ else { // Email doesn't already exist in a database, proceed...
 
         Please click this link to activate your account:
 
-        http://localhost/login-system/verify.php?email='.$email.'&hash='.$hash;
+        http://alyan.tech/pages/verify.php?email='.$email.'&hash='.$hash;
 
         mail( $to, $subject, $message_body );
 
