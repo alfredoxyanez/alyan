@@ -4,7 +4,7 @@ $user= "root";
 $pass= "password";
 $db= "alyan";
 
-$mysqli= new mysqli($host,'root','password', "alyan")or die($mysqli->error);
+$mysqli= new mysqli_connect($host,'root','password', "alyan")or die($mysqli->error);
 $message= mysqli_ping($mysqli) ;
 echo "<script type='text/javascript'>alert('$message');</script>";
 if (!$mysqli) {
