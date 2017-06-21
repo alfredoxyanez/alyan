@@ -15,7 +15,7 @@ $_SESSION['email'] = $_POST['email'];
 $_SESSION['first_name'] = $_POST['name'];
 $_SESSION['last_name'] = $_POST['lastname'];
 
-$first_name = mysqli_real_escape_string($mysqli,$_POST['name']);
+$firstname = mysqli_real_escape_string($mysqli,$_POST['name']);
 //$firstname = $mysqli->escape_string($_POST['name']);
 echo "<script type='text/javascript'>alert('$firstname');</script>";
 $lastname = $mysqli->escape_string($_POST['lastname']);
