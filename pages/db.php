@@ -5,7 +5,7 @@ $pass= "password";
 $db= "alyan";
 
 $mysqli= new mysqli($host,'root','password', "alyan")or die($mysqli->error);
-$message= mysqli_ping() ;
+$message= mysqli_ping($mysqli) ;
 if (!$mysqli) {
     die("Connection failed: " . mysqli_connect_error());
 }
