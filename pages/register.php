@@ -86,6 +86,7 @@ else { // Email doesn't already exist in a database, proceed...
         // Send registration confirmation link (verify.php)
         $to = $email;
         $subject = 'Account Verification ( alyan.tech )';
+        $header = "From:alyantech@gmail.com \r\n";
         $message_body = '
         Hello '.$first_name.',
 
@@ -95,7 +96,7 @@ else { // Email doesn't already exist in a database, proceed...
 
         http://alyan.tech/pages/verify.php?email='.$email.'&hash='.$hash;
 
-        mail( $to, $subject, $message_body );
+        mail( $to, $subject, $message_body,$header );
 
         header("location: profile.php");
 
