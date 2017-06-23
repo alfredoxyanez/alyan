@@ -7,6 +7,8 @@ session_start();
 if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
   if( isset($_POST['email']) && !empty($_POST['email'])){
     $email = $mysqli->escape_string($_POST['email']);
+    $message= email;
+    echo "<script type='text/javascript'>alert('$message');</script>";
     $result = $mysqli->query("SELECT * FROM users WHERE email='$email'");
 
     if ( $result->num_rows == 0 ) // User doesn't exist

@@ -1,5 +1,6 @@
 <?php
 require 'db.php';
+session_start();
 //echo $_POST['email'];s
 //echo $_POST['name'];
 //echo $_POST['lastname'];
