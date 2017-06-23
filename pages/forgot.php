@@ -4,47 +4,54 @@ require 'db.php';
 session_start();
 
 // Check if form submitted with method="post"
-if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
-{   
-    $email = $mysqli->escape_string($_POST['email']);
-    $result = $mysqli->query("SELECT * FROM users WHERE email='$email'");
+if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
+  if( isset($_POST['email']) && !empty($_POST['email'])){
+    $email = $mysqli->escape_string($_POST['email']);
+    $result = $mysqli->query("SELECT * FROM users WHERE email='$email'");
 
-    if ( $result->num_rows == 0 ) // User doesn't exist
-    {
-        $_SESSION['message'] = "User with that email doesn't exist!";
-        header("location: error.php");
-    }
-    else { // User exists (num_rows != 0)
+    if ( $result->num_rows == 0 ) // User doesn't exist
+    {
+      $_SESSION['message'] = "User with that email doesn't exist!";
+      header("location: error.php");
+    }
+    else { // User exists (num_rows != 0)
 
-        $user = $result->fetch_assoc(); // $user becomes array with user data
-        
-        $email = $user['email'];
-        $hash = $user['hash'];
-        $first_name = $user['first_name'];
+      $user = $result->fetch_assoc(); // $user becomes array with user data
 
-        // Session message to display on success.php
-        $_SESSION['message'] = "<p>Please check your email <span>$email</span>"
-        . " for a confirmation link to complete your password reset!</p>";
+      $email = $user['email'];
+      $hash = $user['hash'];
+      $first_name = $user['first_name'];
 
-        // Send registration confirmation link (reset.php)
-        $to      = $email;
-        $subject = 'Password Reset Link ( clevertechie.com )';
-        $header = "From:alyantech@gmail.com \r\n";
-        $message_body = '
-        Hello '.$first_name.',
+      // Session message to display on success.php
+      $_SESSION['message'] = "<p>Please check your email <span>$email</span>"
+      . " for a confirmation link to complete your password reset!</p>";
 
-        You have requested password reset!
+      // Send registration confirmation link (reset.php)
+      $to      = $email;
+      $subject = 'Password Reset Link ( alyan.tech )';
+      $header = "From:alyantech@gmail.com \r\n";
+      $message_body = '
+      Hello '.$first_name.',
 
-        Please click this link to reset your password:
+      You have requested password reset!
 
-        http://alyan.tech/pages/reset.php?email='.$email.'&hash='.$hash;  
+      Please click this link to reset your password:
 
-        mail($to, $subject, $message_body,$header);
+      http://alyan.tech/pages/reset.php?email='.$email.'&hash='.$hash;
 
-        header("location: success.php");
-  }
+      mail($to, $subject, $message_body,$header);
+
+      header("location: success.php");
+    }
+  }
+  else{
+    $_SESSION['message'] = "Invalid parameters provided for password reset!";
+    header("location: error.php");
+  }
+
+
+
 }
-
 
 ?>
 
@@ -82,10 +89,6 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 
 </head>
 
-<?php
-
-?>
-
 
 <body>
   <div class="container">
@@ -93,39 +96,24 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
       <div class="col-md-4 col-md-offset-4">
         <div class="login-panel panel panel-default">
 
-            <div class="panel-body">
-              <form role="form" action="forgot.php" method="post">
-                <fieldset>
-                  <div class="form-group">
-                    <input class="form-control req" placeholder="E-mail" name="email" type="email" autofocus>
-                  </div>
+          <div class="panel-body">
+            <form role="form" action="forgot.php" method="post">
+              <fieldset>
+                <div class="form-group">
+                  <input class="form-control req" placeholder="E-mail" name="email" type="email" autofocus>
+                </div>
 
-                  <button name="reset"  class="btn btn-lg btn-success btn-block">Reset Password</button>
+                <button name="reset"  class="btn btn-lg btn-success btn-block">Reset Password</button>
 
-                </fieldset>
-              </form>
-            </div>
-
-
-
+              </fieldset>
+            </form>
+          </div>
         </div>
-
-
 
       </div>
 
-
-
     </div>
-
   </div>
-
-
-</div>
-
-</div>
-
-
 <!-- jQuery -->
 <script src="../vendor/jquery/jquery.min.js"></script>
 
