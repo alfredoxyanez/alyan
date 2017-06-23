@@ -30,23 +30,6 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
       $_SESSION['message'] = "<p>Please check your email <span>$email</span>"
       . " for a confirmation link to complete your password reset!</p>";
 
-      // Send registration confirmation link (reset.php)
-      // $to = $email;
-      // $subject = 'Account Reset ( alyan.tech )';
-      // $header = "From:alyantech@gmail.com \r\n";
-      // $message_body = '
-      // Hello '.$first_name.',
-      //
-      // You have requested a password reset!
-      //
-      // Please click this link to reset your account:
-      //
-      // http://alyan.tech/pages/reset.php?email='.$email.'&hash='.$hash;
-      //
-      // mail( $to, $subject, $message_body,$header );
-      //
-      // header("location: success.php");
-
       $recipients = $email;
       $headers['From'] = 'alyan.tech';
       $headers['Subject'] = 'Account Reset ( alyan.tech )';
@@ -62,7 +45,14 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
       $params['sendmail_path'] = '/usr/lib/sendmail';
       $mail =& Mail::factory('sendmail', $params);
       $result = $mail->send($recipients, $headers, $message_body);
-      var_dump($result);
+      //var_dump($result);
+
+      if($result){
+        header("location: success.php");
+      }else{
+        $_SESSION['message']="Email could not be sent. Please try again."
+        header("location: error.php");
+      }
     }
   }
   else{
