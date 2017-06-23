@@ -66,7 +66,7 @@ else { // Email doesn't already exist in a database, proceed...
     echo "<script type='text/javascript'>alert('$message');</script>";
     echo "sendemail";
     // active is 0 by DEFAULT (no need to include it here)
-    $sql = "INSERT INTO users (name, lastname, email, password, hash, active) "
+    $sql = "INSERT INTO users (name, lastname, email, password, hash) "
             . "VALUES ('$firstname','$lastname','$email','$password', '$hash')";
     $message = "6";
     echo "<script type='text/javascript'>alert('$message');</script>";
