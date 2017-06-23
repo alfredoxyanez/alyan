@@ -49,11 +49,19 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
 
       $recipients = $email;
       $headers['From'] = 'alyan.tech';
-      $headers['Subject'] = 'Sending test message using Pear';
-      $body = 'This is a test message sent using Pear';
+      $headers['Subject'] = 'Account Reset ( alyan.tech )';
+      $message_body = '
+      Hello '.$first_name.',
+
+      You have requested a password reset!
+
+      Please click this link to reset your account:
+
+      http://alyan.tech/pages/reset.php?email='.$email.'&hash='.$hash;
+
       $params['sendmail_path'] = '/usr/lib/sendmail';
       $mail =& Mail::factory('sendmail', $params);
-      $result = $mail->send($recipients, $headers, $body);
+      $result = $mail->send($recipients, $headers, $message_body);
       var_dump($result);
     }
   }
