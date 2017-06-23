@@ -10,7 +10,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
     $email = $mysqli->escape_string($_POST['email']);
     $message= $email;
     echo "<script type='text/javascript'>alert('$message');</script>";
-    $result = $mysqli->query("SELECT * FROM innodb.users WHERE email='$email'");
+    $result = $mysqli->query("SELECT * FROM users WHERE email='$email'");
 
     if ( $result->num_rows == 0 ) // User doesn't exist
     {
