@@ -55,7 +55,7 @@ session_start();
 
               ?>
             </p>
-            <a href="index.php"><button type="btn btn-lg btn-primary btn-block" name="button">Home</button></a>
+            <a href="index.php"><button type="button" class="btn btn-lg btn-primary btn-block" name="button">Home</button></a>
 
           </div>
 
