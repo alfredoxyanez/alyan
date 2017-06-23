@@ -71,12 +71,14 @@ else {
             <form role="form" action="reset_password.php" method="post">
               <fieldset>
                 <div class="form-group">
-                  <input type="password" class="form-control req" placeholder="Password" name="password" type="password" autofocus>
+                  <input type="password" class="form-control req" placeholder="Password" name="newpassword" type="password" autofocus>
                 </div>
 
                 <div class="form-group">
                   <input type="password" class="form-control req" placeholder="Confirm Password" name="cpassword" type="password" >
                 </div>
+                <input type="hidden" name="email" value="<?= $email ?>">
+                <input type="hidden" name="hash" value="<?= $hash ?>">
 
                 <button name=""  class="btn btn-lg btn-success btn-block">Apply</button>
 
