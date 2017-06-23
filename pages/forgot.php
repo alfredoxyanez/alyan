@@ -7,7 +7,7 @@ session_start();
 if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
   if( isset($_POST['email']) && !empty($_POST['email'])){
     $email = $mysqli->escape_string($_POST['email']);
-    $message= email;
+    $message= $email;
     echo "<script type='text/javascript'>alert('$message');</script>";
     $result = $mysqli->query("SELECT * FROM users WHERE email='$email'");
 
@@ -19,6 +19,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
     else { // User exists (num_rows != 0)
 
       $user = $result->fetch_assoc(); // $user becomes array with user data
+      echo "<script type='text/javascript'>alert('$user');</script>";
 
       $email = $user['email'];
       $hash = $user['hash'];
@@ -29,19 +30,19 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
       . " for a confirmation link to complete your password reset!</p>";
 
       // Send registration confirmation link (reset.php)
-      $to      = $email;
-      $subject = 'Password Reset Link ( alyan.tech )';
+      $to = $email;
+      $subject = 'Account Reset ( alyan.tech )';
       $header = "From:alyantech@gmail.com \r\n";
       $message_body = '
       Hello '.$first_name.',
 
-      You have requested password reset!
+      You have requested a password reset!
 
-      Please click this link to reset your password:
+      Please click this link to reset your account:
 
       http://alyan.tech/pages/reset.php?email='.$email.'&hash='.$hash;
 
-      mail($to, $subject, $message_body,$header);
+      mail( $to, $subject, $message_body,$header );
 
       header("location: success.php");
     }
