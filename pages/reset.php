@@ -12,7 +12,7 @@ if( isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && 
     $hash = $mysqli->escape_string($_GET['hash']);
 
     // Make sure user email with matching hash exist
-    $result = $mysqli->query("SELECT * FROM users WHERE email='$email' AND hash='$hash'");
+    $result = $mysqli->query("SELECT * FROM innodb.users WHERE email='$email' AND hash='$hash'");
 
     if ( $result->num_rows == 0 )
     {

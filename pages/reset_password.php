@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = $mysqli->escape_string($_POST['email']);
         $hash = $mysqli->escape_string($_POST['hash']);
 
-        $sql = "UPDATE users SET password='$new_password', hash='$hash' WHERE email='$email'";
+        $sql = "UPDATE innodb.users SET password='$new_password', hash='$hash' WHERE email='$email'";
 
         if ( $mysqli->query($sql) ) {
 

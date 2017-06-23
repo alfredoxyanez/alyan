@@ -50,7 +50,7 @@ $num = 1;
 $message = "3";
 echo "<script type='text/javascript'>alert('$message');</script>";
 // Check if user with that email already exists
-$result = $mysqli->query("SELECT * FROM users WHERE email='$email'") or die($mysqli->error);
+$result = $mysqli->query("SELECT * FROM innodb.users WHERE email='$email'") or die($mysqli->error);
 // $message = "3.1";
 // echo "<script type='text/javascript'>alert('$message');</script>";
 // We know user email exists if the rows returned are more than 0
@@ -68,7 +68,7 @@ else { // Email doesn't already exist in a database, proceed...
     // echo "<script type='text/javascript'>alert('$message');</script>";
     // echo "sendemail";
     // active is 0 by DEFAULT (no need to include it here)
-    $sql = "INSERT INTO users (name, lastname, email, password, hash) "
+    $sql = "INSERT INTO innodb.users (name, lastname, email, password, hash) "
             . "VALUES ('$firstname','$lastname','$email','$password', '$hash')";
     // $message = "6";
     // echo "<script type='text/javascript'>alert('$message');</script>";
