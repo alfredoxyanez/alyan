@@ -98,7 +98,7 @@ else { // Email doesn't already exist in a database, proceed...
 
         mail( $to, $subject, $message_body,$header );
 
-        header("location: profile.php");
+        header("location: success.php");
 
         echo "second3";
 
