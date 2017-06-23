@@ -54,10 +54,8 @@ session_start();
               }
 
               ?>
-
-
-
             </p>
+            <a href="index.php"><button type="btn btn-lg btn-primary btn-block" name="button">Home</button></a>
 
           </div>
 

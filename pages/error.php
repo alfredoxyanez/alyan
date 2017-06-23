@@ -50,14 +50,10 @@ session_start();
                 echo $_SESSION['message'];
               }else{
                 header("location: index.php");
-
               }
-
               ?>
-
-
-
             </p>
+            <a href="index.php"><button type="btn btn-lg btn-primary btn-block" name="button">Home</button></a>
 
           </div>
 
