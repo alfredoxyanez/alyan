@@ -1,5 +1,6 @@
 <?php
 require 'db.php';
+include "Mail.php";
 session_start();
 //echo $_POST['email'];s
 //echo $_POST['name'];

@@ -1,6 +1,7 @@
 <?php
 /* Reset your password form, sends reset.php password link */
 require 'db.php';
+include "Mail.php";
 session_start();
 
 // Check if form submitted with method="post"
@@ -30,21 +31,30 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
       . " for a confirmation link to complete your password reset!</p>";
 
       // Send registration confirmation link (reset.php)
-      $to = $email;
-      $subject = 'Account Reset ( alyan.tech )';
-      $header = "From:alyantech@gmail.com \r\n";
-      $message_body = '
-      Hello '.$first_name.',
+      // $to = $email;
+      // $subject = 'Account Reset ( alyan.tech )';
+      // $header = "From:alyantech@gmail.com \r\n";
+      // $message_body = '
+      // Hello '.$first_name.',
+      //
+      // You have requested a password reset!
+      //
+      // Please click this link to reset your account:
+      //
+      // http://alyan.tech/pages/reset.php?email='.$email.'&hash='.$hash;
+      //
+      // mail( $to, $subject, $message_body,$header );
+      //
+      // header("location: success.php");
 
-      You have requested a password reset!
-
-      Please click this link to reset your account:
-
-      http://alyan.tech/pages/reset.php?email='.$email.'&hash='.$hash;
-
-      mail( $to, $subject, $message_body,$header );
-
-      header("location: success.php");
+      $recipients = $email;
+      $headers['From'] = 'alyan.tech';
+      $headers['Subject'] = 'Sending test message using Pear';
+      $body = 'This is a test message sent using Pear';
+      $params['sendmail_path'] = '/usr/lib/sendmail';
+      $mail =& Mail::factory('sendmail', $params);
+      $result = $mail->send($recipients, $headers, $body);
+      var_dump($result);
     }
   }
   else{
