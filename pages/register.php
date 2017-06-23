@@ -6,11 +6,11 @@ session_start();
 //echo $_POST['name'];
 //echo $_POST['lastname'];
 //echo "string";
-// if (!$mysqli) {
-//   echo "Failed to connect to MySQL: " . mysqli_connect_error();
-// }else {
-//   echo "connected";
-// }
+if (!$mysqli) {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}else {
+  echo "connected";
+}
 
 
 $_SESSION['email'] = $_POST['email'];
