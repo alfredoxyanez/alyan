@@ -50,7 +50,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
       if($result){
         header("location: success.php");
       }else{
-        $_SESSION['message']="Email could not be sent. Please try again."
+        $_SESSION['message']="Email could not be sent. Please try again.";
         header("location: error.php");
       }
     }
