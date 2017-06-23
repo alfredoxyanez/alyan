@@ -66,7 +66,7 @@ else {
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
         <div class="login-panel panel panel-default">
-          <h3> Choose Your New Password</h3>
+          <h3 class="text-center"> Choose Your New Password</h3>
           <div class="panel-body">
             <form role="form" action="reset_password.php" method="post">
               <fieldset>
