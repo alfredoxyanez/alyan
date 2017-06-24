@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $numval = $mysqli->escape_string($_POST['numvals']);
     $sql = "INSERT INTO parks (parkname, databasename, valves) "
             . "VALUES ('$city','$citydb','$valves')";
+    $mysqli->query($sql);
 
 
   }
