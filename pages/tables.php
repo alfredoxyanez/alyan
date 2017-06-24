@@ -4,24 +4,49 @@ require 'db.php';
 session_start();
 
 // Make sure the form is being submitted with method="post"
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  if(isset($POST['parkname'])){
+if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {
+  if( isset($_POST['parkname']) && !empty($_POST['parkname'])){
+    $message = "post";
+    echo "<script type='text/javascript'>alert('$message');</script>";
+
     $city = $mysqli->escape_string($_POST['parkname']);
-    $citydb= preg_replace('/\s+/', '', $city).'db';
+    $city = ucwords($city);
+    //echo "<script type='text/javascript'>alert('$city');</script>";
+    $citydb= preg_replace('/\s+/', '', strtolower($city)).'db';
+    //echo "<script type='text/javascript'>alert('$citydb');</script>";
     $numval = $mysqli->escape_string($_POST['numvals']);
+    //echo "<script type='text/javascript'>alert('$numval');</script>";
+    if(empty($_POST['numvals']) || !is_numeric($_POST['numvals'])){
+      $numval=0;
+      $message = "0";
+      echo "<script type='text/javascript'>alert('$message');</script>";
+    }else{
+      $message = "not 0";
+      echo "<script type='text/javascript'>alert('$message');</script>";
+      $numval = $mysqli->escape_string($_POST['numvals']);
+    }
+
+
     $sql = "INSERT INTO parks (parkname, databasename, valves) "
-            . "VALUES ('$city','$citydb','$valves')";
-    $mysqli->query($sql);
+    . "VALUES ('$city','$citydb','$numval')";
+
+    if(!$mysqli->query($sql)){
+      $message = "Please Try Again";
+      echo "<script type='text/javascript'>alert('$message');</script>";
+
+    }
 
 
   }
+
 
 
 }
 
 
 
- ?>
+
+?>
 
 
 <!DOCTYPE html>
@@ -435,12 +460,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   if (mysqli_num_rows($result) > 0) {
                     // output data of each row
                     while($row = mysqli_fetch_assoc($result)) {
+                      $pname=$row["parkname"];
                       echo "<tr >";
                       echo "<td class='center col-sm-5'>" . $row["parkname"]. "</td>";
                       echo "<td class='center col-sm-5'>" . $row["valves"]. "</td>";
-                      echo "<td class='center col-sm-2'>" . "<button type='button'   class='btn btn-danger btn-circle text-center center-block' ><i class='fa fa-times'></i></button>". "</td>";
+                      echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-danger btn-circle text-center center-block' ><i class='fa fa-times'></i></button>". "</td>";
                       echo "</tr >";
-
                     }
                   }
 
@@ -464,18 +489,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </tr>
               </thead>
               <tbody>
-                <form class="" action="tables.php" method="post">
+                <form action="tables.php"method="post">
 
 
                   <tr>
                     <td class="col-sm-5 center">
                       <div>
-                        <input style="width: 100%" type="text" name="parkname" value="" placeholder="City Name">
+                        <input style="width: 100%" type="text" name="parkname" placeholder="City Name">
                       </div>
                     </td>
                     <td class="col-sm-5 center">
                       <div >
-                        <input style="width: 100%" type="text" name="numvals" value="" placeholder="Number of Valves">
+                        <input style="width: 100%" type="text" name="numvals" placeholder="Number of Valves">
 
                       </div>
                     </td>
