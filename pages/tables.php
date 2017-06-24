@@ -4,9 +4,7 @@ require 'db.php';
 session_start();
 
 // Make sure the form is being submitted with method="post"
-if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {
-  $message = "prepost";
-  echo "<script type='text/javascript'>alert('$message');</script>";
+if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {;
   if( isset($_POST['parkname']) && !empty($_POST['parkname'])){
     $message = "post";
     echo "<script type='text/javascript'>alert('$message');</script>";
@@ -20,11 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {
     //echo "<script type='text/javascript'>alert('$numval');</script>";
     if(empty($_POST['numvals']) || !is_numeric($_POST['numvals'])){
       $numval=0;
-      $message = "0";
-      echo "<script type='text/javascript'>alert('$message');</script>";
+
     }else{
-      $message = "not 0";
-      echo "<script type='text/javascript'>alert('$message');</script>";
+
       $numval = $mysqli->escape_string($_POST['numvals']);
     }
 
