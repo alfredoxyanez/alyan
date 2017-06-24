@@ -5,6 +5,8 @@ session_start();
 
 // Make sure the form is being submitted with method="post"
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {
+  $message = "prepost";
+  echo "<script type='text/javascript'>alert('$message');</script>";
   if( isset($_POST['parkname']) && !empty($_POST['parkname'])){
     $message = "post";
     echo "<script type='text/javascript'>alert('$message');</script>";
