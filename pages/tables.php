@@ -1,3 +1,27 @@
+<?php
+
+require 'db.php';
+session_start();
+
+// Make sure the form is being submitted with method="post"
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  if(isset($POST['parkname'])){
+    $city = $mysqli->escape_string($_POST['parkname']);
+    $citydb= preg_replace('/\s+/', '', $city).'db';
+    $numval = $mysqli->escape_string($_POST['numvals']);
+    $sql = "INSERT INTO parks (parkname, databasename, valves) "
+            . "VALUES ('$city','$citydb','$valves')";
+
+
+  }
+
+
+}
+
+
+
+ ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -439,25 +463,29 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="col-sm-5 center">
-                    <div>
-                      <input style="width: 100%" type="text" name="parkname" value="" placeholder="City Name">
-                    </div>
-                  </td>
-                  <td class="col-sm-5 center">
-                    <div >
-                      <input style="width: 100%" type="text" name="numvals" value="" placeholder="Number of Valves">
+                <form class="" action="tables.php" method="post">
 
-                    </div>
-                  </td>
-                  <td class="col-sm-2 center">
-                    <div >
-                      <button type='button' class='btn btn-success btn-circle text-center center-block center'><i class='fa fa-check'></i></button>
 
-                    </div>
-                  </td>
-                </tr>
+                  <tr>
+                    <td class="col-sm-5 center">
+                      <div>
+                        <input style="width: 100%" type="text" name="parkname" value="" placeholder="City Name">
+                      </div>
+                    </td>
+                    <td class="col-sm-5 center">
+                      <div >
+                        <input style="width: 100%" type="text" name="numvals" value="" placeholder="Number of Valves">
+
+                      </div>
+                    </td>
+                    <td class="col-sm-2 center">
+                      <div >
+                        <button name='add' class='btn btn-success btn-circle text-center center-block center'><i class='fa fa-check'></i></button>
+
+                      </div>
+                    </td>
+                  </tr>
+                </form>
 
               </tbody>
             </table>
