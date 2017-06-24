@@ -1,48 +1,48 @@
-<?php
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-require 'db.php';
-session_start();
 
-// Make sure the form is being submitted with method="post"
-if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {;
-  if( isset($_POST['parkname']) && !empty($_POST['parkname'])){
-    $message = "post";
-    $park = $mysqli->escape_string($_POST['parkname']);
-    $park = ucwords($park);
-    //echo "<script type='text/javascript'>alert('$city');</script>";
-    $parkdb= preg_replace('/\s+/', '', strtolower($park)).'db';
-    //echo "<script type='text/javascript'>alert('$citydb');</script>";
-    $numval = $mysqli->escape_string($_POST['numvals']);
-    //echo "<script type='text/javascript'>alert('$numval');</script>";
-    if(empty($_POST['numvals']) || !is_numeric($_POST['numvals'])){
-      $numval=0;
+<script type="text/javascript">
 
-    }else{
 
-      $numval = $mysqli->escape_string($_POST['numvals']);
+
+function del(name){
+  $.ajax({
+  type: 'POST',
+  url: 'deletepark.php',
+  data: {'parkname': name},
+  success: function(html) {
+    document.location.reload();
+
+  }
+});
+}
+
+function addentry(){
+  name = document.getElementById("pname").value;
+  vnum = document.getElementById("vnum").value;
+  if( $.trim( $("#pname").val() ) == ''){
+    alert("Please Input a Park Name")
+
+  }else{
+    $.ajax({
+    type: 'POST',
+    url: 'addpark.php',
+    data: {'parkname': name, 'numvals': vnum},
+    success: function(html) {
+      document.location.reload();
+
     }
-
-
-    $sql = "INSERT INTO parks (parkname, databasename, valves) "
-    . "VALUES ('$park','$parkdb','$numval')";
-
-    if(!$mysqli->query($sql)){
-      $message = "Please Try Again";
-      echo "<script type='text/javascript'>alert('$message');</script>";
-
-    }
+  });
 
 
   }
-
 
 
 }
 
 
 
-
-?>
+</script>
 
 
 <!DOCTYPE html>
@@ -460,7 +460,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {;
                       echo "<tr >";
                       echo "<td class='center col-sm-5'>" . $row["parkname"]. "</td>";
                       echo "<td class='center col-sm-5'>" . $row["valves"]. "</td>";
-                      echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-danger btn-circle text-center center-block' ><i class='fa fa-times'></i></button>". "</td>";
+                      echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-danger btn-circle text-center center-block' onclick=\"del('$pname')\" ><i class='fa fa-times'></i></button>". "</td>";
                       echo "</tr >";
                     }
                   }
@@ -485,24 +485,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {;
                 </tr>
               </thead>
               <tbody>
-                <form action="tables.php"method="post">
-
-
+                <form name="addpark" action="tables.php" method="post" autocomplete="false">
                   <tr>
                     <td class="col-sm-5 center">
                       <div>
-                        <input style="width: 100%" type="text" name="parkname" placeholder="Park Name">
+                        <input autocomplete="false" style="width: 100%" type="text" id="pname" name="parkname" placeholder="Park Name">
                       </div>
                     </td>
                     <td class="col-sm-5 center">
                       <div >
-                        <input style="width: 100%" type="text" name="numvals" placeholder="Number of Valves">
+                        <input autocomplete="false" style="width: 100%" type="text" id ="vnum"name="numvals" placeholder="Number of Valves">
 
                       </div>
                     </td>
                     <td class="col-sm-2 center">
                       <div >
-                        <button name='add' class='btn btn-success btn-circle text-center center-block center'><i class='fa fa-check'></i></button>
+                        <button name='add' type='button' class='btn btn-success btn-circle text-center center-block center' onclick="addentry()"><i class='fa fa-check'></i></button>
 
                       </div>
                     </td>
@@ -530,6 +528,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {;
 
 <!-- jQuery -->
 <script src="../vendor/jquery/jquery.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
