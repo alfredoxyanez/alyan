@@ -7,10 +7,10 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {;
   if( isset($_POST['parkname']) && !empty($_POST['parkname'])){
     $message = "post";
-    $city = $mysqli->escape_string($_POST['parkname']);
-    $city = ucwords($city);
+    $park = $mysqli->escape_string($_POST['parkname']);
+    $park = ucwords($park);
     //echo "<script type='text/javascript'>alert('$city');</script>";
-    $citydb= preg_replace('/\s+/', '', strtolower($city)).'db';
+    $parkdb= preg_replace('/\s+/', '', strtolower($park)).'db';
     //echo "<script type='text/javascript'>alert('$citydb');</script>";
     $numval = $mysqli->escape_string($_POST['numvals']);
     //echo "<script type='text/javascript'>alert('$numval');</script>";
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {;
 
 
     $sql = "INSERT INTO parks (parkname, databasename, valves) "
-    . "VALUES ('$city','$citydb','$numval')";
+    . "VALUES ('$park','$parkdb','$numval')";
 
     if(!$mysqli->query($sql)){
       $message = "Please Try Again";
@@ -424,7 +424,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {;
     <div id="page-wrapper">
       <div class="row">
         <div class="col-lg-12">
-          <h1 class="page-header">Cities</h1>
+          <h1 class="page-header">Parks</h1>
         </div>
         <!-- /.col-lg-12 -->
       </div>
@@ -440,7 +440,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {;
               <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                   <tr>
-                    <th>City</th>
+                    <th>Park</th>
                     <th>Valves</th>
                     <th>Delete</th>
 
@@ -491,7 +491,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {;
                   <tr>
                     <td class="col-sm-5 center">
                       <div>
-                        <input style="width: 100%" type="text" name="parkname" placeholder="City Name">
+                        <input style="width: 100%" type="text" name="parkname" placeholder="Park Name">
                       </div>
                     </td>
                     <td class="col-sm-5 center">
