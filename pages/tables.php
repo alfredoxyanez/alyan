@@ -7,8 +7,6 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {;
   if( isset($_POST['parkname']) && !empty($_POST['parkname'])){
     $message = "post";
-    echo "<script type='text/javascript'>alert('$message');</script>";
-
     $city = $mysqli->escape_string($_POST['parkname']);
     $city = ucwords($city);
     //echo "<script type='text/javascript'>alert('$city');</script>";
