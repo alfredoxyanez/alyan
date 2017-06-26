@@ -154,7 +154,7 @@ function getparkidr(){
      $.ajax({
      type: 'POST',
      url: 'addvalve.php',
-     data: {'parkname': name,'valveid':id},
+     data: {'parkdbname': name,'valveid':id},
      success: function(html) {
        //document.location.reload();
        location.reload();
@@ -654,7 +654,7 @@ function getparkidr(){
                      <td class="col-sm-6 center">
                        <div>
                          <input autocomplete="false" style="width: 100%" type="text" id="vid" name="valvename" placeholder="Valve ID">
-                         <input type="hidden" id="pvname" value=<?php getparkname() ?> >
+                         <input type="hidden" id="pvname" value=<?php getparkdbname() ?> >
                        </div>
                      </td>
                      <!-- <td class="col-sm-5 center">

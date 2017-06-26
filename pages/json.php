@@ -23,10 +23,10 @@ date_default_timezone_set("America/Los_Angeles");
 
 //addvalvej($id,$entry);
 //add valvelist
- function addvalvej($id,$parkname){
+ function addvalvej($id,$parkdbname){
    require "db.php";
-   $parkname= getname($parkname);
-   $dbname= getnamedb($parkname);
+   //$parkname= getname($parkname);
+   $dbname= $parkdbname;
 
    $sql="SELECT * FROM parks WHERE databasename='$dbname'";
 
