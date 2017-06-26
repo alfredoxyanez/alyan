@@ -11,15 +11,16 @@ function del(name){
   url: 'deletepark.php',
   data: {'parkname': name},
   success: function(html) {
-    document.location.reload();
-
+    var element = document.getElementById(name);
+    element.outerHTML = "";
+    delete element;
   }
 });
 }
 
 function addentry(){
   name = document.getElementById("pname").value;
-  vnum = document.getElementById("vnum").value;
+  // vnum = document.getElementById("vnum").value;
   if( $.trim( $("#pname").val() ) == ''){
     alert("Please Input a Park Name")
 
@@ -27,9 +28,9 @@ function addentry(){
     $.ajax({
     type: 'POST',
     url: 'addpark.php',
-    data: {'parkname': name, 'numvals': vnum},
+    data: {'parkname': name},
     success: function(html) {
-      document.location.reload();
+      //document.location.reload();
 
     }
   });
@@ -440,6 +441,7 @@ function addentry(){
               <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                   <tr>
+                    <th>Info</th>
                     <th>Park</th>
                     <th>Valves</th>
                     <th>Delete</th>
@@ -451,16 +453,17 @@ function addentry(){
                   <?php
                   require 'db.php';
 
-                  $sql= "SELECT parkname, valves FROM parks";
+                  $sql= "SELECT parkname, numvalves FROM parks";
                   $result= mysqli_query($mysqli, $sql);
                   if (mysqli_num_rows($result) > 0) {
                     // output data of each row
                     while($row = mysqli_fetch_assoc($result)) {
                       $pname=$row["parkname"];
-                      echo "<tr >";
-                      echo "<td class='center col-sm-5'>" . $row["parkname"]. "</td>";
-                      echo "<td class='center col-sm-5'>" . $row["valves"]. "</td>";
-                      echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-danger btn-circle text-center center-block' onclick=\"del('$pname')\" ><i class='fa fa-times'></i></button>". "</td>";
+                      echo "<tr  id='". $pname ."'>";
+                      echo "<td class='center col-sm-1'>" . "<button type='button'  class='btn btn-info btn-circle text-center center-block' onclick=\"info('$pname')\" ><i class='fa fa-info'></i></button>". "</td>";
+                      echo "<td class='center col-sm-6'>" . $row["parkname"]. "</td>";
+                      echo "<td class='center col-sm-4'>" . $row["numvalves"]. "</td>";
+                      echo "<td class='center col-sm-1'>" . "<button type='button'  class='btn btn-danger btn-circle text-center center-block' onclick=\"del('$pname')\" ><i class='fa fa-times'></i></button>". "</td>";
                       echo "</tr >";
                     }
                   }
@@ -492,13 +495,13 @@ function addentry(){
                         <input autocomplete="false" style="width: 100%" type="text" id="pname" name="parkname" placeholder="Park Name">
                       </div>
                     </td>
-                    <td class="col-sm-5 center">
+                    <!-- <td class="col-sm-5 center">
                       <div >
-                        <input autocomplete="false" style="width: 100%" type="text" id ="vnum"name="numvals" placeholder="Number of Valves">
+                        <input autocomplete="false" style="width: 100%" type="text" id ="vnum" name="numvals" placeholder="Number of Valves">
 
                       </div>
-                    </td>
-                    <td class="col-sm-2 center">
+                    </td> -->
+                    <td class="col-sm-2  center">
                       <div >
                         <button name='add' type='button' class='btn btn-success btn-circle text-center center-block center' onclick="addentry()"><i class='fa fa-check'></i></button>
 

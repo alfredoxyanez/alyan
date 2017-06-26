@@ -1,4 +1,5 @@
 <?php
+
 $host= "alyandb.cmydnnixocdw.us-west-2.rds.amazonaws.com:3306";
 $user= "root";
 $pass= "password";
@@ -11,4 +12,6 @@ $mysqli=mysqli_connect("alyanpr.cmydnnixocdw.us-west-2.rds.amazonaws.com",'alyan
 // if (!$mysqli) {
 //     die("Connection failed: " . mysqli_connect_error());
 // }
+
+mysqli_query($mysqli,"SET time_zone='US/Pacific'");
  ?>
