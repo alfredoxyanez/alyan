@@ -1,7 +1,10 @@
 <?php
 require "db.php";
+require 'name.php';
+
 $parkname = $mysqli->escape_string($_POST['parkname']);
-$parkdb= preg_replace('/\s+/', '', strtolower($parkname)).'db';
+$parkname= getname($parkname); //if broken remove this
+$parkdb= getnamedb($parkname);
 echo "<script type='text/javascript'>alert('$parkdb');</script>";
 $sql= "DELETE FROM parks WHERE databasename='$parkdb'";
 
@@ -26,6 +29,9 @@ if($q2){
 }else{
   echo "<script type='text/javascript'>alert('false2');</script>";
 }
+
+
+mysqli_close($mysqli);
 
 
  ?>

@@ -4,6 +4,7 @@
 require 'db.php';
 require 'name.php';
 session_start();
+date_default_timezone_set("America/Los_Angeles");
 
 
 // Make sure the form is being submitted with method="post"
@@ -19,9 +20,9 @@ if(empty($_POST['numvals']) || !is_numeric($_POST['numvals'])){
 }else{
   $numval = $mysqli->escape_string($_POST['numvals']);
 }
-
-$sql = "INSERT INTO parks (parkname, databasename, datec ,numvalves, valveswork) "
-. "VALUES ('$park','$parkdb',DEFAULT,DEFAULT,DEFAULT)";
+$datetime=date("m-d-Y")."?". date("H:i:s")."PST";
+$sql = "INSERT INTO parks (parkname, databasename, datet ,numvalves, valveswork) "
+. "VALUES ('$park','$parkdb','$datetime',DEFAULT,DEFAULT)";
 $q=mysqli_query($mysqli,$sql);
 
 if(!q){
@@ -49,4 +50,6 @@ echo mysql_error();
 //   echo "<script type='text/javascript'>alert('$message');</script>";
 // }
 // echo mysql_error();
+
+mysqli_close($mysqli);
 ?>

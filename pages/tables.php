@@ -22,21 +22,27 @@ function addentry(){
   name = document.getElementById("pname").value;
   // vnum = document.getElementById("vnum").value;
   if( $.trim( $("#pname").val() ) == ''){
-    alert("Please Input a Park Name")
+    alert("Please Input a Park Name");
 
-  }else{
+  }
+  else{
     $.ajax({
     type: 'POST',
     url: 'addpark.php',
     data: {'parkname': name},
     success: function(html) {
       document.location.reload();
-
     }
   });
-
-
   }
+
+
+
+}
+function info(name){
+  window.location.href = "parkpage.php?parkname="+name;
+
+  //$.post( "parkpage.php", { name: "John", time: "2pm" } )
 
 
 }
@@ -434,7 +440,7 @@ function addentry(){
         <div class="col-lg-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              DataTables Advanced Tables
+              All Managed Parks
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
@@ -448,7 +454,7 @@ function addentry(){
 
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="tablelist">
 
                   <?php
                   require 'db.php';
@@ -468,9 +474,11 @@ function addentry(){
                     }
                   }
 
+                  mysqli_close($mysqli);
+
                   ?>
 
-                </tr>
+              
 
               </tbody>
 
