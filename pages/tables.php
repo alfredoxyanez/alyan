@@ -461,9 +461,9 @@ function addentry(){
                       $pname=$row["parkname"];
                       echo "<tr  id='". $pname ."'>";
                       echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-info btn-circle text-center center-block' onclick=\"info('$pname')\" ><i class='fa fa-info'></i></button>". "</td>";
-                      echo "<td class='center col-sm-4'>" . $row["parkname"]. "</td>";
-                      echo "<td class='center col-sm-2'>" . $row["numvalves"]. "</td>";
-                      echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-danger btn-circle text-center center-block' onclick=\"del('$pname')\" ><i class='fa fa-times'></i></button>". "</td>";
+                      echo "<td class='center col-sm-5'>" . $row["parkname"]. "</td>";
+                      echo "<td class='center col-sm-3'>" . $row["numvalves"]. "</td>";
+                      //echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-danger btn-circle text-center center-block' onclick=\"del('$pname')\" ><i class='fa fa-times'></i></button>". "</td>";
                       echo "</tr >";
                     }
                   }
