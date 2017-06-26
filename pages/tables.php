@@ -31,8 +31,7 @@ function addentry(){
     url: 'addpark.php',
     data: {'parkname': name},
     success: function(html) {
-      //location.href = location.href;
-      window.location.reload(true);
+      document.location.reload();
     }
   });
   }
