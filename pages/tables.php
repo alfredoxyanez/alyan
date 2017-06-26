@@ -444,7 +444,7 @@ function addentry(){
                     <th>Info</th>
                     <th>Park</th>
                     <th>Valves</th>
-                    <th>Delete</th>
+                    <!-- <th>Delete</th> -->
 
                   </tr>
                 </thead>
