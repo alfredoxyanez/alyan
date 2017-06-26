@@ -10,9 +10,9 @@ date_default_timezone_set("America/Los_Angeles");
 // Make sure the form is being submitted with method="post"
 $park = $mysqli->escape_string($_POST['parkname']);
 $park = getname($park);
-echo $park;
+//echo $park;
 $parkdb= getnamedb($park);
-echo $parkdb;
+//echo $parkdb;
 //$numval = $mysqli->escape_string($_POST['numvals']);
 
 if(empty($_POST['numvals']) || !is_numeric($_POST['numvals'])){
@@ -29,9 +29,9 @@ if(!q){
   $message = "Please Try Again";
   echo "<script type='text/javascript'>alert('$message');</script>";
 }
-echo mysql_error();
+//echo mysql_error();
 
-
+//echo "window.location.href='tables.php'";
 // $sql2 =  "CREATE TABLE ".$parkdb." (
 // id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 // datecreated DATETIME NOT NULL DEFAULT now(),
@@ -52,4 +52,6 @@ echo mysql_error();
 // echo mysql_error();
 
 mysqli_close($mysqli);
+
+//header("location: tables.php")
 ?>
