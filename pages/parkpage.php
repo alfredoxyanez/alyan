@@ -39,6 +39,38 @@ function getparkname(){
   }
   mysqli_close($mysqli);
 }
+function getparknamer(){
+  require "db.php";
+  $parkname =  mysqli_real_escape_string($mysqli, $_GET['parkname']);
+  $parkdb= getnamedb($parkname);
+  $sql= "SELECT * FROM parks WHERE databasename='$parkdb'";
+  $entry= mysqli_query($mysqli,$sql);
+  if(mysqli_num_rows($entry)>0){
+    $user = mysqli_fetch_assoc($entry);
+    return $user['parkname'];
+
+
+  }else{
+    return "something went wrong";
+  }
+  mysqli_close($mysqli);
+}
+function getparkdbnamer(){
+  require "db.php";
+  $parkname =  mysqli_real_escape_string($mysqli, $_GET['parkname']);
+  $parkdb= getnamedb($parkname);
+  $sql= "SELECT * FROM parks WHERE databasename='$parkdb'";
+  $entry= mysqli_query($mysqli,$sql);
+  if(mysqli_num_rows($entry)>0){
+    $user = mysqli_fetch_assoc($entry);
+    return $user['databasename'];
+
+
+  }else{
+    return null;
+  }
+  mysqli_close($mysqli);
+}
 function getparkdbname(){
   require "db.php";
   $parkname =  mysqli_real_escape_string($mysqli, $_GET['parkname']);
@@ -89,10 +121,53 @@ function getparkjson(){
   mysqli_close($mysqli);
 }
 
+function getparkidr(){
+  require "db.php";
+  $parkname =  mysqli_real_escape_string($mysqli, $_GET['parkname']);
+  $parkdb= getnamedb($parkname);
+  $sql= "SELECT * FROM parks WHERE databasename='$parkdb'";
+  $entry= mysqli_query($mysqli,$sql);
+  if(mysqli_num_rows($entry)>0){
+    $user = mysqli_fetch_assoc($entry);
+    return  $user['idparks'];
 
+
+  }else{
+    return "something went wrong";
+  }
+  mysqli_close($mysqli);
+}
 
 
  ?>
+ <script type="text/javascript">
+ function addvalve(){
+   id = document.getElementById("vid").value;
+   name = document.getElementById("pvname").value;
+   //alert(name);
+
+   // vnum = document.getElementById("vnum").value;
+   if( $.trim( $("#vid").val() ) == ''){
+     alert("Please Input a ValveID");
+   }
+   else{
+     $.ajax({
+     type: 'POST',
+     url: 'addvalve.php',
+     data: {'parkname': name,'valveid':id},
+     success: function(html) {
+       //document.location.reload();
+       location.reload();
+
+     }
+   });
+   }
+
+
+
+ }
+
+ </script>
  <!DOCTYPE html>
  <html lang="en">
 
@@ -472,12 +547,19 @@ function getparkjson(){
      <div id="page-wrapper">
        <div class="row">
          <div class="col-lg-12">
-           <h1 class="page-header">
-             <?php
-             getparkname();
 
-              ?>
-           </h1>
+           <div class="col-lg-6">
+             <h1 id="pnameid" class="page-header">
+               <?php getparkname();?>
+             </h1>
+           </div>
+           <div class="col-lg-6 pull-right">
+             <h1 class="page-header pull-right">
+                <?php echo "ID: " . getparkidr();?>
+             </h1>
+
+           </div>
+
          </div>
          <!-- /.col-lg-12 -->
        </div>
@@ -502,6 +584,47 @@ function getparkjson(){
                    </tr>
                  </thead>
                  <tbody id="tablelist">
+                   <?php
+                   require "db.php";
+                   $dbname=getparkdbnamer();
+                   $sname=getparknamer();
+                   $parkid=getparkidr();
+                   $sql= "SELECT valveswork FROM parks WHERE databasename='$dbname'";
+                   $result= mysqli_query($mysqli, $sql) or die('Query failed: '. mysqli_error($mysqli));
+                   if(mysqli_num_rows($result)>0){
+                     $user = mysqli_fetch_assoc($result)['valveswork'];
+                     $json = json_decode($user);
+                     //print_r($json->{'valvelist'});
+                     $tables=$json->{'vnum'};
+                     for ($x = 0; $x < $tables; $x++) {
+                       $eid= $json->{'valvelist'}[$x]->{'id'};
+                       $status= $json->{'valvelist'}[$x]->{'status'};
+                       if($status){
+                         $message="<button type='button'  class='btn btn-success btn-circle text-center center-block'> <i class='fa fa-thumbs-up'></i></button>";
+                       }else{
+                         $message="<button type='button'  class='btn btn-danger btn-circle text-center center-block'><i class='fa fa-thumbs-down'></i></button>";
+                       }
+
+                       echo "<tr  id='". $sname . $eid ."'>";
+                       echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-info btn-circle text-center center-block' onclick=\"infov('$eid')\" ><i class='fa fa-info'></i></button>". "</td>";
+                       echo "<td class='center col-sm-6'>" .$parkid."-". $eid . "</td>";
+                       echo "<td class='center col-sm-4'>" .$message. "</td>";
+                       //echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-danger btn-circle text-center center-block' onclick=\"del('$pname')\" ><i class='fa fa-times'></i></button>". "</td>";
+                       echo "</tr >";
+
+
+                     }
+
+
+                   }
+
+
+
+
+
+
+
+                    ?>
 
 
 
@@ -520,11 +643,18 @@ function getparkjson(){
                  </tr>
                </thead>
                <tbody>
-                 <form name="addvalve" action="" method="post" autocomplete="false">
+                 <form name="addvf" action="" method="post" autocomplete="false">
                    <tr>
-                     <td class="col-sm-5 center">
+                     <td class="col-sm-2">
+                       <div class="pull-right" style="font-weight: bold; font-size: 125%">
+                         <?php echo getparkidr()."-" ?>
+                       </div>
+                     </td>
+
+                     <td class="col-sm-6 center">
                        <div>
                          <input autocomplete="false" style="width: 100%" type="text" id="vid" name="valvename" placeholder="Valve ID">
+                         <input type="hidden" id="pvname" value=<?php getparkname() ?> >
                        </div>
                      </td>
                      <!-- <td class="col-sm-5 center">
@@ -533,9 +663,9 @@ function getparkjson(){
 
                        </div>
                      </td> -->
-                     <td class="col-sm-2  center">
+                     <td class="col-sm-4  center">
                        <div >
-                         <button name='addvalve' type='button' class='btn btn-success btn-circle text-center center-block center' onclick="addvalve()"><i class='fa fa-check'></i></button>
+                         <button name='addvb' type='button' class='btn btn-success btn-circle text-center center-block center' onclick='addvalve()'><i class='fa fa-check'></i></button>
 
                        </div>
                      </td>

@@ -3,6 +3,7 @@
 
 require 'db.php';
 require 'name.php';
+
 session_start();
 date_default_timezone_set("America/Los_Angeles");
 
@@ -20,36 +21,24 @@ if(empty($_POST['numvals']) || !is_numeric($_POST['numvals'])){
 }else{
   $numval = $mysqli->escape_string($_POST['numvals']);
 }
+$prejson= '
+{
+  "vnum": 0,
+  "valvelist": [
+  ]
+}
+';
+//$prejson=json_decode($prejson);
 $datetime=date("m-d-Y")."?". date("H:i:s")."PST";
 $sql = "INSERT INTO parks (parkname, databasename, datet ,numvalves, valveswork) "
-. "VALUES ('$park','$parkdb','$datetime',DEFAULT,DEFAULT)";
-$q=mysqli_query($mysqli,$sql);
+. "VALUES ('$park','$parkdb','$datetime',DEFAULT,'$prejson')";
+$q=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
 
 if(!q){
   $message = "Please Try Again";
   echo "<script type='text/javascript'>alert('$message');</script>";
 }
-//echo mysql_error();
 
-//echo "window.location.href='tables.php'";
-// $sql2 =  "CREATE TABLE ".$parkdb." (
-// id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-// datecreated DATETIME NOT NULL DEFAULT now(),
-// numvalves INT(6) NOT NULL DEFAULT 0,
-// valves JSON NULL
-// )";
-// //datecreated DATETIME GENERATED ALWAYS AS (),
-//
-// $q2=mysqli_query($mysqli,$sql2);
-
-
-
-
-// if(!q2){
-//   $message= mysql_errno($mysql) . ": " . mysql_error($mysql) . "\n";
-//   echo "<script type='text/javascript'>alert('$message');</script>";
-// }
-// echo mysql_error();
 
 mysqli_close($mysqli);
 
