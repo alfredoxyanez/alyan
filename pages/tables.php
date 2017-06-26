@@ -30,7 +30,7 @@ function addentry(){
     type: 'POST',
     url: 'addpark.php',
     data: {'parkname': name},
-    success: function(html) {
+    success: function() {
       //document.location.reload();
       location.reload();
 
