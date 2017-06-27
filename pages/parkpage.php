@@ -124,7 +124,7 @@ function getparkidr(){
  function addvalve(){
    id = document.getElementById("vid").value;
    name = document.getElementById("pvname").value;
-   //alert(name);
+   alert(id+"   "+name);
 
    // vnum = document.getElementById("vnum").value;
    if( $.trim( $("#vid").val() ) == ''){
