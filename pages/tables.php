@@ -125,7 +125,7 @@ function info(name){
       </div>
       <!-- /.navbar-header -->
 
-      <ul class="nav navbar-top-links navbar-right pull-right">
+      <ul class="nav navbar-top-links navbar-right">
 
 
         <li class="dropdown">
