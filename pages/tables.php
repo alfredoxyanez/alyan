@@ -1,7 +1,9 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+<?php  session_start();
+if(!isset($_SESSION['active']) || empty($_SESSION['active'])){
+  header("location: index.php");
+}
+?>
 <?php
-session_start();
 function loginfname(){
   return $_SESSION['first_name'];
 }
@@ -14,13 +16,13 @@ function loginemail(){
 function loginactive(){
   return $_SESSION['active'];
 }
-if(!isset(loginactive())){
-  header("location: index.html");
-}
+
+
 
 
 
  ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 function del(name){

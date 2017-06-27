@@ -1,8 +1,11 @@
+<?php  session_start();
+if(!isset($_SESSION['active']) || empty($_SESSION['active'])){
+  header("location: index.php");
+}
+?>
 <?php
-session_start();
 require "db.php";
 require "name.php";
-
 
 
 function loginfname(){
@@ -16,9 +19,6 @@ function loginemail(){
 }
 function loginactive(){
   return $_SESSION['active'];
-}
-if(!isset(loginactive())){
-  header("location: index.html");
 }
 
 
