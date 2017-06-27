@@ -159,7 +159,6 @@ function logout(){
         <div class="sidebar-nav navbar-collapse">
           <ul class="nav" id="side-menu">
             <h3 class="text-center">Hello, <?php echo loginfname() ?> !</h3>
-
             <li>
               <a href="tables.php"><i class="fa fa-home fa-fw"></i> All Parks</a>
             </li>
