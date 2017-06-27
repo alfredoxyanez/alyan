@@ -150,6 +150,11 @@ function getparkidr(){
 
  }
 
+ function goback(){
+   window.location.href ="tables.php";
+
+ }
+
 
 
  </script>
@@ -532,9 +537,10 @@ function getparkidr(){
      <div id="page-wrapper">
        <div class="row">
          <div class="col-lg-12">
-
            <div class="col-lg-6">
              <h1 id="pnameid" class="page-header">
+               <button type="button" name="button" class="btn btn-default" onclick="goback()"><i class='fa fa-arrow-left' aria-hidden="true"></i></button>
+
                <?php getparkname();?>
              </h1>
            </div>

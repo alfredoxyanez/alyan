@@ -68,6 +68,12 @@ function addvalvemessage(){
   }
 }
 
+function goback(){
+  parkname=bname = $('#pnameid').text();
+  window.location.href ="parkpage.php"+"?parkname="+parkname;
+
+}
+
 
 
 </script>
@@ -459,6 +465,7 @@ function addvalvemessage(){
 
           <div class="col-lg-6">
             <h1 id="pnameid" class="page-header">
+              <button type="button" name="button" class="btn btn-default" onclick="goback()"><i class='fa fa-arrow-left' aria-hidden="true"></i></button>
               <?php getparkname(); ?>
             </h1>
           </div>
