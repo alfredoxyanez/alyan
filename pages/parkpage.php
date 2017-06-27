@@ -162,10 +162,16 @@ function getparkidr(){
      }
    });
    }
+ }
 
+ function infov(id, parkdbname){
+   //alert( id +"    "+ parkdbname);
+   window.location.href = "valvepage.php?pdbname="+parkdbname+"&"+"vid="+id;
 
 
  }
+
+
 
  </script>
  <!DOCTYPE html>
@@ -606,7 +612,7 @@ function getparkidr(){
                        }
 
                        echo "<tr  id='". $sname . $eid ."'>";
-                       echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-info btn-circle text-center center-block' onclick=\"infov('$eid')\" ><i class='fa fa-info'></i></button>". "</td>";
+                       echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-info btn-circle text-center center-block' onclick=\"infov('$eid','$dbname')\" ><i class='fa fa-info'></i></button>". "</td>";
                        echo "<td class='center col-sm-6'>" .$parkid."-". $eid . "</td>";
                        echo "<td class='center col-sm-4'>" .$message. "</td>";
                        //echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-danger btn-circle text-center center-block' onclick=\"del('$pname')\" ><i class='fa fa-times'></i></button>". "</td>";
