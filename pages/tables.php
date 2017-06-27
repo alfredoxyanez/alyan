@@ -108,7 +108,7 @@ function info(name){
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">Park Ranger</a>
+        <a class="navbar-brand" href="tables.php">Park Ranger</a>
       </div>
       <!-- /.navbar-header -->
 
@@ -125,7 +125,7 @@ function info(name){
             <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
             </li>
             <li class="divider"></li>
-            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            <li><a href="index.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
             </li>
           </ul>
           <!-- /.dropdown-user -->

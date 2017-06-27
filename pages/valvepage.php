@@ -10,7 +10,6 @@ function getdbname(){
 }
 function getparkname(){
   require "db.php";
-  //$parkname =  mysqli_real_escape_string($mysqli, $_GET['parkname']);
   $parkdb= mysqli_real_escape_string($mysqli, $_GET['pdbname']);
   $sql= "SELECT * FROM parks WHERE databasename='$parkdb'";
   $entry= mysqli_query($mysqli,$sql);
@@ -48,23 +47,19 @@ function addvalvemessage(){
   id=$('#vidm').text();
   message = document.getElementById("messagetext").value;
   dbname = $('#dbvname').text();
-  //alert(id +"  "+ message+ "   "+dbname);
-
-  // vnum = document.getElementById("vnum").value;
   if( $.trim( $("#messagetext").val() ) == ''){
     alert("Please input a valid message");
   }
   else{
     $.ajax({
-    type: 'POST',
-    url: 'addvalvemessage.php',
-    data: {'parkdbname': dbname,'valveid':id,'message':message},
-    success: function(html) {
-      $('#myModal').modal('hide');
-      location.reload();
-
-    }
-  });
+      type: 'POST',
+      url: 'addvalvemessage.php',
+      data: {'parkdbname': dbname,'valveid':id,'message':message},
+      success: function(html) {
+        $('#myModal').modal('hide');
+        location.reload();
+      }
+    });
   }
 }
 
@@ -131,7 +126,7 @@ function goback(){
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">Park Ranger</a>
+        <a class="navbar-brand" href="tables.php">Park Ranger</a>
       </div>
       <!-- /.navbar-header -->
 
@@ -148,7 +143,7 @@ function goback(){
             <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
             </li>
             <li class="divider"></li>
-            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            <li><a href="index.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
             </li>
           </ul>
           <!-- /.dropdown-user -->

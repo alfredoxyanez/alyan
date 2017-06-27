@@ -124,11 +124,11 @@ function getparkidr(){
  function addvalve(){
    id = document.getElementById("vid").value;
    name = document.getElementById("pvname").value;
-   alert(id+"   "+name);
+   //alert(id+"   "+name);
 
    // vnum = document.getElementById("vnum").value;
    if( $.trim( $("#vid").val() ) == ''){
-     //alert("Please Input a ValveID");
+     alert("Please Input a ValveID");
    }
    else{
      $.ajax({
@@ -138,7 +138,11 @@ function getparkidr(){
      success: function(html) {
        //document.location.reload();
        location.reload();
-
+     },
+     error:function(error){
+       //alert("ahhh");
+       //console.log("noooo");
+       alert("That ID is taken. Please Enter another.");
      }
    });
    }
@@ -213,7 +217,7 @@ function getparkidr(){
            <span class="icon-bar"></span>
            <span class="icon-bar"></span>
          </button>
-         <a class="navbar-brand" href="index.html">Park Ranger</a>
+         <a class="navbar-brand" href="tables.php">Park Ranger</a>
        </div>
        <!-- /.navbar-header -->
 
@@ -230,7 +234,7 @@ function getparkidr(){
              <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
              </li>
              <li class="divider"></li>
-             <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+             <li><a href="index.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
              </li>
            </ul>
            <!-- /.dropdown-user -->
@@ -366,12 +370,6 @@ function getparkidr(){
                          <input type="hidden" id="pvname" value=<?php getparkdbname() ?> >
                        </div>
                      </td>
-                     <!-- <td class="col-sm-5 center">
-                       <div >
-                         <input autocomplete="false" style="width: 100%" type="text" id ="vnum" name="numvals" placeholder="Number of Valves">
-
-                       </div>
-                     </td> -->
                      <td class="col-sm-4  center">
                        <div >
                          <button name='addvb' type='button' class='btn btn-success btn-circle text-center center-block center' onclick='addvalve()'><i class='fa fa-check'></i></button>
