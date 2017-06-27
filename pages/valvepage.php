@@ -465,7 +465,7 @@ function goback(){
 
           <div class="col-lg-6">
             <h1 id="pnameid" class="page-header">
-              <button type="button" name="button" class="btn btn-default" onclick="goback()"><i class='fa fa-arrow-left' aria-hidden="true"></i></button>
+              <button type="button" name="button"  style="border:0px solid transparent; margin-top: -10px" class="btn btn-default btn-lg" onclick="goback()"><i class='fa fa-lg fa-arrow-left' style='color: #5bc0de;' aria-hidden="true"></i></button>
               <?php getparkname(); ?>
             </h1>
           </div>
