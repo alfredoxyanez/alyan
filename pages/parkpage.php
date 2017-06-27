@@ -561,7 +561,7 @@ function getparkidr(){
            </div>
            <div class="col-lg-6 pull-right">
              <h1 class="page-header pull-right">
-                <?php echo "ID: " . getparkidr();?>
+                <?php echo "Park ID: " . getparkidr();?>
              </h1>
 
            </div>
@@ -617,19 +617,8 @@ function getparkidr(){
                        echo "<td class='center col-sm-4'>" .$message. "</td>";
                        //echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-danger btn-circle text-center center-block' onclick=\"del('$pname')\" ><i class='fa fa-times'></i></button>". "</td>";
                        echo "</tr >";
-
-
                      }
-
-
                    }
-
-
-
-
-
-
-
                     ?>
 
 

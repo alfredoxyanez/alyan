@@ -75,7 +75,7 @@ date_default_timezone_set("America/Los_Angeles");
  $id1=2;
  $parkdbname="riversidedb";
  $message="itworks";
- addvalvework($id1,$parkdbname,$message);
+ //addvalvework($id1,$parkdbname,$message);
 
  function addvalvework($id,$parkdbname,$message){
    require "db.php";
@@ -91,60 +91,50 @@ date_default_timezone_set("America/Los_Angeles");
 
      $jsonp= json_decode($jsonp);
      $updatej=$jsonp->{'valvelist'};
-
      $datetime=date("m-d-Y")."?". date("H:i:s")."PST";
      $response = new stdClass;
      $response->{'date'}=$datetime;
      $response->{'message'}=$message;
 
-    //  echo $id;
-    //  echo "</br>";
-    //  echo gettype($id);
-    //  echo "</br>";
-
-
      foreach ($updatej as $key => $value) {
-      //  echo $value->{'id'};
-      //  echo "</br>";
-      //  echo gettype($value->{'id'});
-      //  echo "</br>";
        if($value->{'id'}==$id){
           print_r($value);
           array_push($value->{'workdone'},$response);
           echo "done!!!!";
-
        }
      }
-     //print_r($updatej);
-     //$vlist=$jsonp->{'valvelist'};
      $newvalue= json_encode($jsonp);
      $sql2 = "UPDATE parks SET valveswork='$newvalue' WHERE databasename='$dbname'";
      $q2=mysqli_query($mysqli,$sql2) or die('Query failed: '. mysqli_error($mysqli));
 
-
-
-
-    //  array_push($jsonp->{'valvelist'}->,$response);
-     //$newvalue= json_encode($jsonp);
-     //echo "string \n";
-     //print_r($jsonp);
-     //$sql2 = "UPDATE parks SET valveswork='$newvalue', numvalves='$numv' WHERE databasename='$dbname'";
-     //$q2=mysqli_query($mysqli,$sql2) or die('Query failed: '. mysqli_error($mysqli));
+   }
 
    }
-  //  $sql="SELECT * FROM parks WHERE databasename='$dbname'";
-  //  $q3=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
-  //  if(mysqli_num_rows($q3)>0){
-  //    $user = mysqli_fetch_assoc($q3);
-  //    $jsonp2=$user['valveswork'];
-  //    $jsonp2= json_decode($jsonp2);
-  //    //print_r($jsonp2);
-  //    $json_string = json_encode($jsonp2, JSON_PRETTY_PRINT);
-  //     header('Content-Type: application/json');
-  //     echo($json_string);
 
 
-   }
+   //getworkjson($id1,$parkdbname);
+   function getworkjson($id,$parkdbname){
+     require "db.php";
+     $dbname= $parkdbname;
+     $sql="SELECT * FROM parks WHERE databasename='$dbname'";
+     $q=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+     if(mysqli_num_rows($q)>0){
+       $user = mysqli_fetch_assoc($q);
+       $jsonp=$user['valveswork'];
+
+       $jsonp= json_decode($jsonp);
+       $updatej=$jsonp->{'valvelist'};
+
+       foreach ($updatej as $key => $value) {
+         if($value->{'id'}==$id){
+          return $value->{'workdone'};
+
+         }
+       }
+       return null;
+
+     }
+     }
 
 
 
