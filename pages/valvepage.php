@@ -1,6 +1,21 @@
 <?php
-//echo $_GET['pdbname'];
-//echo $_GET['vid'];
+session_start();
+
+function loginfname(){
+  return $_SESSION['first_name'];
+}
+function loginlname(){
+  return $_SESSION['last_name'];
+}
+function loginemail(){
+  return $_SESSION['email'];
+}
+function loginactive(){
+  return $_SESSION['active'];
+}
+if(!isset(loginactive())){
+  header("location: index.html");
+}
 
 function getvid(){
   return $_GET['vid'];

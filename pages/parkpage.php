@@ -1,7 +1,29 @@
 <?php
-
+session_start();
 require "db.php";
 require "name.php";
+
+
+
+function loginfname(){
+  return $_SESSION['first_name'];
+}
+function loginlname(){
+  return $_SESSION['last_name'];
+}
+function loginemail(){
+  return $_SESSION['email'];
+}
+function loginactive(){
+  return $_SESSION['active'];
+}
+if(!isset(loginactive())){
+  header("location: index.html");
+}
+
+
+
+
 
 function getparkname(){
   require "db.php";

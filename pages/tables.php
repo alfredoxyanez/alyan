@@ -1,9 +1,27 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+<?php
+session_start();
+function loginfname(){
+  return $_SESSION['first_name'];
+}
+function loginlname(){
+  return $_SESSION['last_name'];
+}
+function loginemail(){
+  return $_SESSION['email'];
+}
+function loginactive(){
+  return $_SESSION['active'];
+}
+if(!isset(loginactive())){
+  header("location: index.html");
+}
 
+
+
+ ?>
 <script type="text/javascript">
-
-
 
 function del(name){
   $.ajax({
@@ -31,9 +49,7 @@ function addentry(){
     url: 'addpark.php',
     data: {'parkname': name},
     success: function() {
-      //document.location.reload();
       location.reload();
-
     }
   });
   }
@@ -44,12 +60,7 @@ function addentry(){
 function info(name){
   window.location.href = "parkpage.php?parkname="+name;
 
-  //$.post( "parkpage.php", { name: "John", time: "2pm" } )
-
-
 }
-
-
 
 </script>
 
