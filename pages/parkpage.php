@@ -184,7 +184,7 @@ function goback(){
 function logout(){
   $.ajax({
     type: 'POST',
-    url: 'logout.php',,
+    url: 'logout.php',
     success: function(html) {
       window.location.href =index.php;
 

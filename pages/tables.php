@@ -64,7 +64,7 @@ function info(name){
 function logout(){
   $.ajax({
     type: 'POST',
-    url: 'logout.php',,
+    url: 'logout.php',
     success: function(html) {
       window.location.href =index.php;
 
@@ -135,7 +135,7 @@ function logout(){
       <!-- /.navbar-header -->
 
       <ul class="nav navbar-top-links navbar-right">
-        
+
 
         <li class="dropdown pull-right">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
