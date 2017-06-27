@@ -128,7 +128,7 @@ function getparkidr(){
 
    // vnum = document.getElementById("vnum").value;
    if( $.trim( $("#vid").val() ) == ''){
-     alert("Please Input a ValveID");
+     //alert("Please Input a ValveID");
    }
    else{
      $.ajax({
