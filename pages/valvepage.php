@@ -148,13 +148,11 @@ function goback(){
       <!-- /.navbar-header -->
 
       <ul class="nav navbar-top-links navbar-right">
-
-
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          <a class="dropdown-toggle pull-right" data-toggle="dropdown" href="#">
             <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
           </a>
-          <ul class="dropdown-menu dropdown-user dropdown-menu-right">
+          <ul class="dropdown-menu dropdown-user dropdown-menu-right pull-right">
             <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
             </li>
             <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
