@@ -40,9 +40,34 @@ function getparknamer(){
   mysqli_close($mysqli);
 }
 
+?>
 
+<script type="text/javascript">
 
- ?>
+function addvalvemessage(){
+  id=$('#vidm').text();
+  message = document.getElementById("messagetext").value;
+  dbname = $('#dbvname').text();
+  //alert(id +"  "+ message+ "   "+dbname);
+
+  // vnum = document.getElementById("vnum").value;
+  if( $.trim( $("#messagetext").val() ) == ''){
+    alert("Please input a valid message");
+  }
+  else{
+    $.ajax({
+    type: 'POST',
+    url: 'addvalvemessage.php',
+    data: {'parkdbname': dbname,'valveid':id,'message':message},
+    success: function(html) {
+      $('#myModal').modal('hide');
+      location.reload();
+
+    }
+  });
+  }
+}
+
 
 
 </script>
@@ -425,6 +450,12 @@ function getparknamer(){
     <div id="page-wrapper">
       <div class="row">
         <div class="col-lg-12">
+          <div >
+            <p id="vidm" hidden><?php  echo getvid();?></p>
+          </div>
+          <div >
+            <p id="dbvname" hidden><?php  echo getdbname();?></p>
+          </div>
 
           <div class="col-lg-6">
             <h1 id="pnameid" class="page-header">
@@ -433,7 +464,7 @@ function getparknamer(){
           </div>
           <div class="col-lg-6 pull-right">
             <h1 class="page-header pull-right">
-               <?php echo "Valve ID: " . $_GET['vid'];?>
+              <?php echo "Valve ID: " . getvid();?>
             </h1>
 
           </div>
@@ -447,13 +478,35 @@ function getparknamer(){
           <div class="panel panel-default">
             <div class="panel-heading">
               Valve <?php echo $_GET['vid'] ?> Messages
+              <button type='button'  class='btn btn-success btn-circle pull-right' style="margin-top: -5px" data-toggle="modal" data-target="#myModal" ><i class='fa fa-plus'></i></button>
             </div>
+
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Valve Message</h4>
+                  </div>
+                  <div class="modal-body">
+                    <textarea id="messagetext" class="form-control" rows="8"></textarea>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="addvalvemessage()"> Add Message</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
             <!-- /.panel-heading -->
             <div class="panel-body">
               <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                   <tr>
-                    <th>Status</th>
                     <th>Date</th>
                     <th>Time</th>
                     <th>Message</th>
@@ -474,7 +527,6 @@ function getparknamer(){
                     $datetime=  explode('?',$value->{'date'});
                     $message= $value->{'message'};
                     echo "<tr>";
-                    echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-info btn-circle text-center center-block'  ><i class='fa fa-info'></i></button>". "</td>";
                     echo "<td class='center col-sm-3'>" .$datetime[0]. "</td>";
                     echo "<td class='center col-sm-3'>" .$datetime[1]. "</td>";
                     echo "<td class='center col-sm-4'>" .$message. "</td>";
@@ -483,7 +535,7 @@ function getparknamer(){
                   }
 
 
-                   ?>
+                  ?>
 
 
 
@@ -491,12 +543,10 @@ function getparknamer(){
 
 
 
-              </tbody>
+                </tbody>
 
-            </table>
-            <!-- /.table-responsive -->
-
-
+              </table>
+              <!-- /.table-responsive -->
 
 
 
@@ -505,47 +555,49 @@ function getparknamer(){
 
 
 
+
+
+            </div>
+            <!-- /.panel-body -->
           </div>
-          <!-- /.panel-body -->
+          <!-- /.panel -->
         </div>
-        <!-- /.panel -->
+        <!-- /.col-lg-12 -->
       </div>
-      <!-- /.col-lg-12 -->
+
     </div>
+    <!-- /#page-wrapper -->
 
   </div>
-  <!-- /#page-wrapper -->
+  <!-- /#wrapper -->
 
-</div>
-<!-- /#wrapper -->
+  <!-- jQuery -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
 
-<!-- jQuery -->
-<script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Metis Menu Plugin JavaScript -->
+  <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
-<!-- Metis Menu Plugin JavaScript -->
-<script src="../vendor/metisMenu/metisMenu.min.js"></script>
+  <!-- DataTables JavaScript -->
+  <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+  <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+  <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
 
-<!-- DataTables JavaScript -->
-<script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
-<script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-<script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+  <!-- Custom Theme JavaScript -->
+  <script src="../dist/js/sb-admin-2.js"></script>
 
-<!-- Custom Theme JavaScript -->
-<script src="../dist/js/sb-admin-2.js"></script>
-
-<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-<script>
-$(document).ready(function() {
-  $('#dataTables-example').DataTable({
-    responsive: true
+  <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+  <script>
+  $(document).ready(function() {
+    $('#dataTables-example').DataTable({
+      responsive: true
+    });
   });
-});
-</script>
+  </script>
 
 
 

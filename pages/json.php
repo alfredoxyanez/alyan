@@ -72,10 +72,8 @@ date_default_timezone_set("America/Los_Angeles");
   //  }
 
  }
- $id1=2;
- $parkdbname="riversidedb";
- $message="itworks";
- //addvalvework($id1,$parkdbname,$message);
+
+
 
  function addvalvework($id,$parkdbname,$message){
    require "db.php";
@@ -98,9 +96,9 @@ date_default_timezone_set("America/Los_Angeles");
 
      foreach ($updatej as $key => $value) {
        if($value->{'id'}==$id){
-          print_r($value);
+          //print_r($value);
           array_push($value->{'workdone'},$response);
-          echo "done!!!!";
+          //echo "done!!!!";
        }
      }
      $newvalue= json_encode($jsonp);

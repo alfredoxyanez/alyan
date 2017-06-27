@@ -2,26 +2,6 @@
 
 require "db.php";
 require "name.php";
-//
-// $parkname =  mysqli_real_escape_string($mysqli, $_GET['parkname']);
-// $parkdb= getnamedb($parkname);
-//
-// $sql= "SELECT * FROM parks WHERE databasename='$parkdb'";
-// $entry= mysqli_query($mysqli,$sql);
-//
-// if(mysqli_num_rows($entry)>0){
-//   $user = mysqli_fetch_assoc($entry);
-//   echo $user['idparks']."</br>";
-//   echo $user['parkname']."</br>";
-//   echo $user['databasename']."</br>";
-//   echo $user['datet']."</br>";
-//   echo $user['valveswork']."</br>";
-//
-// }else{
-//   echo "something went wrong";
-// }
-// mysqli_close($mysqli);
-
 
 function getparkname(){
   require "db.php";
@@ -165,7 +145,6 @@ function getparkidr(){
  }
 
  function infov(id, parkdbname){
-   //alert( id +"    "+ parkdbname);
    window.location.href = "valvepage.php?pdbname="+parkdbname+"&"+"vid="+id;
 
 
