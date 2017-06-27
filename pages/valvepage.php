@@ -86,6 +86,21 @@ function goback(){
 
 }
 
+function logout(){
+  $.ajax({
+    type: 'POST',
+    url: 'logout.php',,
+    success: function(html) {
+      window.location.href =index.php;
+
+    }
+  });
+
+}
+
+
+
+
 
 
 </script>
@@ -158,7 +173,7 @@ function goback(){
             <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
             </li>
             <li class="divider"></li>
-            <li><a href="index.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            <li><a href="javascript:;" onclick="logout();"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
             </li>
           </ul>
           <!-- /.dropdown-user -->

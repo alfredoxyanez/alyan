@@ -19,23 +19,21 @@ function loginactive(){
 
 
 
-
-
- ?>
+?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 function del(name){
   $.ajax({
-  type: 'POST',
-  url: 'deletepark.php',
-  data: {'parkname': name},
-  success: function(html) {
-    var element = document.getElementById(name);
-    element.outerHTML = "";
-    delete element;
-  }
-});
+    type: 'POST',
+    url: 'deletepark.php',
+    data: {'parkname': name},
+    success: function(html) {
+      var element = document.getElementById(name);
+      element.outerHTML = "";
+      delete element;
+    }
+  });
 }
 
 function addentry(){
@@ -47,13 +45,13 @@ function addentry(){
   }
   else{
     $.ajax({
-    type: 'POST',
-    url: 'addpark.php',
-    data: {'parkname': name},
-    success: function() {
-      location.reload();
-    }
-  });
+      type: 'POST',
+      url: 'addpark.php',
+      data: {'parkname': name},
+      success: function() {
+        location.reload();
+      }
+    });
   }
 
 
@@ -61,6 +59,17 @@ function addentry(){
 }
 function info(name){
   window.location.href = "parkpage.php?parkname="+name;
+
+}
+function logout(){
+  $.ajax({
+    type: 'POST',
+    url: 'logout.php',,
+    success: function(html) {
+      window.location.href =index.php;
+
+    }
+  });
 
 }
 
@@ -126,7 +135,7 @@ function info(name){
       <!-- /.navbar-header -->
 
       <ul class="nav navbar-top-links navbar-right">
-
+        
 
         <li class="dropdown pull-right">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -138,7 +147,7 @@ function info(name){
             <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
             </li>
             <li class="divider"></li>
-            <li><a href="index.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            <li><a href="javascript:;" onclick="logout();"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
             </li>
           </ul>
           <!-- /.dropdown-user -->
@@ -223,59 +232,59 @@ function info(name){
 
 
 
-              </tbody>
+                </tbody>
 
-            </table>
-            <!-- /.table-responsive -->
+              </table>
+              <!-- /.table-responsive -->
 
 
 
-            <table class="table table-inverse">
-              <thead class="thead-inverse">
-                <tr>
-                  <th>Add Park</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <form name="addpark" action="tables.php" method="post" autocomplete="false">
+              <table class="table table-inverse">
+                <thead class="thead-inverse">
                   <tr>
-                    <td class="col-sm-5 center">
-                      <div>
-                        <input autocomplete="false" style="width: 100%" type="text" id="pname" name="parkname" placeholder="Park Name">
-                      </div>
-                    </td>
-                    <!-- <td class="col-sm-5 center">
-                      <div >
-                        <input autocomplete="false" style="width: 100%" type="text" id ="vnum" name="numvals" placeholder="Number of Valves">
-
-                      </div>
-                    </td> -->
-                    <td class="col-sm-2  center">
-                      <div >
-                        <button name='add' type='button' class='btn btn-success btn-circle text-center center-block center' onclick="addentry()"><i class='fa fa-check'></i></button>
-
-                      </div>
-                    </td>
+                    <th>Add Park</th>
+                    <th></th>
+                    <th></th>
                   </tr>
-                </form>
+                </thead>
+                <tbody>
+                  <form name="addpark" action="tables.php" method="post" autocomplete="false">
+                    <tr>
+                      <td class="col-sm-5 center">
+                        <div>
+                          <input autocomplete="false" style="width: 100%" type="text" id="pname" name="parkname" placeholder="Park Name">
+                        </div>
+                      </td>
+                      <!-- <td class="col-sm-5 center">
+                      <div >
+                      <input autocomplete="false" style="width: 100%" type="text" id ="vnum" name="numvals" placeholder="Number of Valves">
 
-              </tbody>
-            </table>
+                    </div>
+                  </td> -->
+                  <td class="col-sm-2  center">
+                    <div >
+                      <button name='add' type='button' class='btn btn-success btn-circle text-center center-block center' onclick="addentry()"><i class='fa fa-check'></i></button>
+
+                    </div>
+                  </td>
+                </tr>
+              </form>
+
+            </tbody>
+          </table>
 
 
 
-          </div>
-          <!-- /.panel-body -->
         </div>
-        <!-- /.panel -->
+        <!-- /.panel-body -->
       </div>
-      <!-- /.col-lg-12 -->
+      <!-- /.panel -->
     </div>
-
+    <!-- /.col-lg-12 -->
   </div>
-  <!-- /#page-wrapper -->
+
+</div>
+<!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->
