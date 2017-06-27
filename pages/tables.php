@@ -4,6 +4,7 @@ if(!isset($_SESSION['active']) || empty($_SESSION['active'])){
 }
 ?>
 <?php
+echo loginfname();
 function loginfname(){
   return $_SESSION['first_name'];
 }
