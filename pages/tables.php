@@ -4,8 +4,7 @@ if(!isset($_SESSION['active']) || empty($_SESSION['active'])){
 }
 ?>
 <?php
-echo loginfname();
-function loginfname(){
+//function loginfname(){
   return $_SESSION['first_name'];
 }
 function loginlname(){
@@ -159,7 +158,7 @@ function logout(){
       <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
           <ul class="nav" id="side-menu">
-            <h3>Hello, <?php echo loginemail() ?> !</h3>
+            <h3>Hello, <?php echo loginfname() ?> !</h3>
 
             <li>
               <a href="tables.php"><i class="fa fa-home fa-fw"></i> All Parks</a>
