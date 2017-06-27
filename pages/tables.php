@@ -66,7 +66,7 @@ function logout(){
     type: 'POST',
     url: 'logout.php',
     success: function(html) {
-      window.location.href =index.php;
+      window.location.href ="index.php";
 
     }
   });
