@@ -18,6 +18,10 @@ function loginactive(){
   return $_SESSION['active'];
 }
 
+function getfname(){
+  return $_SESSION['first_name']." "$_SESSION['last_name'];
+}
+
 
 function getvid(){
   return $_GET['vid'];
@@ -64,6 +68,7 @@ function addvalvemessage(){
   id=$('#vidm').text();
   message = document.getElementById("messagetext").value;
   dbname = $('#dbvname').text();
+  person= document.getElementById("fullname").value;
   if( $.trim( $("#messagetext").val() ) == ''){
     alert("Please input a valid message");
   }
@@ -71,7 +76,7 @@ function addvalvemessage(){
     $.ajax({
       type: 'POST',
       url: 'addvalvemessage.php',
-      data: {'parkdbname': dbname,'valveid':id,'message':message},
+      data: {'parkdbname': dbname,'valveid':id,'message':message,'fullname':person},
       success: function(html) {
         $('#myModal').modal('hide');
         location.reload();
@@ -204,6 +209,11 @@ function logout(){
           <div >
             <p id="dbvname" hidden><?php  echo getdbname();?></p>
           </div>
+          <div >
+            <p id="fullname" hidden><?php  echo getfname()?></p>
+          </div>
+
+
 
           <div class="col-lg-6">
             <h1 id="pnameid" class="page-header">
@@ -256,12 +266,10 @@ function logout(){
               <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                   <tr>
+                    <th>Done By</th>
                     <th>Date</th>
                     <th>Time</th>
                     <th>Message</th>
-
-                    <!-- <th>Delete</th> -->
-
                   </tr>
                 </thead>
                 <tbody id="tablelist">
@@ -275,9 +283,11 @@ function logout(){
                   foreach ($jsondata as $key => $value) {
                     $datetime=  explode('?',$value->{'date'});
                     $message= $value->{'message'};
+                    $person= $value->{'person'};
                     echo "<tr>";
-                    echo "<td class='center col-sm-3'>" .$datetime[0]. "</td>";
-                    echo "<td class='center col-sm-3'>" .$datetime[1]. "</td>";
+                    echo "<td class='center col-sm-4'>" .$person. "</td>";
+                    echo "<td class='center col-sm-2'>" .$datetime[0]. "</td>";
+                    echo "<td class='center col-sm-2'>" .$datetime[1]. "</td>";
                     echo "<td class='center col-sm-4'>" .$message. "</td>";
                     echo "</tr >";
 

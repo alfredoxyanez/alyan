@@ -35,7 +35,7 @@ date_default_timezone_set("America/Los_Angeles");
 
 
 
- function addvalvework($id,$parkdbname,$message){
+ function addvalvework($id,$parkdbname,$message,$person){
    require "db.php";
    //$parkname= getname($parkname);
    $dbname= $parkdbname;
@@ -50,6 +50,7 @@ date_default_timezone_set("America/Los_Angeles");
      $updatej=$jsonp->{'valvelist'};
      $datetime=date("m-d-Y")."?". date("H:i:s")."PST";
      $response = new stdClass;
+     $response->{'person'}=$person;
      $response->{'date'}=$datetime;
      $response->{'message'}=$message;
      foreach ($updatej as $key => $value) {
