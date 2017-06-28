@@ -23,16 +23,14 @@ function loginactive(){
 
 
 
-
-
 function getparkname(){
   require "db.php";
   $parkname =  mysqli_real_escape_string($mysqli, $_GET['parkname']);
   $parkdb= getnamedb($parkname);
   $sql= "SELECT * FROM parks WHERE databasename='$parkdb'";
-  $entry= mysqli_query($mysqli,$sql);
-  if(mysqli_num_rows($entry)>0){
-    $user = mysqli_fetch_assoc($entry);
+  $result= mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+  if(mysqli_num_rows($result)>0){
+    $user = mysqli_fetch_assoc($result);
     echo $user['parkname'];
 
 
@@ -44,11 +42,11 @@ function getparkname(){
 function getparknamer(){
   require "db.php";
   $parkname =  mysqli_real_escape_string($mysqli, $_GET['parkname']);
-  $parkdb= getnamedb($parkname);
+  $parkdb= mysqli_real_escape_string($mysqli,getnamedb($parkname));
   $sql= "SELECT * FROM parks WHERE databasename='$parkdb'";
-  $entry= mysqli_query($mysqli,$sql);
-  if(mysqli_num_rows($entry)>0){
-    $user = mysqli_fetch_assoc($entry);
+  $result= mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+  if(mysqli_num_rows($result)>0){
+    $user = mysqli_fetch_assoc($result);
     return $user['parkname'];
 
 
@@ -62,9 +60,9 @@ function getparkdbnamer(){
   $parkname =  mysqli_real_escape_string($mysqli, $_GET['parkname']);
   $parkdb= getnamedb($parkname);
   $sql= "SELECT * FROM parks WHERE databasename='$parkdb'";
-  $entry= mysqli_query($mysqli,$sql);
-  if(mysqli_num_rows($entry)>0){
-    $user = mysqli_fetch_assoc($entry);
+  $result= mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+  if(mysqli_num_rows($result)>0){
+    $user = mysqli_fetch_assoc($result);
     return $user['databasename'];
 
 
@@ -78,9 +76,9 @@ function getparkdbname(){
   $parkname =  mysqli_real_escape_string($mysqli, $_GET['parkname']);
   $parkdb= getnamedb($parkname);
   $sql= "SELECT * FROM parks WHERE databasename='$parkdb'";
-  $entry= mysqli_query($mysqli,$sql);
-  if(mysqli_num_rows($entry)>0){
-    $user = mysqli_fetch_assoc($entry);
+  $result= mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+  if(mysqli_num_rows($result)>0){
+    $user = mysqli_fetch_assoc($result);
     echo $user['databasename'];
 
 
@@ -93,11 +91,11 @@ function getparkdbname(){
 function getparktime(){
   require "db.php";
   $parkname =  mysqli_real_escape_string($mysqli, $_GET['parkname']);
-  $parkdb= getnamedb($parkname);
+  $parkdb=  mysqli_real_escape_string($mysqli,getnamedb($parkname));
   $sql= "SELECT * FROM parks WHERE databasename='$parkdb'";
-  $entry= mysqli_query($mysqli,$sql);
-  if(mysqli_num_rows($entry)>0){
-    $user = mysqli_fetch_assoc($entry);
+  $result= mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+  if(mysqli_num_rows($result)>0){
+    $user = mysqli_fetch_assoc($result);
     echo $user['datet'];
 
 
@@ -109,11 +107,11 @@ function getparktime(){
 function getparkjson(){
   require "db.php";
   $parkname =  mysqli_real_escape_string($mysqli, $_GET['parkname']);
-  $parkdb= getnamedb($parkname);
+  $parkdb=  mysqli_real_escape_string($mysqli,getnamedb($parkname));
   $sql= "SELECT * FROM parks WHERE databasename='$parkdb'";
-  $entry= mysqli_query($mysqli,$sql);
-  if(mysqli_num_rows($entry)>0){
-    $user = mysqli_fetch_assoc($entry);
+  $result= mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+  if(mysqli_num_rows($result)>0){
+    $user = mysqli_fetch_assoc($result);
     echo $user['valveswork'];
 
 
@@ -126,11 +124,11 @@ function getparkjson(){
 function getparkidr(){
   require "db.php";
   $parkname =  mysqli_real_escape_string($mysqli, $_GET['parkname']);
-  $parkdb= getnamedb($parkname);
+  $parkdb=  mysqli_real_escape_string($mysqli,getnamedb($parkname));
   $sql= "SELECT * FROM parks WHERE databasename='$parkdb'";
-  $entry= mysqli_query($mysqli,$sql);
-  if(mysqli_num_rows($entry)>0){
-    $user = mysqli_fetch_assoc($entry);
+  $result= mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+  if(mysqli_num_rows($result)>0){
+    $user = mysqli_fetch_assoc($result);
     return  $user['idparks'];
 
 
@@ -334,7 +332,7 @@ function logout(){
                 <tbody id="tablelist">
                   <?php
                   require "db.php";
-                  $dbname=getparkdbnamer();
+                  $dbname=mysqli_real_escape_string($mysqli,getparkdbnamer());
                   $sname=getparknamer();
                   $parkid=getparkidr();
                   $sql= "SELECT valveswork FROM parks WHERE databasename='$dbname'";

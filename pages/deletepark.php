@@ -2,33 +2,21 @@
 require "db.php";
 require 'name.php';
 
-$parkname = $mysqli->escape_string($_POST['parkname']);
+$parkname = mysqli_real_escape_string($mysqli,$_POST['parkname']);
 $parkname= getname($parkname); //if broken remove this
 $parkdb= getnamedb($parkname);
-echo "<script type='text/javascript'>alert('$parkdb');</script>";
+$parkdb=mysqli_real_escape_string($mysqli,$parkdb);
+
+//echo "<script type='text/javascript'>alert('$parkdb');</script>";
 $sql= "DELETE FROM parks WHERE databasename='$parkdb'";
 
+$result=mysqli_query($mysqli,$sql)or die('Query failed: '. mysqli_error($mysqli));
 
-$q=mysqli_query($mysqli,$sql);
-
-if($q){
-  echo "<script type='text/javascript'>alert('true1');</script>";
-
-}else{
-  echo "<script type='text/javascript'>alert('false1');</script>";
-}
 
 $sql2= "DROP TABLE ".$parkdb;
 
+$result2=mysqli_query($mysqli,$sql2)or die('Query failed: '. mysqli_error($mysqli));
 
-$q2=mysqli_query($mysqli,$sql2);
-
-if($q2){
-  echo "<script type='text/javascript'>alert('true2');</script>";
-
-}else{
-  echo "<script type='text/javascript'>alert('false2');</script>";
-}
 
 
 mysqli_close($mysqli);

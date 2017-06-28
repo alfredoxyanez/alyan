@@ -6,13 +6,13 @@ date_default_timezone_set("America/Los_Angeles");
  function addvalvej($id,$parkdbname){
    require "db.php";
    //$parkname= getname($parkname);
-   $dbname= $parkdbname;
+   $dbname= mysqli_real_escape_string($mysqli,$parkdbname);
 
    $sql="SELECT * FROM parks WHERE databasename='$dbname'";
 
-   $q=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
-   if(mysqli_num_rows($q)>0){
-     $user = mysqli_fetch_assoc($q);
+   $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+   if(mysqli_num_rows($result)>0){
+     $user = mysqli_fetch_assoc($result);
      $jsonp=$user['valveswork'];
      $numv=$user['numvalves'];
      $numv= $numv+1;
@@ -27,7 +27,7 @@ date_default_timezone_set("America/Los_Angeles");
      array_push($jsonp->{'valvelist'},$response);
      $newvalue= json_encode($jsonp);
      $sql2 = "UPDATE parks SET valveswork='$newvalue', numvalves='$numv' WHERE databasename='$dbname'";
-     $q2=mysqli_query($mysqli,$sql2) or die('Query failed: '. mysqli_error($mysqli));
+     $result2=mysqli_query($mysqli,$sql2) or die('Query failed: '. mysqli_error($mysqli));
 
    }
 
@@ -38,13 +38,13 @@ date_default_timezone_set("America/Los_Angeles");
  function addvalvework($id,$parkdbname,$message,$person){
    require "db.php";
    //$parkname= getname($parkname);
-   $dbname= $parkdbname;
+   $dbname= mysqli_real_escape_string($mysqli,$parkdbname);
 
    $sql="SELECT * FROM parks WHERE databasename='$dbname'";
 
-   $q=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
-   if(mysqli_num_rows($q)>0){
-     $user = mysqli_fetch_assoc($q);
+   $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+   if(mysqli_num_rows($result)>0){
+     $user = mysqli_fetch_assoc($result);
      $jsonp=$user['valveswork'];
      $jsonp= json_decode($jsonp);
      $updatej=$jsonp->{'valvelist'};
@@ -60,7 +60,7 @@ date_default_timezone_set("America/Los_Angeles");
      }
      $newvalue= json_encode($jsonp);
      $sql2 = "UPDATE parks SET valveswork='$newvalue' WHERE databasename='$dbname'";
-     $q2=mysqli_query($mysqli,$sql2) or die('Query failed: '. mysqli_error($mysqli));
+     $result2=mysqli_query($mysqli,$sql2) or die('Query failed: '. mysqli_error($mysqli));
    }
    }
 
@@ -68,11 +68,11 @@ date_default_timezone_set("America/Los_Angeles");
    //getworkjson($id1,$parkdbname);
    function getworkjson($id,$parkdbname){
      require "db.php";
-     $dbname= $parkdbname;
+     $dbname= mysqli_real_escape_string($mysqli,$parkdbname);
      $sql="SELECT * FROM parks WHERE databasename='$dbname'";
-     $q=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
-     if(mysqli_num_rows($q)>0){
-       $user = mysqli_fetch_assoc($q);
+     $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+     if(mysqli_num_rows($result)>0){
+       $user = mysqli_fetch_assoc($result);
        $jsonp=$user['valveswork'];
        $jsonp= json_decode($jsonp);
        $updatej=$jsonp->{'valvelist'};
@@ -87,11 +87,11 @@ date_default_timezone_set("America/Los_Angeles");
 
      function IDisused($id,$parkdbname){
        require "db.php";
-       $dbname= $parkdbname;
+       $dbname= mysqli_real_escape_string($mysqli,$parkdbname);
        $sql="SELECT * FROM parks WHERE databasename='$dbname'";
-       $q=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
-       if(mysqli_num_rows($q)>0){
-         $user = mysqli_fetch_assoc($q);
+       $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+       if(mysqli_num_rows($result)>0){
+         $user = mysqli_fetch_assoc($result);
          $jsonp=$user['valveswork'];
          $jsonp= json_decode($jsonp);
          $updatej=$jsonp->{'valvelist'};
@@ -103,16 +103,6 @@ date_default_timezone_set("America/Los_Angeles");
          return false;
        }
        }
-
-
-
-
-
-
-
-
-
-
 
 
  ?>

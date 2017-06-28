@@ -7,20 +7,20 @@ session_start();
 // Check if form submitted with method="post"
 if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
   if( isset($_POST['email']) && !empty($_POST['email'])){
-    $email = $mysqli->escape_string($_POST['email']);
-    $message= $email;
-    echo "<script type='text/javascript'>alert('$message');</script>";
-    $result = $mysqli->query("SELECT * FROM users WHERE email='$email'");
+    $email = mysqli_real_escape_string($mysqli,$_POST['email']);
+    $sql = "SELECT * FROM users WHERE email='$email'";
+    $result = mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
 
-    if ( $result->num_rows == 0 ) // User doesn't exist
+
+    if ( mysqli_num_rows($result) == 0 ) // User doesn't exist
     {
       $_SESSION['message'] = "User with that email doesn't exist!";
       header("location: error.php");
     }
     else { // User exists (num_rows != 0)
 
-      $user = $result->fetch_assoc(); // $user becomes array with user data
-      echo "<script type='text/javascript'>alert('$user');</script>";
+      $user =mysqli_fetch_assoc($result); // $user becomes array with user data
+      //echo "<script type='text/javascript'>alert('$user');</script>";
 
       $email = $user['email'];
       $hash = $user['hash'];

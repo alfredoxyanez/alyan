@@ -4,15 +4,16 @@ session_start();
 /* User login process, checks if user exists and password is correct */
 
 // Escape email to protect against SQL injections
-$email = $mysqli->escape_string($_POST['email']);
-$result = $mysqli->query("SELECT * FROM users WHERE email='$email'");
+$email = mysqli_real_escape_string($mysqli,$_POST['email']);
+$sql="SELECT * FROM users WHERE email='$email'";
+$result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
 
-if ( $result->num_rows == 0 ){ // User doesn't exist
+if ( mysqli_num_rows($result) == 0 ){ // User doesn't exist
     $_SESSION['message'] = "User with that email doesn't exist!";
     header("location: error.php");
 }
 else { // User exists
-    $user = $result->fetch_assoc();
+    $user = mysqli_fetch_assoc($result);
 
     if ( password_verify($_POST['password'], $user['password']) ) {
 

@@ -2,8 +2,8 @@
 require "db.php";
 require 'json.php';
 
-$parkdbname = $mysqli->escape_string($_POST['parkdbname']);
-$valveid = $mysqli->escape_string($_POST['valveid']);
+$parkdbname = mysqli_real_escape_string($mysqli,$_POST['parkdbname']);
+$valveid = mysqli_real_escape_string($mysqli,$_POST['valveid']);
 
 if(IDisused($valveid,$parkdbname)){
 
