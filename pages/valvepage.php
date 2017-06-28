@@ -287,10 +287,10 @@ function logout(){
                     $message= $value->{'message'};
                     $person= $value->{'person'};
                     echo "<tr>";
-                    echo "<td class='center col-sm-4'>" .$person. "</td>";
+                    echo "<td class='center col-sm-3'>" .$person. "</td>";
                     echo "<td class='center col-sm-2'>" .$datetime[0]. "</td>";
                     echo "<td class='center col-sm-2'>" .$datetime[1]. "</td>";
-                    echo "<td class='center col-sm-4'>" .$message. "</td>";
+                    echo "<td class='center col-sm-5'>" .$message. "</td>";
                     echo "</tr >";
 
                   }
