@@ -38,7 +38,6 @@ function del(name){
 
 function addentry(){
   name = document.getElementById("pname").value;
-  // vnum = document.getElementById("vnum").value;
   if( $.trim( $("#pname").val() ) == ''){
     alert("Please Input a Park Name");
 

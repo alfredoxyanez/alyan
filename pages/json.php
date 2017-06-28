@@ -20,7 +20,7 @@ date_default_timezone_set("America/Los_Angeles");
      $updatej=$jsonp->{'vnum'} =$numv;
      $datetime=date("m-d-Y")."?". date("H:i:s")."PST";
      $response = new stdClass;
-     $response->{'id'}= (string) $id;
+     $response->{'id'}= (string) strtoupper($id);
      $response->{'status'}=true;
      $response->{'date'}=$datetime;
      $response->{'workdone'}=array();

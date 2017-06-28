@@ -19,7 +19,8 @@ function loginactive(){
 }
 
 function getfname(){
-  return $_SESSION['first_name']." ".$_SESSION['last_name'];
+  $fullname= loginfname()." ".loginlname();
+  return $fullname;
 }
 
 
@@ -68,7 +69,8 @@ function addvalvemessage(){
   id=$('#vidm').text();
   message = document.getElementById("messagetext").value;
   dbname = $('#dbvname').text();
-  person= document.getElementById("fullname").value;
+  person= $('#fullname').text();
+  //alert(person);
   if( $.trim( $("#messagetext").val() ) == ''){
     alert("Please input a valid message");
   }
@@ -86,7 +88,7 @@ function addvalvemessage(){
 }
 
 function goback(){
-  parkname=bname = $('#pnameid').text();
+  parkname=$('#pnameid').text();
   window.location.href ="parkpage.php"+"?parkname="+parkname;
 
 }
@@ -210,7 +212,7 @@ function logout(){
             <p id="dbvname" hidden><?php  echo getdbname();?></p>
           </div>
           <div >
-            <p id="fullname" hidden><?php  echo getfname()?></p>
+            <p id="fullname" hidden><?php  echo getfname();?></p>
           </div>
 
 
