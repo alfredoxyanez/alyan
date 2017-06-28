@@ -19,7 +19,7 @@ function loginactive(){
 }
 
 function getfname(){
-  return $_SESSION['first_name']." "$_SESSION['last_name'];
+  return $_SESSION['first_name']." ".$_SESSION['last_name'];
 }
 
 
