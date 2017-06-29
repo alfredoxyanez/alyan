@@ -17,7 +17,12 @@ function loginactive(){
   return $_SESSION['active'];
 }
 
-
+function admin(){
+  $ad=$_SESSION['admin'];
+  if($ad=="0"){
+    echo "disabled";
+  }
+}
 
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -241,18 +246,13 @@ function logout(){
                     <tr>
                       <td class="col-sm-5 center">
                         <div>
-                          <input autocomplete="false" style="width: 100%" type="text" id="pname" name="parkname" placeholder="Park Name">
+                          <input autocomplete="false" style="width: 100%" type="text" id="pname" name="parkname" placeholder="Park Name" <?php admin() ?> >
                         </div>
                       </td>
-                      <!-- <td class="col-sm-5 center">
-                      <div >
-                      <input autocomplete="false" style="width: 100%" type="text" id ="vnum" name="numvals" placeholder="Number of Valves">
 
-                    </div>
-                  </td> -->
                   <td class="col-sm-2  center">
                     <div >
-                      <button name='add' type='button' class='btn btn-success btn-circle text-center center-block center' onclick="addentry()"><i class='fa fa-check'></i></button>
+                      <button name='add' type='button' class='btn btn-success btn-circle text-center center-block center' onclick="addentry()" <?php admin() ?>><i class='fa fa-check'></i></button>
 
                     </div>
                   </td>

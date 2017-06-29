@@ -21,6 +21,13 @@ function loginactive(){
   return $_SESSION['active'];
 }
 
+function admin(){
+  $ad=$_SESSION['admin'];
+  if($ad=="0"){
+    echo "disabled";
+  }
+}
+
 
 
 function getparkname(){
@@ -388,13 +395,13 @@ function logout(){
 
                       <td class="col-sm-6 center">
                         <div>
-                          <input autocomplete="false" style="width: 100%" type="text" id="vid" name="valvename" placeholder="Valve ID">
+                          <input autocomplete="false" style="width: 100%" type="text" id="vid" name="valvename" placeholder="Valve ID" <?php admin() ?>>
                           <input type="hidden" id="pvname" value=<?php getparkdbname() ?> >
                         </div>
                       </td>
                       <td class="col-sm-4  center">
                         <div >
-                          <button name='addvb' type='button' class='btn btn-success btn-circle text-center center-block center' onclick='addvalve()'><i class='fa fa-check'></i></button>
+                          <button name='addvb' type='button' class='btn btn-success btn-circle text-center center-block center' onclick='addvalve()' <?php admin() ?>><i class='fa fa-check'></i></button>
 
                         </div>
                       </td>
