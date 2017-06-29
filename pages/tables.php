@@ -207,9 +207,11 @@ function logout(){
                   <div class="modal-body">
                     <form>
                       <div class="form-group">
+                        <label for="pname" class="form-control-label">Park Name:</label>
                         <input  type="text" class="form-control" autocomplete='false' style='width: 100%' type='text' id='pname' name='parkname' placeholder='Park Name' autofocus >
                       </div>
                       <div class="form-group">
+                        <label for="messagetext" class="form-control-label">Park Address:</label>
                         <textarea id="messagetext" class="form-control" rows="4"  placeholder="Address"></textarea>
                       </div>
                     </form>
