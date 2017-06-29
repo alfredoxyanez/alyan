@@ -205,8 +205,14 @@ function logout(){
                     <h4 class="modal-title">Add Park</h4>
                   </div>
                   <div class="modal-body">
-                    <input  autocomplete='false' style='width: 100%' type='text' id='pname' name='parkname' placeholder='Park Name' autofocus >
-                    <textarea id="messagetext" class="form-control" rows="4" autofocus=""></textarea>
+                    <form>
+                      <div class="form-group">
+                        <input  autocomplete='false' style='width: 100%' type='text' id='pname' name='parkname' placeholder='Park Name' autofocus >
+                      </div>
+                      <div class="form-group">
+                        <textarea id="messagetext" class="form-control" rows="4" ></textarea>
+                      </div>
+                    </form>
 
                   </div>
                   <div class="modal-footer">
