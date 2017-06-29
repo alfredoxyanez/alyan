@@ -1,6 +1,6 @@
 <?php  session_start();
 if(!isset($_SESSION['active']) || empty($_SESSION['active'])){
-  header("location: index.php");
+  header("location: login.php");
 }
 ?>
 <?php
@@ -73,7 +73,7 @@ function logout(){
     type: 'POST',
     url: 'logout.php',
     success: function(html) {
-      window.location.href ="index.php";
+      window.location.href ="login.php";
 
     }
   });

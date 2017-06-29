@@ -1,38 +1,172 @@
 <?php
-require 'db.php';
 session_start();
-/* User login process, checks if user exists and password is correct */
-
-// Escape email to protect against SQL injections
-$email = mysqli_real_escape_string($mysqli,$_POST['email']);
-$sql="SELECT * FROM users WHERE email='$email'";
-$result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
-
-if ( mysqli_num_rows($result) == 0 ){ // User doesn't exist
-    $_SESSION['message'] = "User with that email doesn't exist!";
-    header("location: error.php");
-}
-else { // User exists
-    $user = mysqli_fetch_assoc($result);
-
-    if ( password_verify($_POST['password'], $user['password']) ) {
-
-        $_SESSION['email'] = $user['email'];
-        $_SESSION['first_name'] = $user['name'];
-        $_SESSION['last_name'] = $user['lastname'];
-        $_SESSION['active'] = $user['active'];
-        $_SESSION['admin'] = $user['admin'];
-
-        // This is how we'll know the user is logged in
-        $_SESSION['logged_in'] = true;
-
-        header("location: tables.php");
-    }
-    else {
-        $_SESSION['message'] = "You have entered wrong password, try again!";
-        header("location: error.php");
-    }
-}
-
-mysqli_close($mysqli);
+require 'db.php';
 ?>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Park Ranger</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- MetisMenu CSS -->
+  <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<?php
+if($_SERVER["REQUEST_METHOD"]=='POST'){
+  if(isset($POST['login'])){
+    require 'loginc.php';
+  }
+
+  elseif (isset($POST['resgister'])) {
+    require 'register.php';
+  }
+}
+?>
+
+
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="login-panel panel panel-default">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a href="#1" data-toggle="tab">Log In</a>
+            </li>
+            <li>
+              <a href="#2" data-toggle="tab">Sign Up</a>
+            </li>
+
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="1">
+              <div class="panel-body">
+                <form role="form" action="loginc.php" method="post">
+                  <fieldset>
+                    <div class="form-group input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                      <input class="form-control req" placeholder="E-mail" name="email" id="useremail" type="email" autofocus required>
+                    </div>
+                    <div class="form-group input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                      <input class="form-control req" placeholder="Password" name="password" id="userpassword" type="password" required >
+                    </div>
+
+                    <div class="checkbox">
+                      <label>
+                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                      </label>
+                      <a class="pull-right" href="forgot.php">Forgot Password?</a>
+                    </div>
+                    <button name="login"  class="btn btn-lg btn-success btn-block">Login</button>
+
+                  </fieldset>
+                </form>
+              </div>
+
+
+            </div>
+
+            <div class="tab-pane" id="2">
+              <div class="panel-body">
+                <form role="form"  action="register.php" method="post">
+                  <fieldset>
+                    <div class="form-group input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                      <input class="form-control req" placeholder="Name" name="name" type="text" autofocus required>
+                    </div>
+                    <div class="form-group input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                      <input class="form-control req" placeholder="Last Name" name="lastname" type="text" required>
+                    </div>
+                    <div class="form-group input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                      <input class="form-control req" placeholder="E-mail" name="email" type="email" required >
+                    </div>
+                    <div class="form-group input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+
+                      <input class="form-control req" placeholder="Password" name="password" type="password"  required>
+                    </div>
+                    <div class="form-group input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+
+                      <input class="form-control req" placeholder="Confirm Password" name="c_password" type="password" required>
+                    </div>
+                    <div class="form-group input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-qrcode"></i></span>
+
+                      <input class="form-control" placeholder="Code (if Aplicable)" name="code" type="password" >
+                    </div>
+
+                    <button name="register" type="submit" class="btn btn-lg btn-primary btn-block">Create Account</button>
+
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+
+</div>
+
+</div>
+
+
+<!-- jQuery -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="../dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>

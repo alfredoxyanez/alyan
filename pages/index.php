@@ -1,10 +1,3 @@
-<?php
-session_start();
-require 'db.php';
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,151 +14,42 @@ require 'db.php';
   <!-- Bootstrap Core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- MetisMenu CSS -->
-  <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
   <!-- Custom CSS -->
-  <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+  <link href="../dist/css/stylish-portfolio.css" rel="stylesheet">
 
   <!-- Custom Fonts -->
   <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
 
 </head>
 
-<?php
-if($_SERVER["REQUEST_METHOD"]=='POST'){
-  if(isset($POST['login'])){
-    require 'login.php';
-  }
-
-  elseif (isset($POST['resgister'])) {
-    require 'register.php';
-  }
-}
-?>
-
-
-
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 col-md-offset-4">
-        <div class="login-panel panel panel-default">
-          <ul class="nav nav-tabs">
-            <li class="active">
-              <a href="#1" data-toggle="tab">Log In</a>
-            </li>
-            <li>
-              <a href="#2" data-toggle="tab">Sign Up</a>
-            </li>
-
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="1">
-              <div class="panel-body">
-                <form role="form" action="login.php" method="post">
-                  <fieldset>
-                    <div class="form-group input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                      <input class="form-control req" placeholder="E-mail" name="email" id="useremail" type="email" autofocus required>
-                    </div>
-                    <div class="form-group input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                      <input class="form-control req" placeholder="Password" name="password" id="userpassword" type="password" required >
-                    </div>
-
-                    <div class="checkbox">
-                      <label>
-                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                      </label>
-                      <a class="pull-right" href="forgot.php">Forgot Password?</a>
-                    </div>
-                    <button name="login"  class="btn btn-lg btn-success btn-block">Login</button>
-
-                  </fieldset>
-                </form>
-              </div>
 
 
-            </div>
+  <!-- Header -->
+  <header id="top" class="header">
+    <div class="text-vertical-center">
 
-            <div class="tab-pane" id="2">
-              <div class="panel-body">
-                <form role="form"  action="register.php" method="post">
-                  <fieldset>
-                    <div class="form-group input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input class="form-control req" placeholder="Name" name="name" type="text" autofocus required>
-                    </div>
-                    <div class="form-group input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input class="form-control req" placeholder="Last Name" name="lastname" type="text" required>
-                    </div>
-                    <div class="form-group input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                      <input class="form-control req" placeholder="E-mail" name="email" type="email" required >
-                    </div>
-                    <div class="form-group input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-
-                      <input class="form-control req" placeholder="Password" name="password" type="password"  required>
-                    </div>
-                    <div class="form-group input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-
-                      <input class="form-control req" placeholder="Confirm Password" name="c_password" type="password" required>
-                    </div>
-                    <div class="form-group input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-qrcode"></i></span>
-
-                      <input class="form-control" placeholder="Code (if Aplicable)" name="code" type="password" >
-                    </div>
-
-                    <button name="register" type="submit" class="btn btn-lg btn-primary btn-block">Create Account</button>
-
-                  </div>
-                </fieldset>
-              </form>
-            </div>
-
-          </div>
-
-        </div>
-
-
-
-      </div>
-
-
+          <h1>Park Ranger</h1>
+          <h3>Control and Manage Your Parks With a Click. </h3>
+          <br>
+          <a href="login.php" class="btn btn-lg  btn-dark">Log in or Sign Up!</a>
 
     </div>
-
-  </div>
-
-
-</div>
-
-</div>
+  </header>
 
 
-<!-- jQuery -->
-<script src="../vendor/jquery/jquery.min.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<!-- Metis Menu Plugin JavaScript -->
-<script src="../vendor/metisMenu/metisMenu.min.js"></script>
+  <!-- jQuery -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
 
-<!-- Custom Theme JavaScript -->
-<script src="../dist/js/sb-admin-2.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  <!-- Custom Theme JavaScript -->
+
 
 </body>
 
