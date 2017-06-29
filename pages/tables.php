@@ -20,7 +20,10 @@ function loginactive(){
 function admin(){
   $ad=$_SESSION['admin'];
   if($ad=="0"){
-    echo "disabled";
+    return false;
+  }
+  else if($ad=="1"){
+    return true;
   }
 }
 
@@ -232,36 +235,50 @@ function logout(){
               </table>
               <!-- /.table-responsive -->
 
+              <?php
+              if(admin()){
+                echo "string";
+                echo "<table class='table table-inverse'>
+                      <thead class='thead-inverse'>
+                        <tr>
+                          <th>Add Park</th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <form name='addpark' action='tables.php' method='post' autocomplete='false'>
+                          <tr>
+                            <td class='col-sm-5 center'>
+                              <div>
+                                <input autocomplete='false' style='width: 100%'' type='text' id='pname' name='parkname' placeholder='Park Name'  >
+                              </div>
+                            </td>
+
+                        <td class='col-sm-2  center'>
+                          <div >
+                            <button name='add' type='button' class='btn btn-success btn-circle text-center center-block center' onclick='addentry()' ><i class='fa fa-check'></i></button>
+
+                          </div>
+                        </td>
+                      </tr>
+                    </form>
+
+                  </tbody>
+                </table>";
 
 
-              <table class="table table-inverse">
-                <thead class="thead-inverse">
-                  <tr>
-                    <th>Add Park</th>
-                    <th></th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <form name="addpark" action="tables.php" method="post" autocomplete="false">
-                    <tr>
-                      <td class="col-sm-5 center">
-                        <div>
-                          <input autocomplete="false" style="width: 100%" type="text" id="pname" name="parkname" placeholder="Park Name" <?php admin() ?> >
-                        </div>
-                      </td>
+              }
 
-                  <td class="col-sm-2  center">
-                    <div >
-                      <button name='add' type='button' class='btn btn-success btn-circle text-center center-block center' onclick="addentry()" <?php admin() ?>><i class='fa fa-check'></i></button>
 
-                    </div>
-                  </td>
-                </tr>
-              </form>
 
-            </tbody>
-          </table>
+
+
+              ?>
+
+
+
+
 
 
 

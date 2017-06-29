@@ -24,7 +24,10 @@ function loginactive(){
 function admin(){
   $ad=$_SESSION['admin'];
   if($ad=="0"){
-    echo "disabled";
+    return false;
+  }
+  else if($ad=="1"){
+    return true;
   }
 }
 
@@ -386,40 +389,51 @@ function logout(){
                 </table>
                 <!-- /.table-responsive -->
 
-                <table class="table table-inverse">
-                  <thead class="thead-inverse">
-                    <tr>
-                      <th>Add Valve</th>
-                      <th></th>
-                      <th></th>
-                    </tr>
+
+                <?php
+
+                if(admin()){
+
+                  echo " <table class='table table-inverse'>
+                  <thead class='thead-inverse'>
+                  <tr>
+                  <th>Add Valve</th>
+                  <th></th>
+                  <th></th>
+                  </tr>
                   </thead>
                   <tbody>
-                    <form name="addvf" action="" method="post" autocomplete="false">
-                      <tr>
-                        <td class="col-sm-2">
-                          <div class="pull-right" style="font-weight: bold; font-size: 125%">
-                            <?php echo getparkidr()."-" ?>
-                          </div>
-                        </td>
+                  <form name='addvf'  method='post' autocomplete='false'>
+                  <tr>
+                  <td class='col-sm-2'>
+                  <div class='pull-right' style='font-weight: bold; font-size: '125%>
+                  <?php echo getparkidr().'-' ?>
+                  </div>
+                  </td>
 
-                        <td class="col-sm-6 center">
-                          <div>
-                            <input autocomplete="false" style="width: 100%" type="text" id="vid" name="valvename" placeholder="Valve ID" <?php admin() ?>>
-                            <input type="hidden" id="pvname" value=<?php getparkdbname() ?> >
-                          </div>
-                        </td>
-                        <td class="col-sm-4  center">
-                          <div >
-                            <button name='addvb' type='button' class='btn btn-success btn-circle text-center center-block center' onclick='addvalve()' <?php admin() ?>><i class='fa fa-check'></i></button>
+                  <td class='col-sm-6 center'>
+                  <div>
+                  <input autocomplete='false' style='width: 100%' type='text' id='vid' name='valvename' placeholder='Valve ID' >
+                  <input type='hidden' id='pvname'  >
+                  </div>
+                  </td>
+                  <td class='col-sm-4  center'>
+                  <div >
+                  <button name='addvb' type='button' class='btn btn-success btn-circle text-center center-block center' onclick='addvalve()' ><i class='fa fa-check'></i></button>
 
-                          </div>
-                        </td>
-                      </tr>
-                    </form>
+                  </div>
+                  </td>
+                  </tr>
+                  </form>
 
                   </tbody>
-                </table>
+                  </table>";
+                }
+
+
+                ?>
+
+
 
 
 
