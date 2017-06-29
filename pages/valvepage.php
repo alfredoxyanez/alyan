@@ -350,11 +350,11 @@ function changevstat(){
                   $stat=vstatus($id,$dbname);
 
                   if($stat){
-                    echo "<a class='btn btn-danger' href='javascript:;' onclick='changevstat()'><i class='fa fa-refresh fa-lg fa-spin'></i> Change Status </a>";
+                    echo "<a class='btn btn-success' href='javascript:;' onclick='changevstat()'><i class='fa fa-refresh fa-lg fa-spin'></i> Change Status </a>";
                     //echo "<button type='button' class='btn btn-danger' onclick='changevstat()'></button>";
                   }
                   else if(!$stat){
-                    echo "<a class='btn btn-success' href='javascript:;' onclick='changevstat()'><i class='fa fa-refresh fa-lg fa-spin'></i> Change Status </a>";
+                    echo "<a class='btn btn-danger' href='javascript:;' onclick='changevstat()'><i class='fa fa-refresh fa-lg fa-spin'></i> Change Status </a>";
 
                   }
                    ?>
