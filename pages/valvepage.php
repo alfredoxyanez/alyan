@@ -248,10 +248,10 @@ function changevstat(){
                 $stat=vstatus($id,$dbname);
 
                 if($stat){
-                  echo "Valve ID: " . getvid(). "<span><i class='fa fa-thumbs-up' style='color:#5cb85c'></i></span>";
+                  echo "Valve ID: " .$id. "<span><i onclick='changevstat()' class='fa fa-thumbs-up' style='color:#5cb85c'></i></span>";
                 }
                 else if(!$stat){
-                  echo "Valve ID: " . getvid()."<span><i class='fa fa-thumbs-down' style='color:#d9534f'></i></span>";
+                  echo "Valve ID: " . $id."<span><i onclick='changevstat()' class='fa fa-thumbs-down' style='color:#d9534f'></i></span>";
                 }
 
                  ?>
