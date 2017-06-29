@@ -154,9 +154,7 @@ function getparkidr(){
 function addvalve(){
   id = document.getElementById("vid").value;
   name = document.getElementById("pvname").value;
-  //alert(id+"   "+name);
 
-  // vnum = document.getElementById("vnum").value;
   if( $.trim( $("#vid").val() ) == ''){
     alert("Please Input a ValveID");
   }
@@ -335,6 +333,46 @@ function logout(){
             <div class="panel panel-default">
               <div class="panel-heading">
                 Valves Status
+                <?php
+                if(admin()){
+                  echo " <button type='button'  class='btn btn-success btn-circle pull-right' style='margin-top: -5px' data-toggle='modal' data-target='#myModal' ><i class='fa fa-plus'></i></button>";
+                }
+                ?>
+              </div>
+              <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Add Park</h4>
+                    </div>
+                    <div class="modal-body col-sm-12">
+
+                      <div class='col-sm-2'>
+                        <div class='pull-right' style='font-weight: bold; font-size: '125%>
+                          <?php echo getparkidr().'-' ?>
+                        </div>
+                      </div>
+
+                      <div class='col-sm-10 '>
+                        <div>
+                          <input  autocomplete='false' style='width: 100%' type='text' id='vid' name='valvename' placeholder='Valve ID' >
+                          <input type='hidden' id='pvname' value= "<?php echo getparkdbnamer(); ?>">
+                        </div>
+                      </div>
+
+
+
+
+
+                    </div>
+                    <div class="modal-footer">
+
+                      <button type="button" class="btn btn-default" onclick='addvalve()'> Add Valve</button>
+                    </div>
+                  </div>
+
+                </div>
               </div>
               <!-- /.panel-heading -->
               <div class="panel-body">
@@ -388,58 +426,6 @@ function logout(){
 
                 </table>
                 <!-- /.table-responsive -->
-
-
-                <?php
-
-                if(admin()){
-
-                  echo " <table class='table table-inverse'>
-                  <thead class='thead-inverse'>
-                  <tr>
-                  <th>Add Valve</th>
-                  <th></th>
-                  <th></th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <form name='addvf'  method='post' autocomplete='false'>
-                  <tr>
-                  <td class='col-sm-2'>
-                  <div class='pull-right' style='font-weight: bold; font-size: '125%>
-                  <?php echo getparkidr().'-' ?>
-                  </div>
-                  </td>
-
-                  <td class='col-sm-6 center'>
-                  <div>
-                  <input autocomplete='false' style='width: 100%' type='text' id='vid' name='valvename' placeholder='Valve ID' >
-                  <input type='hidden' id='pvname'  >
-                  </div>
-                  </td>
-                  <td class='col-sm-4  center'>
-                  <div >
-                  <button name='addvb' type='button' class='btn btn-success btn-circle text-center center-block center' onclick='addvalve()' ><i class='fa fa-check'></i></button>
-
-                  </div>
-                  </td>
-                  </tr>
-                  </form>
-
-                  </tbody>
-                  </table>";
-                }
-
-
-                ?>
-
-
-
-
-
-
-
-
 
 
               </div>

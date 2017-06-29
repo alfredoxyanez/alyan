@@ -191,7 +191,35 @@ function logout(){
           <div class="panel panel-default">
             <div class="panel-heading">
               All Managed Parks
+              <?php
+              if(admin()){
+                echo " <button type='button'  class='btn btn-success btn-circle pull-right' style='margin-top: -5px' data-toggle='modal' data-target='#myModal' ><i class='fa fa-plus'></i></button>";
+              }
+              ?>
             </div>
+            <div id="myModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Park</h4>
+                  </div>
+                  <div class="modal-body">
+                    <input  autocomplete='false' style='width: 100%' type='text' id='pname' name='parkname' placeholder='Park Name' autofocus >
+
+                  </div>
+                  <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default" onclick="addentry()"> Add Park</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+
+
             <!-- /.panel-heading -->
             <div class="panel-body">
               <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -235,94 +263,47 @@ function logout(){
               </table>
               <!-- /.table-responsive -->
 
-              <?php
-              if(admin()){
-                echo "string";
-                echo "<table class='table table-inverse'>
-                      <thead class='thead-inverse'>
-                        <tr>
-                          <th>Add Park</th>
-                          <th></th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <form name='addpark' action='tables.php' method='post' autocomplete='false'>
-                          <tr>
-                            <td class='col-sm-5 center'>
-                              <div>
-                                <input autocomplete='false' style='width: 100%'' type='text' id='pname' name='parkname' placeholder='Park Name'  >
-                              </div>
-                            </td>
-
-                        <td class='col-sm-2  center'>
-                          <div >
-                            <button name='add' type='button' class='btn btn-success btn-circle text-center center-block center' onclick='addentry()' ><i class='fa fa-check'></i></button>
-
-                          </div>
-                        </td>
-                      </tr>
-                    </form>
-
-                  </tbody>
-                </table>";
-
-
-              }
-
-
-
-
-
-              ?>
-
-
-
-
-
-
-
+            </div>
+            <!-- /.panel-body -->
+          </div>
+          <!-- /.panel -->
         </div>
-        <!-- /.panel-body -->
+        <!-- /.col-lg-12 -->
       </div>
-      <!-- /.panel -->
+
     </div>
-    <!-- /.col-lg-12 -->
+    <!-- /#page-wrapper -->
+
   </div>
+  <!-- /#wrapper -->
 
-</div>
-<!-- /#page-wrapper -->
+  <!-- jQuery -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
 
-</div>
-<!-- /#wrapper -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<!-- jQuery -->
-<script src="../vendor/jquery/jquery.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Metis Menu Plugin JavaScript -->
+  <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!-- DataTables JavaScript -->
+  <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+  <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+  <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
 
-<!-- Metis Menu Plugin JavaScript -->
-<script src="../vendor/metisMenu/metisMenu.min.js"></script>
+  <!-- Custom Theme JavaScript -->
+  <script src="../dist/js/sb-admin-2.js"></script>
 
-<!-- DataTables JavaScript -->
-<script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
-<script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-<script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="../dist/js/sb-admin-2.js"></script>
-
-<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-<script>
-$(document).ready(function() {
-  $('#dataTables-example').DataTable({
-    responsive: true
+  <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+  <script>
+  $(document).ready(function() {
+    $('#dataTables-example').DataTable({
+      responsive: true
+    });
   });
-});
-</script>
+  </script>
 
 
 
