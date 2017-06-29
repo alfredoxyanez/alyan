@@ -61,6 +61,7 @@ function getparknamer(){
   mysqli_close($mysqli);
 }
 
+
 ?>
 
 <script type="text/javascript">
@@ -100,6 +101,22 @@ function logout(){
     success: function(html) {
       window.location.href ="index.php";
 
+    }
+  });
+
+}
+
+
+function changevstat(){
+  id=$('#vidm').text();
+  dbname = $('#dbvname').text();
+
+  $.ajax({
+    type: 'POST',
+    url: 'changev.php',
+    data: {'parkdbname': dbname,'valveid':id},
+    success: function(html) {
+      location.reload();
     }
   });
 
@@ -152,7 +169,7 @@ function logout(){
 </head>
 
 <body>
-  
+
 
   <div id="wrapper">
 
@@ -224,7 +241,21 @@ function logout(){
             </div>
             <div class="col-lg-6 pull-right">
               <h1 class="page-header pull-right">
-                <?php echo "Valve ID: " . getvid();?>
+                <?php
+                require_once "json.php";
+                $id=getvid();
+                $dbname=getdbname();
+                $stat=vstatus($id,$dbname);
+
+                if($stat){
+                  echo "Valve ID: " . getvid(). "<span><i class='fa fa-thumbs-up' style='color:#5cb85c'></i></span>";
+                }
+                else if(!$stat){
+                  echo "Valve ID: " . getvid()."<span><i class='fa fa-thumbs-down' style='color:#d9534f'></i></span>";
+                }
+
+                 ?>
+
               </h1>
 
             </div>
@@ -255,6 +286,7 @@ function logout(){
                       <textarea id="messagetext" class="form-control" rows="8"></textarea>
                     </div>
                     <div class="modal-footer">
+
                       <button type="button" class="btn btn-default" onclick="addvalvemessage()"> Add Message</button>
                     </div>
                   </div>
@@ -275,7 +307,7 @@ function logout(){
                   </thead>
                   <tbody id="tablelist">
                     <?php
-                    require "json.php";
+                    require_once "json.php";
                     // echo getvid();
                     // echo
                     $jsondata=getworkjson(getvid(),getdbname());
@@ -307,6 +339,22 @@ function logout(){
 
                 </table>
                 <!-- /.table-responsive -->
+                <div class="col-sm-12 text-center">
+                  <?php
+                  require_once "json.php";
+                  $id=getvid();
+                  $dbname=getdbname();
+                  $stat=vstatus($id,$dbname);
+
+                  if($stat){
+                    echo "<button type='button' class='btn btn-danger' onclick='changevstat()'>Change Status</button>";
+                  }
+                  else if(!$stat){
+                    echo "<button type='button' class='btn btn-success' onclick='changevstat()'>Change Status</button>";
+                  }
+                   ?>
+
+                </div>
 
 
 

@@ -177,6 +177,17 @@ function addvalve(){
 
 function infov(id, parkdbname){
   window.location.href = "valvepage.php?pdbname="+parkdbname+"&"+"vid="+id;
+}
+function changev(id,dbname){
+  $.ajax({
+    type: 'POST',
+    url: 'changestat.php',
+    data: {'parkdbname': dbname,'valveid':id},
+    success: function(html) {
+      location.reload();
+
+    }
+  });
 
 
 }
@@ -352,9 +363,9 @@ function logout(){
                         $eid= $json->{'valvelist'}[$x]->{'id'};
                         $status= $json->{'valvelist'}[$x]->{'status'};
                         if($status){
-                          $message="<button type='button'  class='btn btn-success btn-circle text-center center-block'> <i class='fa fa-thumbs-up'></i></button>";
+                          $message="<button type='button'  class='btn btn-success btn-circle text-center center-block' onclick=\"changev('$eid','$dbname')\"> <i class='fa fa-thumbs-up'></i></button>";
                         }else{
-                          $message="<button type='button'  class='btn btn-danger btn-circle text-center center-block'><i class='fa fa-thumbs-down'></i></button>";
+                          $message="<button type='button'  class='btn btn-danger btn-circle text-center center-block' onclick=\"changev('$eid','$dbname')\"><i class='fa fa-thumbs-down'></i></button>";
                         }
 
                         echo "<tr  id='". $sname . $eid ."'>";
