@@ -134,7 +134,8 @@ function logout(){
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="tables.php">Park Ranger</a>
+
+        <a class="navbar-brand" href="tables.php"><span><i class="glyphicon glyphicon-tree-deciduous" style="color:green"></i></span>  Park Ranger</a>
       </div>
       <!-- /.navbar-header -->
 
