@@ -253,7 +253,7 @@ function changevstat(){
                   echo "Valve ID: " .$id. "<span><button type='button' class='btn btn-lg btn-circle btn-default' name='button' style='border-color: #5cb85c' onclick='changevstat()'><i class='fa  fa-thumbs-up ' style='color:#5cb85c'></i></button></span>";
                 }
                 else if(!$stat){
-                  echo "Valve ID: " .$id. "<span><button type='button' class='btn btn-lg btn-circle btn-default' name='button' style='border-color: #d9534f' onclick='changevstat()'><i class='fa  fa-thumbs-up ' style='color:#d9534f'></i></button></span>";
+                  echo "Valve ID: " .$id. "<span><button type='button' class='btn btn-lg btn-circle btn-default' name='button' style='border-color: #d9534f' onclick='changevstat()'><i class='fa  fa-thumbs-down ' style='color:#d9534f'></i></button></span>";
                 }
 
                  ?>
