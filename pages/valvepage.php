@@ -286,7 +286,7 @@ function changevstat(){
                       <h4 class="modal-title">Add Valve Message</h4>
                     </div>
                     <div class="modal-body">
-                      <textarea id="messagetext" class="form-control" rows="8"></textarea>
+                      <textarea id="messagetext" class="form-control" rows="8" autofocus=""></textarea>
                     </div>
                     <div class="modal-footer">
 
