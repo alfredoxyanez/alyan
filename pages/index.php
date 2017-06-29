@@ -5,43 +5,6 @@ require 'db.php';
 
 
 
-
- <!-- <script type="text/javascript">
-
- function login(){
-  email= document.getElementById("useremail").value;
-  password = document.getElementById("userpassword").value;
-   //alert(id+"   "+name);
-
-   // vnum = document.getElementById("vnum").value;
-   if( $.trim( $("#useremail").val() ) == ''){
-     alert("Please input a valid email");
-   }
-   if( $.trim( $("#userpassword").val() ) == ''){
-     alert("Please input a valid password");
-   }
-   else{
-     $.ajax({
-       type: 'POST',
-       url: 'addvalve.php',
-       data: {'email': email,'password':password},
-       success: function(html) {
-         //document.location.reload();
-         location.reload();
-       },
-       error:function(error){
-         //alert("ahhh");
-         //console.log("noooo");
-         alert("That ID is taken. Please Enter another.");
-       }
-     });
-   }
- }
-
- }
-
- </script> -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,7 +41,6 @@ require 'db.php';
 
 <?php
 if($_SERVER["REQUEST_METHOD"]=='POST'){
-
   if(isset($POST['login'])){
     require 'login.php';
   }
@@ -152,7 +114,7 @@ if($_SERVER["REQUEST_METHOD"]=='POST'){
                               <input class="form-control req" placeholder="Confirm Password" name="c_password" type="password" required>
                           </div>
                           <div class="form-group">
-                              <input class="form-control" placeholder="Code (if Aplicable)" name="code" type="text" >
+                              <input class="form-control" placeholder="Code (if Aplicable)" name="code" type="password" >
                           </div>
 
                           <button name="register" type="submit" class="btn btn-lg btn-primary btn-block">Create Account</button>

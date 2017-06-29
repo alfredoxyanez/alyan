@@ -36,6 +36,7 @@ else{
   $_SESSION['email'] = $_POST['email'];
   $_SESSION['first_name'] = $_POST['name'];
   $_SESSION['last_name'] = $_POST['lastname'];
+  $code = preg_replace('/\s+/', '', $_POST['code']);
 
   $firstname = mysqli_real_escape_string($mysqli,$_POST['name']);
   $lastname = mysqli_real_escape_string($mysqli,$_POST['lastname']);
@@ -44,6 +45,12 @@ else{
   $hash = mysqli_real_escape_string($mysqli, md5( rand(0,1000) ) );
   $num = 1;
 
+  if($code=="admin92"){
+    $ad=1;
+  }else{
+    $ad=0;
+  }
+
 
   $sql="SELECT * FROM users WHERE email='$email'";
   $result= mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
@@ -51,8 +58,8 @@ else{
       $_SESSION['message'] = 'User with this email already exists!';
   }
   else {
-      $sql = "INSERT INTO users (name, lastname, email, password, hash) "
-              . "VALUES ('$firstname','$lastname','$email','$password', '$hash')";
+      $sql = "INSERT INTO users (name, lastname, email, password, hash, active, admin) "
+              . "VALUES ('$firstname','$lastname','$email','$password', '$hash',DEFAULT,'$ad')";
       $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
 
       if ($result){
