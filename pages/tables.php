@@ -210,7 +210,7 @@ function logout(){
                         <input  type="text" class="form-control" autocomplete='false' style='width: 100%' type='text' id='pname' name='parkname' placeholder='Park Name' autofocus >
                       </div>
                       <div class="form-group">
-                        <textarea id="messagetext" class="form-control" rows="4" ></textarea>
+                        <textarea id="messagetext" class="form-control" rows="4"  placeholder="Address"></textarea>
                       </div>
                     </form>
 
