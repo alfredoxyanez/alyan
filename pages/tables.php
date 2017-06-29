@@ -206,6 +206,7 @@ function logout(){
                   </div>
                   <div class="modal-body">
                     <input  autocomplete='false' style='width: 100%' type='text' id='pname' name='parkname' placeholder='Park Name' autofocus >
+                    <textarea id="messagetext" class="form-control" rows="4" autofocus=""></textarea>
 
                   </div>
                   <div class="modal-footer">

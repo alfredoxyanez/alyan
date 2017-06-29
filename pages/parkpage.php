@@ -356,7 +356,7 @@ function logout(){
 
                       <div class='col-sm-10 '>
                         <div>
-                          <input  autocomplete='false' style='width: 100%' type='text' id='vid' name='valvename' placeholder='Valve ID' >
+                          <input  autocomplete='false' style='width: 100%' type='text' id='vid' name='valvename' placeholder='Valve ID' autofocus>
                           <input type='hidden' id='pvname' value= "<?php echo getparkdbnamer(); ?>">
                         </div>
                       </div>
