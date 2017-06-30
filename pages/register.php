@@ -45,7 +45,7 @@ else{
   $hash = mysqli_real_escape_string($mysqli, md5( rand(0,1000) ) );
   $num = 1;
   $prejson= '
-  { work: []
+  { "work": []
 
   }
 
