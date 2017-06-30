@@ -267,7 +267,7 @@ function logout(){
 
   <style>
   #map {
-    height: 300px;
+    height: 400px;
     width: 100%;
   }
 
@@ -556,6 +556,7 @@ function initMap() {
   });
 
 }
+window.onload = loadScript;
 </script>
 <script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD6RsQuot1EGNW89-uIU70htIbLaGy_Gb8&callback=initMap"></script>
 
