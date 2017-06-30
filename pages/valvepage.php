@@ -61,6 +61,22 @@ function getparknamer(){
   mysqli_close($mysqli);
 }
 
+function getparkidr(){
+  require "db.php";
+  $parkdb= mysqli_real_escape_string($mysqli, $_GET['pdbname']);
+  $sql= "SELECT * FROM parks WHERE databasename='$parkdb'";
+  $entry= mysqli_query($mysqli,$sql);
+  if(mysqli_num_rows($entry)>0){
+    $user = mysqli_fetch_assoc($entry);
+    return $user['idparks'];
+
+
+  }else{
+    return "something went wrong";
+  }
+  mysqli_close($mysqli);
+}
+
 
 ?>
 
@@ -71,6 +87,9 @@ function addvalvemessage(){
   message = document.getElementById("messagetext").value;
   dbname = $('#dbvname').text();
   person= $('#fullname').text();
+  email= $('#gmail').text();
+  pid= $('#pid').text();
+  parkname=$('#pnameid').val();
   //alert(person);
   if( $.trim( $("#messagetext").val() ) == ''){
     alert("Please input a valid message");
@@ -79,7 +98,7 @@ function addvalvemessage(){
     $.ajax({
       type: 'POST',
       url: 'addvalvemessage.php',
-      data: {'parkdbname': dbname,'valveid':id,'message':message,'fullname':person},
+      data: {'parkdbname': dbname,'valveid':id,'message':message,'fullname':person,'email':email,'pid':pid,'parkname':parkname},
       success: function(html) {
         $('#myModal').modal('hide');
         location.reload();
@@ -230,6 +249,20 @@ function changevstat(){
             <div >
               <p id="fullname" hidden><?php  echo getfname();?></p>
             </div>
+            <div >
+              <p id="gmail" hidden><?php  echo loginemail();?></p>
+            </div>
+            <div >
+              <p id="pid" hidden><?php  echo getparkidr();?></p>
+            </div>
+            <div >
+              <p id="parkname" hidden><?php  echo getparknamer();?></p>
+            </div>
+
+
+
+
+
 
 
 

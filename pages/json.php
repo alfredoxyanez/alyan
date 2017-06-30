@@ -35,10 +35,11 @@ function addvalvej($id,$parkdbname){
 
 
 
-function addvalvework($id,$parkdbname,$message,$person){
+function addvalvework($id,$parkdbname,$message,$person,$datetime){
   require "db.php";
   //$parkname= getname($parkname);
   $dbname= mysqli_real_escape_string($mysqli,$parkdbname);
+  $datetime=mysqli_real_escape_string($mysqli,$datetime);
 
   $sql="SELECT * FROM parks WHERE databasename='$dbname'";
 
@@ -48,7 +49,6 @@ function addvalvework($id,$parkdbname,$message,$person){
     $jsonp=$user['valveswork'];
     $jsonp= json_decode($jsonp);
     $updatej=$jsonp->{'valvelist'};
-    $datetime=date("m-d-Y")."?". date("H:i:s")."PST";
     $response = new stdClass;
     $response->{'person'}=$person;
     $response->{'date'}=$datetime;
@@ -164,6 +164,36 @@ function vstatus($id,$parkdbname){
     return null;
   }
   return null;
+}
+
+function addworkperson($id,$parkname,$message,$email,$datetime,$parkid){
+  require "db.php";
+  $dbname= mysqli_real_escape_string($mysqli,$dbname);
+  $email= mysqli_real_escape_string($mysqli,$email);
+  $sql="SELECT * FROM users WHERE email='$email'";
+  $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+  if(mysqli_num_rows($result)>0){
+    $user = mysqli_fetch_assoc($result);
+    $jsonp=$user['work'];
+    $jsonp= json_decode($jsonp);
+    $updatej=$jsonp->{'work'};
+    $response = new stdClass;
+    $response->{'valveidf'}=$parkid."-".$id;
+    $response->{'parkname'}=$parkname;
+    $response->{'message'}=$message;
+    $response->{'datetime'}=$datetime;
+    array_push($updatej,$response);
+
+    $newvalue= json_encode($jsonp);
+    $sql2 = "UPDATE users SET work='$newvalue' WHERE email='$email'";
+    $result2=mysqli_query($mysqli,$sql2) or die('Query failed: '. mysqli_error($mysqli));
+
+
+  }
+}
+
+
+
 }
 
 

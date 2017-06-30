@@ -44,7 +44,7 @@ else{
   $password = mysqli_real_escape_string($mysqli,password_hash($_POST['password'], PASSWORD_BCRYPT) );
   $hash = mysqli_real_escape_string($mysqli, md5( rand(0,1000) ) );
   $num = 1;
-  $prejson= '
+  $work= '
   { "work": []
 
   }
