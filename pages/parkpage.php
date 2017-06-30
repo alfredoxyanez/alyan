@@ -553,9 +553,9 @@ function initMap() {
   var marker = new google.maps.Marker({
     position: myLatLng,
     map: map,
-    title: 'Hello World!'
   });
   marker.setMap(map);
+  map.setCenter(myLatLng);
 }
 </script>
 <script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD6RsQuot1EGNW89-uIU70htIbLaGy_Gb8&callback=initMap"></script>
