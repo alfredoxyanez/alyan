@@ -543,7 +543,7 @@ function initMap() {
   var mypark = {lat: 34.153585, lng: -117.347978};
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
-    center: uluru
+    center: mypark
   });
   var mypark = new google.maps.Marker({
     position: mypark,
