@@ -44,6 +44,12 @@ else{
   $password = mysqli_real_escape_string($mysqli,password_hash($_POST['password'], PASSWORD_BCRYPT) );
   $hash = mysqli_real_escape_string($mysqli, md5( rand(0,1000) ) );
   $num = 1;
+  $prejson= '
+  { work: []
+
+  }
+
+  ';
 
   if($code=="admin92"){
     $ad=1;
@@ -58,8 +64,8 @@ else{
       $_SESSION['message'] = 'User with this email already exists!';
   }
   else {
-      $sql = "INSERT INTO users (name, lastname, email, password, hash, active, admin) "
-              . "VALUES ('$firstname','$lastname','$email','$password', '$hash',DEFAULT,'$ad')";
+      $sql = "INSERT INTO users (name, lastname, email, password, hash, active, admin,work) "
+              . "VALUES ('$firstname','$lastname','$email','$password', '$hash',DEFAULT,'$ad','$work')";
       $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
 
       if ($result){
