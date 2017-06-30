@@ -524,12 +524,13 @@ function logout(){
 
 
     <script>
+
     function initMap() {
       latlng=$("#latlng").val();
       latlng= latlng.split("?");
       var uluru = {lat: -25.363, lng: 131.044};
       var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 8,
+        zoom: 7,
         center: uluru
       });
       var marker = new google.maps.Marker({
