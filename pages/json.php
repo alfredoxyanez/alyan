@@ -166,9 +166,8 @@ function vstatus($id,$parkdbname){
   return null;
 }
 
-$datetime=date("m-d-Y")."?". date("H:i:s")."PST";
-addworkperson("3D","rialto","does this work","ayanez@mit.edu",$datetime,"3");
 function addworkperson($id,$parkname,$message,$email,$datetime,$parkid){
+  echo $id .$parkname . $message . $email . $datetime . $parkik;
   require "db.php";
   $dbname= mysqli_real_escape_string($mysqli,$dbname);
   $email= mysqli_real_escape_string($mysqli,$email);
