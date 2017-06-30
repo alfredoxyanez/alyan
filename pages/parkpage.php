@@ -267,7 +267,7 @@ function logout(){
 
   <style>
   #map {
-    height: 400px;
+    height: 300px;
     width: 100%;
   }
 
@@ -550,10 +550,10 @@ function initMap() {
     center: myLatLng
   });
 
-  // var marker = new google.maps.Marker({
-  //   position: myLatLng,
-  //   map: map,
-  // });
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+  });
 
 }
 </script>
