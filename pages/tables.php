@@ -208,7 +208,7 @@ function logout(){
                       <input  type="text" class="form-control" autocomplete='false' style='width: 100%' type='text' id='pname' name='parkname' placeholder='Park Name' autofocus >
                     </div>
                     <div class="form-group">
-                      <label for="steest" class="form-control-label">Park Address:</label>
+                      <!-- <label for="steest" class="form-control-label">Park Address:</label> -->
                       <input type="text" id="steest" autocomplete="off">
                       <form autocomplete="off">
                         <input hidden id="lat" name="lat" type="text" value="">
