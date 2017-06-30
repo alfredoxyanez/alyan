@@ -494,8 +494,6 @@ function logout(){
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
-    <script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD6RsQuot1EGNW89-uIU70htIbLaGy_Gb8&callback=initMap"></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../js/jquery.geocomplete.js"></script>
 
