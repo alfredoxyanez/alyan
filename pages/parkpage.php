@@ -528,7 +528,7 @@ function logout(){
     function initMap() {
       latlng=$("#latlng").val();
       latlng= latlng.split("?");
-      var uluru = {lat: Number(latlng[0]), lng: Number(latlng[1])};
+      var uluru = {lat: -25.363, lng: 131.044};
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4,
         center: uluru
