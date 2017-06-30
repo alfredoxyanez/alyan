@@ -600,7 +600,7 @@ function initialize() {
 
   bounds.extend(marker.position);
 
-  google.maps.event.addListener(marker, 'click', (function (marker, i) {
+  google.maps.event.addListener(marker, 'click', (function (marker) {
     return function () {
       infowindow.setContent(location[0]);
       infowindow.open(map, marker);
