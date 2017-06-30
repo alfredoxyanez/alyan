@@ -270,6 +270,10 @@ function logout(){
     height: 400px;
     width: 100%;
    }
+
+   .pac-container{
+     z-index: 10000;
+   }
 </style>
 
 </head>
