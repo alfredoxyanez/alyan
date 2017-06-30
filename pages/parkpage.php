@@ -542,11 +542,11 @@ function logout(){
 function initMap() {
   latlng=$("#latlng").val();
   latlng= latlng.split("?");
-  
+
   var myLatLng = {lat: Number(latlng[0]), lng: Number(latlng[1])};
 
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
+    zoom: 18,
     center: myLatLng
   });
 
