@@ -605,7 +605,7 @@ function initialize() {
       infowindow.setContent(location[0]);
       infowindow.open(map, marker);
     }
-  })(marker, i));
+  })(marker));
 
   map.fitBounds(bounds);
 
