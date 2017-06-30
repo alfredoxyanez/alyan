@@ -564,7 +564,7 @@ map: map,
 </script> -->
 <script type="text/javascript">
 function initialize() {
-  var name = document.getElementById("pname1").value;
+  var name = document.getElementById("pname1").text();
   var latlng=$("#latlng").val();
   latlng= latlng.split("?");
 
