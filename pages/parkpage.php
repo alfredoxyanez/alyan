@@ -627,9 +627,9 @@ function loadScript() {
 
 
 $("#myInfo").on('shown.bs.modal', function () {
-  google.maps.event.trigger(map, 'resize');
   map.setZoom( map.getZoom() - 7);
   map.setZoom( map.getZoom() + 1 );
+  google.maps.event.trigger(map, 'resize');
 
 });
 
