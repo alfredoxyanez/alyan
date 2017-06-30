@@ -611,7 +611,7 @@ function initialize() {
   map.fitBounds(bounds);
 
   var listener = google.maps.event.addListener(map, "idle", function () {
-    map.setZoom(24);
+    map.setZoom(18);
     google.maps.event.removeListener(listener);
   });
 }
@@ -628,7 +628,7 @@ function loadScript() {
 
 $("#myInfo").on('shown.bs.modal', function () {
   google.maps.event.trigger(map, 'resize');
-  map.setZoom( map.getZoom() - 7 );
+  map.setZoom( map.getZoom() - 1);
   map.setZoom( map.getZoom() + 1 );
   google.maps.event.trigger(map, 'resize');
 });
