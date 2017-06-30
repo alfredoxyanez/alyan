@@ -89,8 +89,7 @@ function addvalvemessage(){
   person= $('#fullname').text();
   email= $('#gmail').text();
   pid= $('#pid').text();
-  parkname=$('#pnameid').val();
-  //alert(person);
+  parkname=$('#parkname').text();
   if( $.trim( $("#messagetext").val() ) == ''){
     alert("Please input a valid message");
   }
@@ -108,7 +107,7 @@ function addvalvemessage(){
 }
 
 function goback(){
-  parkname=$('#pnameid').val();
+  parkname=$('#parkname').text();
   window.location.href ="parkpage.php"+"?parkname="+parkname;
 
 }
@@ -258,6 +257,7 @@ function changevstat(){
             <div >
               <p id="parkname" hidden><?php  echo getparknamer();?></p>
             </div>
+
 
 
 

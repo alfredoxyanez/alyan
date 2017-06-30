@@ -167,7 +167,6 @@ function vstatus($id,$parkdbname){
 }
 
 function addworkperson($id,$parkname,$message,$email,$datetime,$parkid){
-  echo $id .$parkname . $message . $email . $datetime . $parkik;
   require "db.php";
   $dbname= mysqli_real_escape_string($mysqli,$dbname);
   $email= mysqli_real_escape_string($mysqli,$email);
@@ -183,6 +182,7 @@ function addworkperson($id,$parkname,$message,$email,$datetime,$parkid){
     $response->{'parkname'}=$parkname;
     $response->{'message'}=$message;
     $response->{'datetime'}=$datetime;
+    array_push($jsonp->{'work'},$response);
     $newvalue= json_encode($jsonp);
     $sql = "UPDATE users SET work='$newvalue' WHERE email='$email'";
     $result2=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
