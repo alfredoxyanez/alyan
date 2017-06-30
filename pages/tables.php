@@ -209,7 +209,7 @@ function logout(){
                     </div>
                     <div class="form-group">
                       <!-- <label for="steest" class="form-control-label">Park Address:</label> -->
-                      <input type="text" id="steest" autocomplete="off">
+                      <input type="text" class="form-control" id="steest" autocomplete="off">
                       <form autocomplete="off">
                         <input hidden id="lat" name="lat" type="text" value="">
                         <input hidden id="lng" name="lng" type="text" value="">
