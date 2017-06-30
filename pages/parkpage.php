@@ -182,8 +182,7 @@ function addvalve(){
         location.reload();
       },
       error:function(error){
-        //alert("ahhh");
-        //console.log("noooo");
+
         alert("That ID is taken. Please Enter another.");
       }
     });
