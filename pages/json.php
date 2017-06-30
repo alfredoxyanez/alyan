@@ -166,6 +166,8 @@ function vstatus($id,$parkdbname){
   return null;
 }
 
+$datetime=date("m-d-Y")."?". date("H:i:s")."PST";
+addworkperson("3D","rialto","does this work","ayanez@mit.edu",$datetime,"3");
 function addworkperson($id,$parkname,$message,$email,$datetime,$parkid){
   require "db.php";
   $dbname= mysqli_real_escape_string($mysqli,$dbname);
@@ -177,16 +179,26 @@ function addworkperson($id,$parkname,$message,$email,$datetime,$parkid){
     $jsonp=$user['work'];
     $jsonp= json_decode($jsonp);
     $updatej=$jsonp->{'work'};
+    print_r($updatej);
+    echo "<br>";
     $response = new stdClass;
     $response->{'valveidf'}=$parkid."-".$id;
     $response->{'parkname'}=$parkname;
     $response->{'message'}=$message;
     $response->{'datetime'}=$datetime;
-    array_push($updatej,$response);
+    print_r($response);
+    echo "<br>";
+    array_push($jsonp->{'work'},$response);
+    print_r($updatej);
+    echo "<br>";
+    print_r($jsonp);
+    echo "<br>";
 
     $newvalue= json_encode($jsonp);
-    $sql2 = "UPDATE users SET work='$newvalue' WHERE email='$email'";
-    $result2=mysqli_query($mysqli,$sql2) or die('Query failed: '. mysqli_error($mysqli));
+    print_r($newvalue);
+
+    $sql = "UPDATE users SET work='$newvalue' WHERE email='$email'";
+    $result2=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
 
 
   }
