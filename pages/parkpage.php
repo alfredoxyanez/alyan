@@ -544,70 +544,83 @@ function logout(){
 
 <!-- <script>
 function initMap() {
-  latlng=$("#latlng").val();
-  latlng= latlng.split("?");
+latlng=$("#latlng").val();
+latlng= latlng.split("?");
 
-  var myLatLng = {lat: Number(latlng[0]), lng: Number(latlng[1])};
+var myLatLng = {lat: Number(latlng[0]), lng: Number(latlng[1])};
 
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 17,
-    center: myLatLng
-  });
+var map = new google.maps.Map(document.getElementById('map'), {
+zoom: 17,
+center: myLatLng
+});
 
-  var marker = new google.maps.Marker({
-    position: myLatLng,
-    map: map,
-  });
+var marker = new google.maps.Marker({
+position: myLatLng,
+map: map,
+});
 
 }
 
 </script> -->
 <script type="text/javascript">
 function initialize() {
-    var locations = [
-        ['DESCRIPTION', 41.926979, 12.517385, 3],
-        ['DESCRIPTION', 41.914873, 12.506486, 2],
-        ['DESCRIPTION', 41.918574, 12.507201, 1]
-    ];
+  var name = document.getElementById("pvname").value;
+  var latlng=$("#latlng").val();
+  latlng= latlng.split("?");
 
-    window.map = new google.maps.Map(document.getElementById('map'), {
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
+  var location = [name, latlng[0], latlng[1]];
 
-    var infowindow = new google.maps.InfoWindow();
+  window.map = new google.maps.Map(document.getElementById('map'), {
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
 
-    var bounds = new google.maps.LatLngBounds();
+  var infowindow = new google.maps.InfoWindow();
 
-    for (i = 0; i < locations.length; i++) {
-        marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            map: map
-        });
+  var bounds = new google.maps.LatLngBounds();
 
-        bounds.extend(marker.position);
+  // for (i = 0; i < locations.length; i++) {
+  //     marker = new google.maps.Marker({
+  //         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+  //         map: map
+  //     });
+  //
+  //     bounds.extend(marker.position);
+  //
+  //     google.maps.event.addListener(marker, 'click', (function (marker, i) {
+  //         return function () {
+  //             infowindow.setContent(locations[i][0]);
+  //             infowindow.open(map, marker);
+  //         }
+  //     })(marker, i));
+  // }
+  marker = new google.maps.Marker({
+    position: new google.maps.LatLng(location[1], location[2]),
+    map: map
+  });
 
-        google.maps.event.addListener(marker, 'click', (function (marker, i) {
-            return function () {
-                infowindow.setContent(locations[i][0]);
-                infowindow.open(map, marker);
-            }
-        })(marker, i));
+  bounds.extend(marker.position);
+
+  google.maps.event.addListener(marker, 'click', (function (marker, i) {
+    return function () {
+      infowindow.setContent(location[0]);
+      infowindow.open(map, marker);
     }
+  })(marker, i));
 
-    map.fitBounds(bounds);
+  map.fitBounds(bounds);
 
-    var listener = google.maps.event.addListener(map, "idle", function () {
-        map.setZoom(24);
-        google.maps.event.removeListener(listener);
-    });
+  var listener = google.maps.event.addListener(map, "idle", function () {
+    map.setZoom(24);
+    google.maps.event.removeListener(listener);
+  });
 }
 
 function loadScript() {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyD6RsQuot1EGNW89-uIU70htIbLaGy_Gb8&callback=initialize";
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyD6RsQuot1EGNW89-uIU70htIbLaGy_Gb8&callback=initialize";
 
-    document.body.appendChild(script);
+  document.body.appendChild(script);
 }
 
 
