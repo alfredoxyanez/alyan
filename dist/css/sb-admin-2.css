@@ -433,3 +433,7 @@ table.dataTable thead .sorting:after {
   }
 
 }
+
+.pac-container{
+  z-index: 10000;
+}

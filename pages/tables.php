@@ -46,6 +46,12 @@ function del(name){
 
 function addentry(){
   name = document.getElementById("pname").value;
+  lat=$('#lat').val();
+  lng=$('#lng').val();
+  latlng= lat+"?" +lng;
+  //alert(latlng);
+
+
   if( $.trim( $("#pname").val() ) == ''){
     alert("Please Input a Park Name");
 
@@ -54,7 +60,7 @@ function addentry(){
     $.ajax({
       type: 'POST',
       url: 'addpark.php',
-      data: {'parkname': name},
+      data: {'parkname': name,'latlng':latlng},
       success: function() {
         location.reload();
       }
@@ -114,20 +120,11 @@ function logout(){
   <!-- Custom Fonts -->
   <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
 </head>
 
 <body>
 
-
   <div id="wrapper">
-
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
       <div class="navbar-header">
@@ -205,29 +202,26 @@ function logout(){
                     <h4 class="modal-title">Add Park</h4>
                   </div>
                   <div class="modal-body">
-                    <form>
-                      <div class="form-group">
-                        <label for="pname" class="form-control-label">Park Name:</label>
-                        <input  type="text" class="form-control" autocomplete='false' style='width: 100%' type='text' id='pname' name='parkname' placeholder='Park Name' autofocus >
-                      </div>
-                      <div class="form-group">
-                        <label for="messagetext" class="form-control-label">Park Address:</label>
-                        <textarea id="messagetext" class="form-control" rows="4"  placeholder="Address"></textarea>
-                      </div>
-                    </form>
 
+                    <div class="form-group">
+                      <label for="pname" class="form-control-label">Park Name:</label>
+                      <input  type="text" class="form-control" autocomplete='false' style='width: 100%' type='text' id='pname' name='parkname' placeholder='Park Name' autofocus >
+                    </div>
+                    <div class="form-group">
+                      <label for="steest" class="form-control-label">Park Address:</label>
+                      <input type="text" id="steest" autocomplete="off">
+                      <form autocomplete="off">
+                        <input hidden id="lat" name="lat" type="text" value="">
+                        <input hidden id="lng" name="lng" type="text" value="">
+                      </form>
+                    </div>
                   </div>
                   <div class="modal-footer">
-
                     <button type="button" class="btn btn-default" onclick="addentry()"> Add Park</button>
                   </div>
                 </div>
-
               </div>
             </div>
-
-
-
 
             <!-- /.panel-heading -->
             <div class="panel-body">
@@ -242,7 +236,6 @@ function logout(){
                   </tr>
                 </thead>
                 <tbody id="tablelist">
-
                   <?php
                   require 'db.php';
 
@@ -260,17 +253,10 @@ function logout(){
                       echo "</tr >";
                     }
                   }
-
                   mysqli_close($mysqli);
-
                   ?>
-
-
-
                 </tbody>
-
               </table>
-              <!-- /.table-responsive -->
 
             </div>
             <!-- /.panel-body -->
@@ -288,8 +274,10 @@ function logout(){
 
   <!-- jQuery -->
   <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD6RsQuot1EGNW89-uIU70htIbLaGy_Gb8&libraries=places"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="../js/jquery.geocomplete.js"></script>
 
   <!-- Bootstrap Core JavaScript -->
   <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -313,6 +301,16 @@ function logout(){
     });
   });
   </script>
+
+
+  <script >
+  $(function(){
+    $("#steest").geocomplete({ details: "form" });
+
+  });
+
+  </script>
+
 
 
 

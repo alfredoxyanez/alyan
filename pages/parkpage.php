@@ -114,6 +114,20 @@ function getparktime(){
   }
   mysqli_close($mysqli);
 }
+function getparklatlng(){
+  require "db.php";
+  $parkname =  mysqli_real_escape_string($mysqli, $_GET['parkname']);
+  $parkdb=  mysqli_real_escape_string($mysqli,getnamedb($parkname));
+  $sql= "SELECT * FROM parks WHERE databasename='$parkdb'";
+  $result= mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+  if(mysqli_num_rows($result)>0){
+    $user = mysqli_fetch_assoc($result);
+    echo $user['latlng'];
+  }else{
+    echo "something went wrong";
+  }
+  mysqli_close($mysqli);
+}
 function getparkjson(){
   require "db.php";
   $parkname =  mysqli_real_escape_string($mysqli, $_GET['parkname']);
@@ -251,6 +265,13 @@ function logout(){
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+  <style>
+   #map {
+    height: 400px;
+    width: 100%;
+   }
+</style>
+
 </head>
 
 <body>
@@ -312,11 +333,44 @@ function logout(){
           <div class="col-lg-12">
             <div class="col-lg-6">
               <h1 id="pnameid" class="page-header">
-                <button type="button" name="button" style="border:0px solid transparent; margin-top: -10px" class="btn btn-default btn-lg" onclick="goback()"><i class='fa fa-lg fa-arrow-left' style='color: #5bc0de;' aria-hidden="true"></i></button>
-
+                <span>
+                  <button type="button" name="button" style="border:0px solid transparent; margin-top: -10px" class="btn btn-default btn-lg" onclick="goback()">
+                    <i class='fa fa-lg fa-arrow-left' style='color: #5bc0de;' aria-hidden="true"></i>
+                  </button>
+                </span>
                 <?php getparkname();?>
+                <span>
+                  <button type='button' class='btn btn-circle btn-info' name='button'  data-toggle='modal' data-target='#myInfo'>
+                    <i class='fa fa-info'></i>
+                  </button>
+                </span>
               </h1>
             </div>
+            <div id="myInfo" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><?php getparkname(); ?></h4>
+                    <input id="latlng" type='hidden'  value="<?php getparklatlng(); ?>">
+                  </div>
+                  <div class="modal-body">
+                    <div id="map">
+
+                    </div>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
             <div class="col-lg-6 pull-right">
               <h1 class="page-header pull-right">
                 <?php echo "Park ID: " . getparkidr();?>
@@ -361,13 +415,8 @@ function logout(){
                         </div>
                       </div>
 
-
-
-
-
                     </div>
                     <div class="modal-footer">
-
                       <button type="button" class="btn btn-default" onclick='addvalve()'> Add Valve</button>
                     </div>
                   </div>
@@ -419,14 +468,10 @@ function logout(){
                     }
                     ?>
 
-
-
-
                   </tbody>
 
                 </table>
                 <!-- /.table-responsive -->
-
 
               </div>
               <!-- /.panel-body -->
@@ -445,7 +490,10 @@ function logout(){
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
+    <script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD6RsQuot1EGNW89-uIU70htIbLaGy_Gb8&callback=initMap"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../js/jquery.geocomplete.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -468,6 +516,24 @@ function logout(){
         responsive: true
       });
     });
+    </script>
+
+
+    <script>
+
+    function initMap() {
+      latlng=$("#latlng").val();
+      latlng= latlng.split("?");
+      var uluru = {lat: -25.363, lng: 131.044};
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 4,
+        center: uluru
+      });
+      var marker = new google.maps.Marker({
+        position: uluru,
+        map: map
+      });
+    }
     </script>
 
 

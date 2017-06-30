@@ -10,6 +10,7 @@ date_default_timezone_set("America/Los_Angeles");
 
 // Make sure the form is being submitted with method="post"
 $park = mysqli_real_escape_string($mysqli,$_POST['parkname']);
+$latlng = mysqli_real_escape_string($mysqli,$_POST['latlng']);
 $park = getname($park);
 
 $parkdb= getnamedb($park);
@@ -29,8 +30,8 @@ $prejson= '
 ';
 //$prejson=json_decode($prejson);
 $datetime=date("m-d-Y")."?". date("H:i:s")."PST";
-$sql = "INSERT INTO parks (parkname, databasename, datet ,numvalves, valveswork) "
-. "VALUES ('$park','$parkdb','$datetime',DEFAULT,'$prejson')";
+$sql = "INSERT INTO parks (parkname, databasename, datet ,latlng,numvalves, valveswork) "
+. "VALUES ('$park','$parkdb','$datetime', '$latlng',DEFAULT,'$prejson')";
 $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
 
 if(!$result){

@@ -89,7 +89,7 @@ function addvalvemessage(){
 }
 
 function goback(){
-  parkname=$('#pnameid').text();
+  parkname=$('#pnameid').val();
   window.location.href ="parkpage.php"+"?parkname="+parkname;
 
 }
@@ -138,6 +138,11 @@ function changevstat(){
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
+  <style media="screen">
+  .pac-container{
+    z-index: 10000;
+  }
+  </style>
 
   <title>Park Ranger</title>
 
@@ -160,13 +165,6 @@ function changevstat(){
 
   <!-- Custom Fonts -->
   <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
 
 </head>
 
@@ -256,7 +254,7 @@ function changevstat(){
                   echo "Valve ID: " .$id. "   "."<span><button type='button' class='btn btn-lg btn-circle btn-default' name='button' style='border-color: #d9534f' onclick='changevstat()'><i class='fa  fa-thumbs-down ' style='color:#d9534f'></i></button></span>";
                 }
 
-                 ?>
+                ?>
 
               </h1>
 
@@ -326,17 +324,8 @@ function changevstat(){
                       echo "<td class='center col-sm-2'>" .$datetime[1]. "</td>";
                       echo "<td class='center col-sm-5'>" .$message. "</td>";
                       echo "</tr >";
-
                     }
-
-
                     ?>
-
-
-
-
-
-
 
                   </tbody>
 
@@ -357,20 +346,12 @@ function changevstat(){
                     echo "<a class='btn btn-danger' href='javascript:;' onclick='changevstat()'><i class='fa fa-refresh fa-lg fa-spin'></i> Change Status </a>";
 
                   }
-                   ?>
+                  ?>
 
                 </div>
-
-
-
-
-
-
-
-
-
-
+                <input type="text" id="steest" >
               </div>
+
               <!-- /.panel-body -->
             </div>
             <!-- /.panel -->
@@ -379,6 +360,8 @@ function changevstat(){
         </div>
 
       </div>
+
+
       <!-- /#page-wrapper -->
 
     </div>
@@ -386,6 +369,8 @@ function changevstat(){
 
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
+
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -402,6 +387,8 @@ function changevstat(){
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD6RsQuot1EGNW89-uIU70htIbLaGy_Gb8&libraries=places"></script>
+    <script src="../js/jquery.geocomplete.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
@@ -411,6 +398,8 @@ function changevstat(){
       });
     });
     </script>
+
+
 
 
 
