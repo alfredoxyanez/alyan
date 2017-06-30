@@ -540,7 +540,7 @@ function logout(){
 
 <script>
 function initMap() {
-  var mypark = {lat: 34.153585, lng: -117.347978};
+  var mypark = new google.maps.LatLng( 34.153585 -117.347978);
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
     center: mypark
