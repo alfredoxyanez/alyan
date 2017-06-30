@@ -612,8 +612,8 @@ function loadScript() {
 
 $("#myInfo").on('show.bs.modal', function () {
   google.maps.event.trigger(map, 'resize');
-  map.setZoom( this.map.getZoom() - 1 );
-  map.setZoom( this.map.getZoom() + 1 );
+  this.map.setZoom( this.map.getZoom() - 1 );
+  this.map.setZoom( this.map.getZoom() + 1 );
   google.maps.event.trigger(map, 'resize');
 });
 $("#myInfo").on('shown.bs.modal', function () {
