@@ -519,6 +519,10 @@ function logout(){
       });
     });
     </script>
+    <script type="text/javascript">
+
+
+    </script>
 
 
     <!-- <script>
@@ -605,6 +609,12 @@ function loadScript() {
 
     document.body.appendChild(script);
 }
+
+$("#myInfo").on('shown.bs.modal', function () {
+  google.maps.event.trigger(map, 'resize');
+  map.setZoom( map.getZoom() );
+});
+
 
 window.onload = loadScript;
 
