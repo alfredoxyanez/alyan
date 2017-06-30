@@ -627,13 +627,12 @@ function loadScript() {
 
 
 $("#myInfo").on('shown.bs.modal', function () {
-  alert(map.getZoom());
   google.maps.event.trigger(map, 'resize');
-  alert(map.getZoom());
   map.setZoom( map.getZoom() - 7);
   map.setZoom( map.getZoom() + 1 );
-  alert(map.getZoom());
-
+});
+$("#myInfo").on('hide.bs.modal', function () {
+  map.setZoom( map.getZoom() + 6 );
 });
 
 
