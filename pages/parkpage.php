@@ -267,7 +267,7 @@ function logout(){
 
   <style>
   #map {
-    height: 100%;
+    height: 200px;
     width: 100%;
   }
 
