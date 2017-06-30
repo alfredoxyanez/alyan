@@ -611,7 +611,7 @@ function initialize() {
   map.fitBounds(bounds);
 
   var listener = google.maps.event.addListener(map, "idle", function () {
-    map.setZoom(18);
+    map.setZoom(24);
     google.maps.event.removeListener(listener);
   });
 }
