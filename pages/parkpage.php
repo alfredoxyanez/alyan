@@ -601,14 +601,15 @@ function initialize() {
 function loadScript() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' + 'callback=initialize';
+    script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyD6RsQuot1EGNW89-uIU70htIbLaGy_Gb8&callback=initialize";
+
     document.body.appendChild(script);
 }
 
 window.onload = loadScript;
 
 </script>
-<script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD6RsQuot1EGNW89-uIU70htIbLaGy_Gb8&callback=initMap"></script>
+<!-- <script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD6RsQuot1EGNW89-uIU70htIbLaGy_Gb8&callback=initMap"></script> -->
 
 
 
