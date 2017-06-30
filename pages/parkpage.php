@@ -416,6 +416,7 @@ function logout(){
                         <div>
                           <input  autocomplete='false' style='width: 100%' type='text' id='vid' name='valvename' placeholder='Valve ID' autofocus>
                           <input type='hidden' id='pvname' value= "<?php echo getparkdbnamer(); ?>">
+                          <input type='hidden' id='pname' value= "<?php echo getparknamer(); ?>">
                         </div>
                       </div>
 
@@ -564,7 +565,7 @@ map: map,
 </script> -->
 <script type="text/javascript">
 function initialize() {
-  var name = document.getElementById("pname1").text();
+  var name = document.getElementById("pname").value;
   var latlng=$("#latlng").val();
   latlng= latlng.split("?");
 
