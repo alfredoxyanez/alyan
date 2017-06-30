@@ -341,7 +341,7 @@ function logout(){
                   <button type="button" name="button" style="border:0px solid transparent; margin-top: -10px" class="btn btn-default btn-lg" onclick="goback()">
                     <i class='fa fa-lg fa-arrow-left' style='color: #5bc0de;' aria-hidden="true"></i>
                   </button>
-                </span>
+                </span id="pname1">
                 <?php getparkname();?>
                 <span>
                   <button type='button' class='btn btn-circle btn-info' name='button'  data-toggle='modal' data-target='#myInfo'>
@@ -564,7 +564,7 @@ map: map,
 </script> -->
 <script type="text/javascript">
 function initialize() {
-  var name = document.getElementById("pvname").value;
+  var name = document.getElementById("pname1").value;
   var latlng=$("#latlng").val();
   latlng= latlng.split("?");
 
