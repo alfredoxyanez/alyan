@@ -382,7 +382,6 @@ function changevstat(){
                   ?>
 
                 </div>
-                <input type="text" id="steest" >
               </div>
 
               <!-- /.panel-body -->
