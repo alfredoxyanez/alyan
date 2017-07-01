@@ -191,6 +191,23 @@ function addworkperson($id,$parkname,$message,$email,$datetime,$parkid){
   }
 }
 
+function returnworkperson($email){
+  require "db.php";
+  $email= mysqli_real_escape_string($mysqli,$email);
+  $sql="SELECT * FROM users WHERE email='$email'";
+  $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+  if(mysqli_num_rows($result)>0){
+    $user = mysqli_fetch_assoc($result);
+    $jsonp=$user['work'];
+    $jsonp= json_decode($jsonp);
+    $updatej=$jsonp->{'work'};
+  //  print_r($updatej);
+    return $updatej;
+
+
+  }
+}
+
 
 
 

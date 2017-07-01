@@ -10,6 +10,9 @@ function loginfname(){
 function loginlname(){
   return $_SESSION['last_name'];
 }
+function fullname(){
+  return $_SESSION['first_name']." ".$_SESSION['last_name'];
+}
 function loginemail(){
   return $_SESSION['email'];
 }
@@ -28,52 +31,7 @@ function admin(){
 }
 
 ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-
-function del(name){
-  $.ajax({
-    type: 'POST',
-    url: 'deletepark.php',
-    data: {'parkname': name},
-    success: function(html) {
-      var element = document.getElementById(name);
-      element.outerHTML = "";
-      delete element;
-    }
-  });
-}
-
-function addentry(){
-  name = document.getElementById("pname").value;
-  lat=$('#lat').val();
-  lng=$('#lng').val();
-  latlng= lat+"?" +lng;
-  //alert(latlng);
-
-
-  if( $.trim( $("#pname").val() ) == ''){
-    alert("Please Input a Park Name");
-
-  }
-  else{
-    $.ajax({
-      type: 'POST',
-      url: 'addpark.php',
-      data: {'parkname': name,'latlng':latlng},
-      success: function() {
-        location.reload();
-      }
-    });
-  }
-
-
-
-}
-function info(name){
-  window.location.href = "parkpage.php?parkname="+name;
-
-}
 function logout(){
   $.ajax({
     type: 'POST',
@@ -87,6 +45,8 @@ function logout(){
 }
 
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
 
 <!DOCTYPE html>
@@ -178,7 +138,7 @@ function logout(){
     <div id="page-wrapper">
       <div class="row">
         <div class="col-lg-12">
-          <h1 class="page-header">Parks</h1>
+          <h1 class="page-header">Work</h1>
         </div>
         <!-- /.col-lg-12 -->
       </div>
@@ -187,73 +147,43 @@ function logout(){
         <div class="col-lg-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              All Managed Parks
-              <?php
-              if(admin()){
-                echo " <button type='button'  class='btn btn-success btn-circle pull-right' style='margin-top: -5px' data-toggle='modal' data-target='#myModal' ><i class='fa fa-plus'></i></button>";
-              }
-              ?>
+              Work done by <?php echo fullname(); ?>
             </div>
-            <div id="myModal" class="modal fade" role="dialog">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add Park</h4>
-                  </div>
-                  <div class="modal-body">
 
-                    <div class="form-group">
-                      <label for="pname" class="form-control-label">Park Name:</label>
-                      <input  type="text" class="form-control" autocomplete='false' style='width: 100%' type='text' id='pname' name='parkname' placeholder='Park Name' autofocus >
-                    </div>
-                    <div class="form-group">
-                      <!-- <label for="steest" class="form-control-label">Park Address:</label> -->
-                      <input type="text" class="form-control" id="steest" autocomplete="off">
-                      <form autocomplete="off">
-                        <input hidden id="lat" name="lat" type="text" value="">
-                        <input hidden id="lng" name="lng" type="text" value="">
-                      </form>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" onclick="addentry()"> Add Park</button>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <!-- /.panel-heading -->
             <div class="panel-body">
               <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                   <tr>
-                    <th>Info</th>
                     <th>Park</th>
-                    <th>Valves</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Valve</th>
+                    <th>Message</th>
+
                     <!-- <th>Delete</th> -->
 
                   </tr>
                 </thead>
                 <tbody id="tablelist">
                   <?php
-                  require 'db.php';
-
-                  $sql= "SELECT parkname, numvalves FROM parks";
-                  $result= mysqli_query($mysqli, $sql);
-                  if (mysqli_num_rows($result) > 0) {
-                    // output data of each row
-                    while($row = mysqli_fetch_assoc($result)) {
-                      $pname=$row["parkname"];
-                      echo "<tr  id='". $pname ."'>";
-                      echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-info btn-circle text-center center-block' onclick=\"info('$pname')\" ><i class='fa fa-info'></i></button>". "</td>";
-                      echo "<td class='center col-sm-5'>" . $row["parkname"]. "</td>";
-                      echo "<td class='center col-sm-3'>" . $row["numvalves"]. "</td>";
-                      //echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-danger btn-circle text-center center-block' onclick=\"del('$pname')\" ><i class='fa fa-times'></i></button>". "</td>";
-                      echo "</tr >";
-                    }
+                  require_once "json.php";
+                  $email=loginemail();
+                  $json = returnworkperson($email);
+                  foreach ($json as $key => $value) {
+                    $parkname=$value->{'parkname'};
+                    $datetime=  explode('?',$value->{'datetime'});
+                    $valveid=$value->{'valveidf'};
+                    $message=$value->{'message'};
+                    echo "<tr>";
+                    echo "<td class='center col-sm-2'>" .$parkname. "</td>";
+                    echo "<td class='center col-sm-2'>" .$datetime[0]. "</td>";
+                    echo "<td class='center col-sm-2'>" .$datetime[1]. "</td>";
+                    echo "<td class='center col-sm-2'>" .$valveid. "</td>";
+                    echo "<td class='center col-sm-4'>" .$message. "</td>";
+                    echo "</tr >";
                   }
-                  mysqli_close($mysqli);
                   ?>
                 </tbody>
               </table>
