@@ -207,6 +207,19 @@ function returnworkperson($email){
 
   }
 }
+function getAllParks(){
+  require "db.php";
+  $sql="SELECT * FROM parks";
+  $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+  $arr=array();
+  if(mysqli_num_rows($result)>0){
+    while($row = mysqli_fetch_array($result)) {
+      array_push($arr,$row['parkname']);
+}
+    return $arr;
+  }
+  return null;
+}
 
 
 

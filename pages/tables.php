@@ -31,15 +31,20 @@ function admin(){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-function del(name){
+function deletepark(){
+  var parkname = $('#sel1').find(":selected").text();
+  var password = $('#password').val();
+  var email =  document.getElementById("email").value;
+
   $.ajax({
     type: 'POST',
     url: 'deletepark.php',
-    data: {'parkname': name},
+    data: {'parkname': parkname ,'email': email ,'password': password},
     success: function(html) {
-      var element = document.getElementById(name);
-      element.outerHTML = "";
-      delete element;
+      location.reload();
+    },
+    error:function(error){
+      alert("Invalid Password");
     }
   });
 }
@@ -188,7 +193,10 @@ function logout(){
               All Managed Parks
               <?php
               if(admin()){
-                echo " <button type='button'  class='btn btn-success btn-circle pull-right' style='margin-top: -5px' data-toggle='modal' data-target='#myModal' ><i class='fa fa-plus'></i></button>";
+                echo "<div class='pull-right'>";
+                echo " <button type='button'  class='btn btn-success btn-circle' style='margin-top: -5px' data-toggle='modal' data-target='#myModal' ><i class='fa fa-plus'></i></button>";
+                echo " <button type='button'  class='btn btn-danger btn-circle ' style='margin-top: -5px ' data-toggle='modal' data-target='#myModalDelete' ><i class='fa fa-minus'></i></button>";
+                echo "</div>";
               }
               ?>
             </div>
@@ -220,6 +228,47 @@ function logout(){
                 </div>
               </div>
             </div>
+
+            <div id="myModalDelete" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Delete Park</h4>
+                  </div>
+                  <div class="modal-body">
+
+
+                    <div class="form-group">
+                      <label for="sel1">List of Parks:</label>
+                      <select class="form-control" id="sel1">
+                        <?php
+                        require_once "json.php";
+                        $arr= getAllParks();
+                        foreach ($arr as $key => $value) {
+                          echo "<option>" .$value."</option>";
+                        }
+                         ?>
+                      </select>
+                    </div>
+
+                    <div class="form-group input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                      <input  type="password" class="form-control req" autocomplete='false' style='width: 100%' type='text' id='password' name='userpassword' placeholder='Password' autofocus >
+                      <input type='hidden' id='email' value= "<?php echo loginemail(); ?>">
+                    </div>
+
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="deletepark()"> Delete Park</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
 
             <!-- /.panel-heading -->
             <div class="panel-body">
