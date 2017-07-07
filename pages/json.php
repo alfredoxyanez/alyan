@@ -201,7 +201,7 @@ function returnworkperson($email){
     $jsonp=$user['work'];
     $jsonp= json_decode($jsonp);
     $updatej=$jsonp->{'work'};
-  //  print_r($updatej);
+    //  print_r($updatej);
     return $updatej;
 
 
@@ -215,18 +215,40 @@ function getAllParks(){
   if(mysqli_num_rows($result)>0){
     while($row = mysqli_fetch_array($result)) {
       array_push($arr,$row['parkname']);
-}
+    }
     return $arr;
   }
   return null;
 }
 
+function getAllValveStatus(){
+  require "db.php";
+  $sql="SELECT * FROM parks";
+  $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+  $total=0;
+  $working=0;
+  if(mysqli_num_rows($result)>0){
+    while($row = mysqli_fetch_array($result)) {
+      if($row['numvalves']>0){
+        $js=json_decode($row['valveswork']);
+        $valves= $js->{'valvelist'};
+        $total+= $row['numvalves'];
+        foreach ($valves as $key => $value) {
+          if($value->{'status'}){
+            $working+=1;
+          }
+        }
+      }
+    }
+    $response = new stdClass;
+    $response->{'working'}=$working;
+    $response->{'total'}=$total;
+    return $response;
+  }
+
+  return null;
 
 
-
-
-
-
-
+}
 
 ?>
