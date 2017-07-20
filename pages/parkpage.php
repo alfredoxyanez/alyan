@@ -168,7 +168,8 @@ function getparkidr(){
 function addvalve(){
   id = document.getElementById("vid").value;
   name = document.getElementById("pvname").value;
-
+  numt = document.getElementById("numtrees").value;
+  numg = document.getElementById("numgals").value;
   if( $.trim( $("#vid").val() ) == ''){
     alert("Please Input a ValveID");
   }
@@ -176,7 +177,7 @@ function addvalve(){
     $.ajax({
       type: 'POST',
       url: 'addvalve.php',
-      data: {'parkdbname': name,'valveid':id},
+      data: {'parkdbname': name,'valveid':id,'trees':numt , 'gals':numg},
       success: function(html) {
         //document.location.reload();
         location.reload();
@@ -402,20 +403,36 @@ function logout(){
                       <h4 class="modal-title">Add Park</h4>
                     </div>
                     <div class="modal-body col-sm-12">
+                      <form >
+                        <div class="form-group">
+                          <div class='col-sm-2'>
+                            <div class='pull-right' style='font-weight: bold; font-size: '125%>
+                              <?php echo getparkidr().'-' ?>
+                            </div>
+                          </div>
 
-                      <div class='col-sm-2'>
-                        <div class='pull-right' style='font-weight: bold; font-size: '125%>
-                          <?php echo getparkidr().'-' ?>
-                        </div>
-                      </div>
+                          <div class='form-group col-sm-10 '>
+                            <div>
+                              <input  autocomplete='false' style='width: 100%' type='text' id='vid' name='valvename' placeholder='Valve ID' autofocus>
+                              <input type='hidden' id='pvname' value= "<?php echo getparkdbnamer(); ?>">
+                              <input type='hidden' id='pname' value= "<?php echo getparknamer(); ?>">
+                            </div>
+                          </div>
 
-                      <div class='col-sm-10 '>
-                        <div>
-                          <input  autocomplete='false' style='width: 100%' type='text' id='vid' name='valvename' placeholder='Valve ID' autofocus>
-                          <input type='hidden' id='pvname' value= "<?php echo getparkdbnamer(); ?>">
-                          <input type='hidden' id='pname' value= "<?php echo getparknamer(); ?>">
                         </div>
-                      </div>
+                        <div class="form-group">
+                          <label for="numtress" class="form-control-label">Number of Tress:</label>
+                          <input  autocomplete='false' style='width: 100%' type='text' id='numtrees' name='numtrees' placeholder='Insert Number' autofocus>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="numgals" class="form-control-label">Number of GPH/M:</label>
+                          <input  autocomplete='false' style='width: 100%' type='text' id='numgals' name='numgals' placeholder='Insert GPM/GPH' autofocus>
+                        </div>
+
+                      </form>
+
+
 
                     </div>
                     <div class="modal-footer">
@@ -432,6 +449,8 @@ function logout(){
                     <tr>
                       <th>Info</th>
                       <th>Valve ID</th>
+                      <th># of Trees</th>
+                      <th># of GPM/H</th>
                       <th>Status</th>
 
                       <!-- <th>Delete</th> -->
@@ -453,6 +472,9 @@ function logout(){
                       $tables=$json->{'vnum'};
                       for ($x = 0; $x < $tables; $x++) {
                         $eid= $json->{'valvelist'}[$x]->{'id'};
+                        $trees= $json->{'valvelist'}[$x]->{'numtress'};
+                        $gals= $json->{'valvelist'}[$x]->{'numgals'};
+
                         $status= $json->{'valvelist'}[$x]->{'status'};
                         if($status){
                           $message="<button type='button'  class='btn btn-success btn-circle text-center center-block' onclick=\"changev('$eid','$dbname')\"> <i class='fa fa-thumbs-up'></i></button>";
@@ -462,7 +484,10 @@ function logout(){
 
                         echo "<tr  id='". $sname . $eid ."'>";
                         echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-info btn-circle text-center center-block' onclick=\"infov('$eid','$dbname')\" ><i class='fa fa-info'></i></button>". "</td>";
-                        echo "<td class='center col-sm-6'>" .$parkid."-". $eid . "</td>";
+                        echo "<td class='center col-sm-2'>" .$parkid."-". $eid . "</td>";
+                        echo "<td class='center col-sm-2'>" .$trees . "</td>";
+                        echo "<td class='center col-sm-2'>" .$gals . "</td>";
+
                         echo "<td class='center col-sm-4'>" .$message. "</td>";
                         //echo "<td class='center col-sm-2'>" . "<button type='button'  class='btn btn-danger btn-circle text-center center-block' onclick=\"del('$pname')\" ><i class='fa fa-times'></i></button>". "</td>";
                         echo "</tr >";

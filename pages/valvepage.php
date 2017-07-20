@@ -139,6 +139,20 @@ function changevstat(){
   });
 
 }
+function deletevalve(){
+  id=$('#vidm').text();
+  dbname = $('#dbvname').text();
+  $.ajax({
+    type: 'POST',
+    url: 'deletev.php',
+    data: {'parkdbname': dbname,'valveid':id},
+    success: function(html) {
+      parkname=$('#parkname').text();
+      window.location.href ="parkpage.php"+"?parkname="+parkname;
+    }
+  });
+
+}
 
 
 
@@ -364,24 +378,32 @@ function changevstat(){
 
                 </table>
                 <!-- /.table-responsive -->
-                <div class="col-sm-12 text-center">
-                  <?php
-                  require_once "json.php";
-                  $id=getvid();
-                  $dbname=getdbname();
-                  $stat=vstatus($id,$dbname);
+                <div class="col-sm-12">
+                  <div class="col-sm-6 text-center">
+                    <a class='btn btn-danger' href='javascript:;' onclick='deletevalve()'><i class='fa fa-trash-o fa-lg '></i> Delete Valve</a>
 
-                  if($stat){
-                    echo "<a class='btn btn-success' href='javascript:;' onclick='changevstat()'><i class='fa fa-refresh fa-lg fa-spin'></i> Change Status </a>";
-                    //echo "<button type='button' class='btn btn-danger' onclick='changevstat()'></button>";
-                  }
-                  else if(!$stat){
-                    echo "<a class='btn btn-danger' href='javascript:;' onclick='changevstat()'><i class='fa fa-refresh fa-lg fa-spin'></i> Change Status </a>";
+                  </div>
+                  <div class="col-sm-6 text-center">
+                    <?php
+                    require_once "json.php";
+                    $id=getvid();
+                    $dbname=getdbname();
+                    $stat=vstatus($id,$dbname);
 
-                  }
-                  ?>
+                    if($stat){
+                      echo "<a class='btn btn-success' href='javascript:;' onclick='changevstat()'><i class='fa fa-refresh fa-lg fa-spin'></i> Change Status </a>";
+                      //echo "<button type='button' class='btn btn-danger' onclick='changevstat()'></button>";
+                    }
+                    else if(!$stat){
+                      echo "<a class='btn btn-danger' href='javascript:;' onclick='changevstat()'><i class='fa fa-refresh fa-lg fa-spin'></i> Change Status </a>";
+
+                    }
+                    ?>
+
+                  </div>
 
                 </div>
+
               </div>
 
               <!-- /.panel-body -->
