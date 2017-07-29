@@ -360,7 +360,6 @@ function deletevalve(){
                     // echo
                     $jsondata=getworkjson(getvid(),getdbname());
                     //print_r($jsondata);
-
                     foreach ($jsondata as $key => $value) {
                       $datetime=  explode('?',$value->{'date'});
                       $message= $value->{'message'};
