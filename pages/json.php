@@ -269,10 +269,12 @@ function deletevalve($id,$parkdbname){
     foreach ($updatej as $key => $value) {
       if($value->{'id'}==$id){
         unset($jsonp->{'valvelist'}[$index]);
+        $arr2=array_values($jsonp->{'valvelist'});
+        $jsonp->{'valvelist'}=$arr2;
         $jsonp->{'vnum'}-=1;
         $oldvalves-=1;
-
         $newvalue= json_encode($jsonp);
+        print_r($newvalue);
         $sql = "UPDATE parks SET valveswork='$newvalue' WHERE databasename='$dbname'";
         $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
         $sql2 = "UPDATE parks SET numvalves='$oldvalves' WHERE databasename='$dbname'";
