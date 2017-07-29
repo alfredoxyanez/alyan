@@ -259,6 +259,7 @@ function deletevalve($id,$parkdbname){
   $dbname= mysqli_real_escape_string($mysqli,$parkdbname);
   $sql="SELECT * FROM parks WHERE databasename='$dbname'";
   $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+  $id= preg_replace('/\s+/', '', $id);
   if(mysqli_num_rows($result)>0){
     $user = mysqli_fetch_assoc($result);
     $jsonp=$user['valveswork'];
@@ -267,10 +268,12 @@ function deletevalve($id,$parkdbname){
     $oldvalves=$user['numvalves'];
     $index=0;
     foreach ($updatej as $key => $value) {
-      if($value->{'id'}==$id){
+      $val= preg_replace('/\s+/', '', $value->{'id'});
+      if($val==$id){
         unset($jsonp->{'valvelist'}[$index]);
         $arr2=array_values($jsonp->{'valvelist'});
         $jsonp->{'valvelist'}=$arr2;
+        //print_r($arr2);
         $jsonp->{'vnum'}-=1;
         $oldvalves-=1;
         $newvalue= json_encode($jsonp);

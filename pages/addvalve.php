@@ -4,6 +4,7 @@ require 'json.php';
 
 $parkdbname = mysqli_real_escape_string($mysqli,$_POST['parkdbname']);
 $valveid = mysqli_real_escape_string($mysqli,$_POST['valveid']);
+$valveid= preg_replace('/\s+/', '', $valveid);
 $numtrees = mysqli_real_escape_string($mysqli,$_POST['trees']);
 $numgals = mysqli_real_escape_string($mysqli,$_POST['gals']);
 
