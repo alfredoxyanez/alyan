@@ -3,7 +3,7 @@ require 'json.php';
 require 'db.php';
 
 
-// $parkdbname = mysqli_real_escape_string($mysqli,$_POST['parkdbname']);
+$parkdbname = mysqli_real_escape_string($mysqli,$_POST['parkdbname']);
 
 $valveid = mysqli_real_escape_string($mysqli,$_POST['valveid']);
 $valveid= preg_replace('/\s+/', '', $valveid);
@@ -18,7 +18,7 @@ $valveid= preg_replace('/\s+/', '', $valveid);
 // $numgals = split(' ',$numgals);
 // $numgals =floatval($numgals[0]).' '.$numgals[1];
 
-echo $valveid;
+echo $valveid.$parkdbname;
 // if(IDisused($newid,$parkdbname)){
 //   die(header("HTTP/1.0 404 Not Found"));
 // }else{
