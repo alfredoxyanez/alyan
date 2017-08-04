@@ -15,9 +15,9 @@ $numtrees = mysqli_real_escape_string($mysqli,$_POST['trees']);
 $numtrees = intval($numtrees);
 //
 $numgals = mysqli_real_escape_string($mysqli,$_POST['gals']);
-// $numgals = split(' ',$numgals);
+$numgals = split(' ',$numgals);
 // $numgals =floatval($numgals[0]).' '.$numgals[1];
-echo $numgals;
+print_r( $numgals);
 //echo $valveid.$parkdbname.$newid.$numtrees.$numgals;
 // if(IDisused($newid,$parkdbname)){
 //   die(header("HTTP/1.0 404 Not Found"));
