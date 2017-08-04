@@ -18,8 +18,11 @@ $numgals = mysqli_real_escape_string($mysqli,$_POST['gals']);
 $numgals = split(' ',$numgals);
 $numgals =floatval($numgals[0]).' '.$numgals[1];
 
-editvalve($valveid,$parkdbname,$newid,$numtrees,$numgals);
-
+if(IDisused($newid,$parkdbname)){
+  die(header("HTTP/1.0 404 Not Found"));
+}else{
+  editvalve($valveid,$parkdbname,$newid,$numtrees,$numgals);
+}
 
 
 

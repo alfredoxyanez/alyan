@@ -371,7 +371,6 @@ function editvalve($id,$parkdbname,$newid,$numtrees,$numgals){
       }
       $index+=1;
     }
-    return null;
   }
 }
 
