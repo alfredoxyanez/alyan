@@ -1,6 +1,6 @@
 <?php
 require "db.php";
-require 'json.php';
+require_once 'json.php';
 
 
 $parkdbname = mysqli_real_escape_string($mysqli,$_POST['parkdbname']);
