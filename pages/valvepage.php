@@ -187,11 +187,10 @@ function editvalve(){
       url: 'editvalve.php',
       data: {'parkdbname': name,'valveid':id,'newid':nid,'trees':numt, 'gals':numg},
       success: function(html) {
-        // window.location.href = "valvepage.php?pdbname="+name+"&"+"vid="+nid.replace(/\s/g, "") ;
-        alert("shit");
+        window.location.href = "valvepage.php?pdbname="+name+"&"+"vid="+nid.replace(/\s/g, "") ;
       },
       error:function(error){
-        alert("That ID is taken. Please Enter another.");
+        alert("That ID is taken. Please Enter another." + error);
       }
     });
   }
