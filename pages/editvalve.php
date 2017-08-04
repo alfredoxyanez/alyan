@@ -12,6 +12,7 @@ $newid = mysqli_real_escape_string($mysqli,$_POST['newid']);
 $newid= preg_replace('/\s+/', '', $newid);
 
 $numtrees = mysqli_real_escape_string($mysqli,$_POST['trees']);
+$numtrees = preg_replace('/\s+/', '', $numtrees);
 $numtrees = intval($numtrees);
 //
 $numgals = mysqli_real_escape_string($mysqli,$_POST['gals']);
