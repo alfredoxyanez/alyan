@@ -1,5 +1,4 @@
 <?php
-require "db.php";
 require "name.php";
 date_default_timezone_set("America/Los_Angeles");
 
