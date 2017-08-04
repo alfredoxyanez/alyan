@@ -190,7 +190,8 @@ function editvalve(){
         window.location.href = "valvepage.php?pdbname="+name+"&"+"vid="+nid.replace(/\s/g, "") ;
       },
       error:function(error){
-        alert("That ID is taken. Please Enter another." + error.responseText);
+        alert(error.responseText)
+        // alert("That ID is taken. Please Enter another." + error.responseText);
       }
     });
   }
