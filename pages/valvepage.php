@@ -172,6 +172,7 @@ function editvalve(){
   name = $('#dbvname').text();
   numt = document.getElementById("vtress").value;
   numg = document.getElementById("vgp").value;
+  alert(id + nid + name +numt+ numg)
   if( $.trim( $("#vidn").val() ) == ''){
     alert("Please Input a ValveID");
   }
@@ -187,7 +188,7 @@ function editvalve(){
       url: 'editvalve.php',
       data: {'parkdbname': name,'valveid':id,'newid':nid,'trees':numt, 'gals':numg},
       success: function(html) {
-        window.location.href = "valvepage.php?pdbname="+name+"&"+"vid="+nid.replace(/\s/g, "") ;
+        // window.location.href = "valvepage.php?pdbname="+name+"&"+"vid="+nid.replace(/\s/g, "") ;
       },
       error:function(error){
         alert("That ID is taken. Please Enter another." );
