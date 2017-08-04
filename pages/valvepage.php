@@ -77,6 +77,17 @@ function getparkidr(){
   mysqli_close($mysqli);
 }
 
+function getvalvetrees(){
+  return gettrees(getvid(),getdbname());
+
+}
+
+function getvalvegp(){
+  return getgals(getvid(),getdbname());
+}
+
+
+
 
 ?>
 
@@ -152,6 +163,37 @@ function deletevalve(){
     }
   });
 
+}
+
+
+function editvalve(){
+  id = $('#vidm').text();
+  nid = document.getElementById("vidn").value;
+  name = $('#dbvname').text();
+  numt = document.getElementById("vtress").value;
+  numg = document.getElementById("vgp").value;
+  if( $.trim( $("#vidn").val() ) == ''){
+    alert("Please Input a ValveID");
+  }
+  if( $.trim( $("#vtress").val() ) == ''){
+    alert("Please Input # of Tress");
+  }
+  if( $.trim( $("#vgp").val() ) == ''){
+    alert("Please Input # of GPM/H");
+  }
+  else{
+    $.ajax({
+      type: 'POST',
+      url: 'editvalve.php',
+      data: {'parkdbname': name,'valveid':id,'newid':nid,'trees':numt, 'gals':numg},
+      success: function(html) {
+        window.location.href = "valvepage.php?pdbname="+name+"&"+"vid="+nid.replace(/\s/g, "") ;
+      },
+      error:function(error){
+        alert("That ID is taken. Please Enter another.");
+      }
+    });
+  }
 }
 
 
@@ -377,12 +419,12 @@ function deletevalve(){
 
                 </table>
                 <!-- /.table-responsive -->
-                <div class="col-sm-12">
-                  <div class="col-sm-6 text-center">
+                <div class="col-sm-12" >
+                  <div class="col-sm-4 text-center">
                     <a class='btn btn-danger' href='javascript:;' onclick='deletevalve()'><i class='fa fa-trash-o fa-lg '></i> Delete Valve</a>
 
                   </div>
-                  <div class="col-sm-6 text-center">
+                  <div class="col-sm-4 text-center">
                     <?php
                     require_once "json.php";
                     $id=getvid();
@@ -400,8 +442,61 @@ function deletevalve(){
                     ?>
 
                   </div>
+                  <div class="col-sm-4 text-center">
+                    <a class='btn btn-primary' data-toggle="modal" data-target="#editModal"><i class='fa fa-pencil fa-lg '></i> Edit Valve</a>
+
+                  </div>
 
                 </div>
+
+                <!-- Modal -->
+                <div id="editModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edit Valve</h4>
+                      </div>
+                      <div class="modal-body">
+
+                        <form class="form-horizontal">
+                          <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">Valve Name:</label>
+                            <div class="col-sm-10">
+                              <input class="form-control" id="vidn" value=<?php echo getvid(); ?> >
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-sm-2" for="vtress"># of Tress:</label>
+                            <div class="col-sm-10">
+                              <?php
+                              echo '<input type="text" class="form-control" id="vtress" value="'.getvalvetrees().   ' ">'
+                               ?>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-sm-2" for="vgp"># of GPM/H:</label>
+                            <div class="col-sm-10">
+                              <?php
+                              echo '<input type="text" class="form-control" id="vgp" value="'.getvalvegp().   ' ">'
+                               ?>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+
+                        <button type="button" class="btn btn-warning" onclick="editvalve()">Edit Valve</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+
+
 
               </div>
 

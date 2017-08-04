@@ -471,7 +471,7 @@ function logout(){
                       $tables=$json->{'vnum'};
                       for ($x = 0; $x < $tables; $x++) {
                         $eid= $json->{'valvelist'}[$x]->{'id'};
-                        $trees= $json->{'valvelist'}[$x]->{'numtress'};
+                        $trees= $json->{'valvelist'}[$x]->{'numtrees'};
                         $gals= $json->{'valvelist'}[$x]->{'numgals'};
 
                         $status= $json->{'valvelist'}[$x]->{'status'};

@@ -21,7 +21,7 @@ function addvalvej($id,$parkdbname,$numtrees,$numgals){
     $datetime=date("m-d-Y")."?". date("H:i:s")."PST";
     $response = new stdClass;
     $response->{'id'}= (string) strtoupper($id);
-    $response->{'numtress'}=$numtrees;
+    $response->{'numtrees'}=$numtrees;
     $response->{'numgals'}=$numgals;
     $response->{'status'}=true;
     $response->{'date'}=$datetime;
@@ -277,11 +277,96 @@ function deletevalve($id,$parkdbname){
         $jsonp->{'vnum'}-=1;
         $oldvalves-=1;
         $newvalue= json_encode($jsonp);
-        print_r($newvalue);
         $sql = "UPDATE parks SET valveswork='$newvalue' WHERE databasename='$dbname'";
         $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
         $sql2 = "UPDATE parks SET numvalves='$oldvalves' WHERE databasename='$dbname'";
         $result2=mysqli_query($mysqli,$sql2) or die('Query failed: '. mysqli_error($mysqli));
+
+      }
+      $index+=1;
+    }
+    return null;
+  }
+}
+
+
+function gettrees($id,$parkdbname){
+  require "db.php";
+  $dbname= mysqli_real_escape_string($mysqli,$parkdbname);
+  $sql="SELECT * FROM parks WHERE databasename='$dbname'";
+  $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+  $id= preg_replace('/\s+/', '', $id);
+  if(mysqli_num_rows($result)>0){
+    $user = mysqli_fetch_assoc($result);
+    $jsonp=$user['valveswork'];
+    $jsonp= json_decode($jsonp);
+    $updatej=$jsonp->{'valvelist'};
+    $oldvalves=$user['numvalves'];
+    $index=0;
+    foreach ($updatej as $key => $value) {
+      $val= preg_replace('/\s+/', '', $value->{'id'});
+      if($val==$id){
+        return $jsonp->{'valvelist'}[$index]->{'numtrees'};
+      }
+      $index+=1;
+    }
+    return null;
+  }
+}
+
+
+
+function getgals($id,$parkdbname){
+  require "db.php";
+  $dbname= mysqli_real_escape_string($mysqli,$parkdbname);
+  $sql="SELECT * FROM parks WHERE databasename='$dbname'";
+  $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+  $id= preg_replace('/\s+/', '', $id);
+  if(mysqli_num_rows($result)>0){
+    $user = mysqli_fetch_assoc($result);
+    $jsonp=$user['valveswork'];
+    $jsonp= json_decode($jsonp);
+    $updatej=$jsonp->{'valvelist'};
+    $oldvalves=$user['numvalves'];
+    $index=0;
+    foreach ($updatej as $key => $value) {
+      $val= preg_replace('/\s+/', '', $value->{'id'});
+      if($val==$id){
+        return $jsonp->{'valvelist'}[$index]->{'numgals'};
+      }
+      $index+=1;
+    }
+    return null;
+  }
+}
+
+
+
+function editvalve($id,$parkdbname,$newid,$numtrees,$numgals){
+  require "db.php";
+  $dbname= mysqli_real_escape_string($mysqli,$parkdbname);
+  $sql="SELECT * FROM parks WHERE databasename='$dbname'";
+  $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+  $id= preg_replace('/\s+/', '', $id);
+  if(mysqli_num_rows($result)>0){
+    $user = mysqli_fetch_assoc($result);
+    $jsonp=$user['valveswork'];
+    $jsonp= json_decode($jsonp);
+    $updatej=$jsonp->{'valvelist'};
+    $oldvalves=$user['numvalves'];
+    $index=0;
+    foreach ($updatej as $key => $value) {
+      $val= preg_replace('/\s+/', '', $value->{'id'});
+      if($val==$id){
+        $jsonp->{'valvelist'}[$index]->{'id'}=$newid;
+        $jsonp->{'valvelist'}[$index]->{'numtress'}=$numtrees;
+        $jsonp->{'valvelist'}[$index]->{'numgals'}=$numgals;
+        $arr2=array_values($jsonp->{'valvelist'});
+        $jsonp->{'valvelist'}=$arr2;
+        $newvalue= json_encode($jsonp);
+        $sql = "UPDATE parks SET valveswork='$newvalue' WHERE databasename='$dbname'";
+        $result=mysqli_query($mysqli,$sql) or die('Query failed: '. mysqli_error($mysqli));
+
 
       }
       $index+=1;
