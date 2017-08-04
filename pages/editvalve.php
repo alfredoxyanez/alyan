@@ -8,9 +8,9 @@ $parkdbname = mysqli_real_escape_string($mysqli,$_POST['parkdbname']);
 $valveid = mysqli_real_escape_string($mysqli,$_POST['valveid']);
 $valveid= preg_replace('/\s+/', '', $valveid);
 
-// $newid = mysqli_real_escape_string($mysqli,$_POST['newid']);
-// $newid= preg_replace('/\s+/', '', $newid);
-//
+$newid = mysqli_real_escape_string($mysqli,$_POST['newid']);
+$newid= preg_replace('/\s+/', '', $newid);
+
 // $numtrees = mysqli_real_escape_string($mysqli,$_POST['trees']);
 // $numtrees = intval($numtrees);
 //
@@ -18,7 +18,7 @@ $valveid= preg_replace('/\s+/', '', $valveid);
 // $numgals = split(' ',$numgals);
 // $numgals =floatval($numgals[0]).' '.$numgals[1];
 
-echo $valveid.$parkdbname;
+echo $valveid.$parkdbname.$newid;
 // if(IDisused($newid,$parkdbname)){
 //   die(header("HTTP/1.0 404 Not Found"));
 // }else{
