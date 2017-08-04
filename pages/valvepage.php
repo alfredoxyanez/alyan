@@ -188,6 +188,7 @@ function editvalve(){
       url: 'editvalve.php',
       data: {'parkdbname': name,'valveid':id,'newid':nid,'trees':numt, 'gals':numg},
       success: function(html) {
+        alert("yes");
         // window.location.href = "valvepage.php?pdbname="+name+"&"+"vid="+nid.replace(/\s/g, "") ;
       },
       error:function(error){
