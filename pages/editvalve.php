@@ -19,8 +19,8 @@ $numgals = split(' ',$numgals);
 $numgals =floatval($numgals[0]).' '.$numgals[1];
 
 if(IDisused($newid,$parkdbname)){
-  echo($newid);
-  die(header("HTTP/1.0 404 Not Found"));
+  echo $newid ;
+  // die(header("HTTP/1.0 404 Not Found"));
 }else{
   editvalve($valveid,$parkdbname,$newid,$numtrees,$numgals);
 }
