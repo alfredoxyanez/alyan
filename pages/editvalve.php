@@ -15,8 +15,8 @@ $numtrees = mysqli_real_escape_string($mysqli,$_POST['trees']);
 $numtrees = intval($numtrees);
 //
 $numgals = mysqli_real_escape_string($mysqli,$_POST['gals']);
-$numgals = split(' ',$numgals);
-$numgals =floatval($numgals[0]).' '.$numgals[1];
+// $numgals = split(' ',$numgals);
+// $numgals =floatval($numgals[0]).' '.$numgals[1];
 
 echo $valveid.$parkdbname.$newid.$numtrees.$numgals;
 // if(IDisused($newid,$parkdbname)){

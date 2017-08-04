@@ -172,6 +172,7 @@ function editvalve(){
   name = $('#dbvname').text();
   numt = document.getElementById("vtress").value;
   numg = document.getElementById("vgp").value;
+  
   alert(id + nid + name +numt+ numg)
   if( $.trim( $("#vidn").val() ) == ''){
     alert("Please Input a ValveID");
