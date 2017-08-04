@@ -191,10 +191,9 @@ function editvalve(){
         alert("yes");
         // window.location.href = "valvepage.php?pdbname="+name+"&"+"vid="+nid.replace(/\s/g, "") ;
       },
-      error:function(error){
-        alert(status);
-        alert(error);
-        //alert("That ID is taken. Please Enter another." );
+      error: function(xhr, status, error) {
+        var err = eval("(" + xhr.responseText + ")");
+        alert(err.Message);
       }
     });
   }
@@ -477,7 +476,7 @@ function editvalve(){
                             <div class="col-sm-10">
                               <?php
                               echo '<input type="text" class="form-control" id="vtress" value="'.getvalvetrees().   ' ">'
-                               ?>
+                              ?>
                             </div>
                           </div>
                           <div class="form-group">
@@ -485,7 +484,7 @@ function editvalve(){
                             <div class="col-sm-10">
                               <?php
                               echo '<input type="text" class="form-control" id="vgp" value="'.getvalvegp().   ' ">'
-                               ?>
+                              ?>
                             </div>
                           </div>
                         </form>
