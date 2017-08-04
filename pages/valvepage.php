@@ -181,6 +181,7 @@ function editvalve(){
   if( $.trim( $("#vgp").val() ) == ''){
     alert("Please Input # of GPM/H");
   }
+  alert(nid);
   else{
     $.ajax({
       type: 'POST',
