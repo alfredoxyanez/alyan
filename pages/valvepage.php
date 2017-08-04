@@ -192,9 +192,8 @@ function editvalve(){
         // window.location.href = "valvepage.php?pdbname="+name+"&"+"vid="+nid.replace(/\s/g, "") ;
       },
       error: function(xhr, status, error) {
-        var err = eval("(" + xhr.responseText + ")");
-        alert(err.Message);
-      }
+        alert(xhr.responseText);
+}
     });
   }
 }
