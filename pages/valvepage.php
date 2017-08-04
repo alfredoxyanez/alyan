@@ -172,6 +172,7 @@ function editvalve(){
   name = $('#dbvname').text();
   numt = document.getElementById("vtress").value;
   numg = document.getElementById("vgp").value;
+  alert(nid);
   if( $.trim( $("#vidn").val() ) == ''){
     alert("Please Input a ValveID");
   }
@@ -181,7 +182,6 @@ function editvalve(){
   if( $.trim( $("#vgp").val() ) == ''){
     alert("Please Input # of GPM/H");
   }
-  alert(nid);
   else{
     $.ajax({
       type: 'POST',
