@@ -16,7 +16,8 @@ $numtrees = intval($numtrees);
 //
 $numgals = mysqli_real_escape_string($mysqli,$_POST['gals']);
 echo($numgals);
-$numgals = split(' ',$numgals);
+// $numgals = split(' ',$numgals);
+$numgals = explode(" ", $numgals);
 // $numgals =floatval($numgals[0]).' '.$numgals[1];
 echo($numgals);
 
